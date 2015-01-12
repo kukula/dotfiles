@@ -7,6 +7,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " Bundles list
 NeoBundle 'tomasr/molokai'
 NeoBundle 'bling/vim-airline'
+NeoBundle 'tpope/vim-fugitive'
 
 call neobundle#end()
 
