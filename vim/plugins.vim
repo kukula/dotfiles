@@ -17,5 +17,6 @@ NeoBundleCheck
 " Bundles settings
 
 " Airline
+set noshowmode
 let g:airline_theme='luna'
 let g:airline_powerline_fonts=1
