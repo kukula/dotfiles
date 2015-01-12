@@ -21,6 +21,7 @@ set splitright
 " no backup files
 set nobackup
 set nowritebackup
+set noswapfile
 
 " show line numbers
 set nu
