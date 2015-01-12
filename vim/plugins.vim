@@ -7,7 +7,8 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " Bundles list
 NeoBundle 'tomasr/molokai'
 NeoBundle 'bling/vim-airline'
-NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'bling/vim-bufferline' "Buffer names in airline
+NeoBundle 'tpope/vim-fugitive' "Git wrapper
 
 call neobundle#end()
 
