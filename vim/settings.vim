@@ -22,6 +22,9 @@ set splitright
 set nobackup
 set nowritebackup
 set noswapfile
+set backupdir=~/.vim/backup//
+set directory=~/.vim/swap//
+set undodir=~/.vim/undo//
 
 " show line numbers
 set nu
@@ -56,9 +59,6 @@ let g:molokai_original=1
 let g:rehash256=1
 set t_Co=256
 colorscheme molokai
-
-" always show status line
-set laststatus=2
 
 " syntax highlight on
 syntax on
