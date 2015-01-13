@@ -34,7 +34,7 @@ NeoBundleCheck
 "Airline"
 set noshowmode
 set laststatus=2
-set timeoutlen=50
+set timeoutlen=500
 let g:airline_theme='base16'
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#fnamemod=':t'
