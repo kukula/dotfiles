@@ -7,13 +7,21 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " Bundles list
 NeoBundle 'tomasr/molokai'
 NeoBundle 'bling/vim-airline'
-NeoBundle 'bling/vim-bufferline' "Buffer names in airline
 NeoBundle 'tpope/vim-fugitive' "Git wrapper
 NeoBundle 'MarcWeber/vim-addon-mw-utils' "Snippets
 NeoBundle 'tomtom/tlib_vim'
 NeoBundle 'garbas/vim-snipmate'
 NeoBundle 'honza/vim-snippets'
 NeoBundle 'kien/ctrlp.vim' " Ctrl-P file finder
+NeoBundle 'tpope/vim-haml'
+NeoBundle 'tpope/vim-markdown'
+NeoBundle 'tpope/vim-rails'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-unimpaired'
+NeoBundle 'tpope/vim-bundler'
+NeoBundle 'tpope/vim-rake'
+NeoBundle 'tpope/vim-sleuth'
+NeoBundle 'tpope/vim-dispatch'
 
 call neobundle#end()
 
@@ -23,11 +31,17 @@ NeoBundleCheck
 
 " Bundles settings
 
-" Airline
+"Airline"
 set noshowmode
 set laststatus=2
+set timeoutlen=50
 let g:airline_theme='luna'
-let g:airline_powerline_fonts=1
+let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#tabline#fnamemod=':t'
+let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = ' '
 
 " CtrlP
 let g:ctrlp_map = '<c-p>'
