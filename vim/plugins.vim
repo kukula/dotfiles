@@ -22,6 +22,7 @@ NeoBundle 'tpope/vim-bundler'
 NeoBundle 'tpope/vim-rake'
 NeoBundle 'tpope/vim-sleuth'
 NeoBundle 'tpope/vim-dispatch'
+NeoBundle 'wting/rust.vim'
 
 call neobundle#end()
 
