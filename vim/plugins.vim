@@ -35,7 +35,7 @@ NeoBundleCheck
 set noshowmode
 set laststatus=2
 set timeoutlen=50
-let g:airline_theme='luna'
+let g:airline_theme='base16'
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#fnamemod=':t'
 let g:airline#extensions#tabline#show_buffers = 1
