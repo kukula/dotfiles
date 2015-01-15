@@ -25,6 +25,7 @@ NeoBundle 'tpope/vim-dispatch'
 NeoBundle 'wting/rust.vim'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'slim-template/vim-slim.git'
+NeoBundle 'thoughtbot/vim-rspec'
 
 call neobundle#end()
 
@@ -64,3 +65,6 @@ let g:ctrlp_switch_buffer = 'Et'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_extensions = ['tag', 'buffertag']
+
+" RSpec.vim
+let g:rspec_runner = "os_x_iterm"
