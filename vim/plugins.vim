@@ -23,6 +23,17 @@ NeoBundle 'tpope/vim-rake'
 NeoBundle 'tpope/vim-sleuth'
 NeoBundle 'tpope/vim-dispatch'
 NeoBundle 'wting/rust.vim'
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'slim-template/vim-slim.git'
+
+call neobundle#end()
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
+
+" Bundles settings
+NeoBundle 'kchmck/vim-coffee-script'
 
 call neobundle#end()
 
