@@ -54,11 +54,10 @@ set lazyredraw
 set ttyscroll=3
 
 " Theme 
-set background=dark
-let g:molokai_original=1
-let g:rehash256=1
 set t_Co=256
-colorscheme molokai
+set background=dark
+let base16colorspace=256
+colorscheme base16-default
 
 " syntax highlight on
 syntax on

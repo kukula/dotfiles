@@ -5,7 +5,7 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " Bundles list
-NeoBundle 'tomasr/molokai'
+NeoBundle 'chriskempson/base16-vim'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'tpope/vim-fugitive' "Git wrapper
 NeoBundle 'MarcWeber/vim-addon-mw-utils' "Snippets
