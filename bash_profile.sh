@@ -7,6 +7,7 @@ PROMPT_SHELL="$HOME/dotfiles/bash/prompt.sh"
 [[ -s $PROMPT_SHELL ]] && source $PROMPT_SHELL
 
 # RVM
+source ~/.rvm/scripts/rvm
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 # JAVA
