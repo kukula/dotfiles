@@ -1,23 +1,10 @@
-function parse_git_dirty {
-  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit, working directory clean" ]] && echo '✏ '
-}
+# Base16 Shell
+BASE16_SHELL="$HOME/dotfiles/bash/base16-default.dark.sh"
+[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
-function parse_git_branch {
-  git branch --no-color 2> /dev/null | grep \* | awk '{print $2}'
-}
-
-function prompt_command_function
-{
-  git_dirty=$(parse_git_dirty)
-  git_branch=$(parse_git_branch)
-
-  git_dirty=${git_dirty:+" \[\e[31m\]$git_dirty\[\e[0m\]"}
-  git_branch=${git_branch:+" (\[\e[1;36m\]${git_branch}\[\e[0m\]${git_dirty})"}
-
-  PS1="\e[1;37m\]\w\[\e[0m\]$git_branch \e[1;32m\$\e[0m "
-}
-
-export PROMPT_COMMAND=prompt_command_function
+# Promt 
+PROMT_SHELL="$HOME/dotfiles/bash/promt.sh"
+[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
 # RVM
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
@@ -33,6 +20,7 @@ alias v='vim'
 alias g='git'
 alias gst='git status'
 alias gc='git commit'
+alias gco='git checkout'
 alias ga='git add'
 alias gd='git diff'
 alias gdc='git diff --cached'
