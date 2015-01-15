@@ -3,8 +3,8 @@ BASE16_SHELL="$HOME/dotfiles/bash/base16-default.dark.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
 # Promt 
-PROMT_SHELL="$HOME/dotfiles/bash/promt.sh"
-[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+PROMPT_SHELL="$HOME/dotfiles/bash/prompt.sh"
+[[ -s $PROMPT_SHELL ]] && source $PROMPT_SHELL
 
 # RVM
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
