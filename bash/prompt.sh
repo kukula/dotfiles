@@ -14,7 +14,7 @@ function prompt_command_function
   git_dirty=${git_dirty:+" \[\e[31m\]$git_dirty\[\e[0m\]"}
   git_branch=${git_branch:+" (\[\e[1;36m\]${git_branch}\[\e[0m\]${git_dirty})"}
 
-  PS1="\e[1;37m\]\w\[\e[0m\]$git_branch \e[1;32m\$\e[0m "
+  PS1="\e[1;37m\]\w\[\e[0m\]$git_branch\n\e[1;32m\$\e[0m "
 }
 
 export PROMPT_COMMAND=prompt_command_function
