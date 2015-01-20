@@ -28,6 +28,12 @@ alias gdc='git diff --cached'
 alias gl='git pull'
 alias gp='git push'
 alias gs='git show'
+alias gs='git branch'
+
+alias bi='bundle install'
+alias be='bundle exec'
+
+alias r='rails'
 
 alias pas='passenger start'
 alias tr='torquebox deploy && torquebox run'
