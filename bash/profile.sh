@@ -28,7 +28,7 @@ alias gdc='git diff --cached'
 alias gl='git pull'
 alias gp='git push'
 alias gs='git show'
-alias gs='git branch'
+alias gb='git branch'
 
 alias bi='bundle install'
 alias be='bundle exec'

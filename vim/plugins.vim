@@ -22,10 +22,12 @@ NeoBundle 'tpope/vim-bundler'
 NeoBundle 'tpope/vim-rake'
 NeoBundle 'tpope/vim-sleuth'
 NeoBundle 'tpope/vim-dispatch'
+NeoBundle 'tpope/vim-vinegar'
 NeoBundle 'wting/rust.vim'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'slim-template/vim-slim.git'
 NeoBundle 'thoughtbot/vim-rspec'
+NeoBundle 'jgdavey/vim-blockle'
 
 call neobundle#end()
 
@@ -68,3 +70,14 @@ let g:ctrlp_extensions = ['tag', 'buffertag']
 
 " RSpec.vim
 let g:rspec_runner = "os_x_iterm"
+
+" Qargs https://github.com/nelstrom/vim-qargs
+command! -nargs=0 -bar Qargs execute 'args' QuickfixFilenames()
+function! QuickfixFilenames()
+  " Building a hash ensures we get each buffer only once
+  let buffer_numbers = {}
+  for quickfix_item in getqflist()
+    let buffer_numbers[quickfix_item['bufnr']] = bufname(quickfix_item['bufnr'])
+  endfor
+  return join(map(values(buffer_numbers), 'fnameescape(v:val)'))
+endfunction
