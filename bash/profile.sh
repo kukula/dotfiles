@@ -16,6 +16,9 @@ export JAVA_OPTS="-Xmx3g -Xms1g"
 export JRUBY_OPTS="-Xcompile.invokedynamic=false -J-XX:+TieredCompilation -J-XX:TieredStopAtLevel=1 -J-noverify -Xcompile.mode=OFF"
 export PATH=${JAVA_HOME}/bin:$PATH
 
+# Postgress.app
+export PATH="/Applications/Postgres.app/Contents/Versions/9.4/bin:$PATH"
+
 # Aliases
 alias v='vim'
 alias g='git'
