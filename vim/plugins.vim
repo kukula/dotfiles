@@ -6,7 +6,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 " Bundles list
 NeoBundle 'chriskempson/base16-vim'
-NeoBundle 'bling/vim-airline'
+NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'tpope/vim-fugitive' "Git wrapper
 NeoBundle 'MarcWeber/vim-addon-mw-utils' "Snippets
 NeoBundle 'tomtom/tlib_vim'
@@ -45,18 +45,6 @@ call neobundle#end()
 NeoBundleCheck
 
 " Bundles settings
-
-"Airline"
-set noshowmode
-set laststatus=2
-set timeoutlen=500
-let g:airline_theme='base16'
-let g:airline#extensions#tabline#enabled=1
-let g:airline#extensions#tabline#fnamemod=':t'
-let g:airline#extensions#tabline#show_buffers = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = ' '
 
 " CtrlP
 let g:ctrlp_map = '<c-p>'
