@@ -38,5 +38,5 @@ alias be='bundle exec'
 
 alias r='rails'
 
-alias pas='passenger start'
-alias tr='torquebox deploy && torquebox run'
+alias pass='passenger start'
+alias torq='torquebox deploy && torquebox run'
