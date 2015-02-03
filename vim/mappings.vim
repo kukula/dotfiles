@@ -1,8 +1,8 @@
 " more useful leader
 let mapleader=","
-let g:mapleader = ","
 
-noremap <leader>d :Dispatch<cr>
+noremap <leader>w :w<CR>
+noremap <leader>q :q<CR>
 
 " Vim Rspec mappings
 nmap <leader>st :call RunCurrentSpecFile()<CR>
@@ -35,3 +35,7 @@ nnoremap <Leader>7 :7b<CR>
 nnoremap <Leader>8 :8b<CR>
 nnoremap <Leader>9 :9b<CR>
 nnoremap <Leader>0 :10b<CR>
+
+" Substitutions
+inoremap <expr> <C-j> ((pumvisible())?("\<C-n>"):("\<C-x><c-i>"))
+inoremap <expr> <C-k> ((pumvisible())?("\<C-p>"):("\<C-x><c-o>"))
