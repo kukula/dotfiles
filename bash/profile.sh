@@ -22,7 +22,13 @@ export PATH=${JAVA_HOME}/bin:$PATH
 # Postgress.app
 export PATH="/Applications/Postgres.app/Contents/Versions/9.4/bin:$PATH"
 
+# Go
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+
 # Aliases
+alias ll='ls -alF'
 alias v='vim'
 alias g='git'
 alias gst='git status'
