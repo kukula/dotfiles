@@ -9,15 +9,10 @@ BASE16_SHELL="$HOME/dotfiles/bash/base16-default.dark.sh"
 PROMPT_SHELL="$HOME/dotfiles/bash/prompt.sh"
 [[ -s $PROMPT_SHELL ]] && source $PROMPT_SHELL
 
-# RVM
-source ~/.rvm/scripts/rvm
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
 # JAVA
 export JAVA_HOME="$(/usr/libexec/java_home)"
 export JAVA_OPTS="-Xmx3g -Xms1g"
 export JRUBY_OPTS="-Xcompile.invokedynamic=false -J-XX:+TieredCompilation -J-XX:TieredStopAtLevel=1 -J-noverify -Xcompile.mode=OFF"
-export PATH=${JAVA_HOME}/bin:$PATH
 
 # Postgress.app
 export PATH="/Applications/Postgres.app/Contents/Versions/9.4/bin:$PATH"
@@ -25,7 +20,11 @@ export PATH="/Applications/Postgres.app/Contents/Versions/9.4/bin:$PATH"
 # Go
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
+
+# RVM
+source ~/.rvm/scripts/rvm
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 # Aliases
 alias ll='ls -alF'
