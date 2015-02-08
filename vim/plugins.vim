@@ -28,6 +28,7 @@ NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'slim-template/vim-slim.git'
 NeoBundle 'thoughtbot/vim-rspec'
 NeoBundle 'jgdavey/vim-blockle'
+NeoBundle 'fatih/vim-go'
 
 call neobundle#end()
 
