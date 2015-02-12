@@ -13,7 +13,7 @@ nmap <leader>sa :call RunAllSpecs()<CR>
 nmap <leader><CR> o<Esc>
 nmap <leader><up> ddkP
 nmap <leader><down> ddp
-nmap <Esc><Esc><Esc> :noh<CR>
+nmap <Esc><Esc> :noh<CR>
 
 command WQ wq "Error prone
 command Wq wq
