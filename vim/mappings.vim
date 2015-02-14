@@ -10,6 +10,7 @@ nmap <leader>ss :call RunNearestSpec()<CR>
 nmap <leader>sl :call RunLastSpec()<CR>
 nmap <leader>sa :call RunAllSpecs()<CR>
 
+nmap <Leader>gs :Gstatus<CR>
 nmap <leader><CR> o<Esc>
 nmap <leader><up> ddkP
 nmap <leader><down> ddp

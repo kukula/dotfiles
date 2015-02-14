@@ -62,7 +62,7 @@ colorscheme base16-default
 " Statusline
 set noshowmode
 set laststatus=2
-set timeoutlen=700
+set timeoutlen=1000
 
 " syntax highlight on
 syntax on
