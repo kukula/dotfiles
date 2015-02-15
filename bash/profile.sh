@@ -1,9 +1,10 @@
 # In case of nano
 export EDITOR=vim
 
-# Base16 Shell
-BASE16_SHELL="$HOME/dotfiles/bash/base16-default.dark.sh"
-[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+# Base16 Shell collor switching
+if [ -n "$PS1" ]; then # if statement guards adding these helpers for non-interative shells
+  eval "$(~/dotfiles/base16-shell/profile_helper.sh)"
+fi
 
 # Promt 
 PROMPT_SHELL="$HOME/dotfiles/bash/prompt.sh"
