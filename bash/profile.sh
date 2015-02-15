@@ -22,12 +22,15 @@ export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
 export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 
+# NPM
+export PATH=$HOME/npm/bin:$PATH
+
 # RVM
 source ~/.rvm/scripts/rvm
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 # Aliases
-alias ll='ls -alF'
+alias ll='ls -hal'
 alias v='vim'
 alias g='git'
 alias gst='git status'

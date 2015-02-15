@@ -30,6 +30,7 @@ NeoBundle 'thoughtbot/vim-rspec'
 NeoBundle 'jgdavey/vim-blockle'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'rking/ag.vim'
+NeoBundle 'dyng/ctrlsf.vim'
 
 call neobundle#end()
 
