@@ -1,19 +1,21 @@
 " more useful leader
 let mapleader=","
 
-noremap <leader>w :w<CR>
-noremap <leader>q :q<CR>
+noremap <Leader>w :w<CR>
+noremap <Leader>q :q<CR>
+noremap <Space> <C-d>
+noremap <Leader><Space> <C-u>
 
 " Vim Rspec mappings
-nmap <leader>st :call RunCurrentSpecFile()<CR>
-nmap <leader>ss :call RunNearestSpec()<CR>
-nmap <leader>sl :call RunLastSpec()<CR>
-nmap <leader>sa :call RunAllSpecs()<CR>
+nmap <Leader>st :call RunCurrentSpecFile()<CR>
+nmap <Leader>ss :call RunNearestSpec()<CR>
+nmap <Leader>sl :call RunLastSpec()<CR>
+nmap <Leader>sa :call RunAllSpecs()<CR>
 
 nmap <Leader>gs :Gstatus<CR>
-nmap <leader><CR> o<Esc>
-nmap <leader><up> ddkP
-nmap <leader><down> ddp
+nmap <Leader><CR> o<Esc>
+nmap <Leader><Up> ddkP
+nmap <Leader><Down> ddp
 nmap <Esc><Esc> :noh<CR>
 
 command WQ wq "Error prone
