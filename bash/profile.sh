@@ -10,6 +10,10 @@ fi
 PROMPT_SHELL="$HOME/dotfiles/bash/prompt.sh"
 [[ -s $PROMPT_SHELL ]] && source $PROMPT_SHELL
 
+# Git
+export PATH="/usr/local/git/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:$PATH"
+
+
 # JAVA
 export JAVA_HOME="$(/usr/libexec/java_home)"
 export JAVA_OPTS="-Xmx3g -Xms1g"
