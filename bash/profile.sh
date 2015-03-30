@@ -10,9 +10,7 @@ fi
 PROMPT_SHELL="$HOME/dotfiles/bash/prompt.sh"
 [[ -s $PROMPT_SHELL ]] && source $PROMPT_SHELL
 
-# Git
-export PATH="/usr/local/git/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:$PATH"
-
+export PATH="/usr/local/bin:$PATH"
 
 # JAVA
 export JAVA_HOME="$(/usr/libexec/java_home)"
@@ -32,7 +30,7 @@ export PATH=$HOME/npm/bin:$PATH
 
 # RVM
 source ~/.rvm/scripts/rvm
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export PATH="$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
 
 # Aliases
 alias ll='ls -hal'
