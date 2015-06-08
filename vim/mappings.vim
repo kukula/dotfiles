@@ -20,6 +20,7 @@ nmap <Esc><Esc> :noh<CR>
 
 command WQ wq "Error prone
 command Wq wq
+command Cq cq
 command W w
 command Q q
 
