@@ -32,6 +32,9 @@ export PATH=$HOME/npm/bin:$PATH
 source ~/.rvm/scripts/rvm
 export PATH="$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
 
+# PhantomJS
+export PHANTOMJS_BIN=phantomjs
+
 # Aliases
 alias ll='ls -hal'
 alias v='vim'
