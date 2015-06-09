@@ -12,6 +12,11 @@ PROMPT_SHELL="$HOME/dotfiles/bash/prompt.sh"
 
 export PATH="/usr/local/bin:$PATH"
 
+# Git
+if [ -f ~/dotfiles/bash/git-completion.bash ]; then
+  . ~/dotfiles/bash/git-completion.bash
+fi
+
 # JAVA
 export JAVA_HOME="$(/usr/libexec/java_home)"
 export JAVA_OPTS="-Xmx3g -Xms1g"
