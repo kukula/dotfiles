@@ -40,15 +40,6 @@ call neobundle#end()
 NeoBundleCheck
 
 " Bundles settings
-NeoBundle 'kchmck/vim-coffee-script'
-
-call neobundle#end()
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
-
-" Bundles settings
 
 " CtrlP
 let g:ctrlp_map = '<c-p>'
