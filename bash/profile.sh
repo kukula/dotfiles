@@ -10,6 +10,10 @@ fi
 PROMPT_SHELL="$HOME/dotfiles/bash/prompt.sh"
 [[ -s $PROMPT_SHELL ]] && source $PROMPT_SHELL
 
+function ghost_mode {
+  export PS1="👻  "
+}
+
 export PATH="/usr/local/bin:$PATH"
 
 # Git
