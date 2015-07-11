@@ -32,6 +32,7 @@ NeoBundle 'jgdavey/vim-blockle'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'dyng/ctrlsf.vim'
+NeoBundle 'elixir-lang/vim-elixir'
 
 call neobundle#end()
 
