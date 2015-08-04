@@ -1,7 +1,3 @@
-unbind C-b
-set -g prefix C-u
-bind C-u send-prefix
-
 set -g default-terminal "xterm-256color"
 
 set -g base-index 1
