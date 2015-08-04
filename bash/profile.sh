@@ -22,9 +22,9 @@ if [ -f ~/dotfiles/bash/git-completion.bash ]; then
 fi
 
 # JAVA
-export JAVA_HOME="$(/usr/libexec/java_home)"
-export JAVA_OPTS="-Xmx3g -Xms1g"
-export JRUBY_OPTS="-Xcompile.invokedynamic=false -J-XX:+TieredCompilation -J-XX:TieredStopAtLevel=1 -J-noverify -Xcompile.mode=OFF"
+#export JAVA_HOME="$(/usr/libexec/java_home)"
+#export JAVA_OPTS="-Xmx3g -Xms1g"
+#export JRUBY_OPTS="-Xcompile.invokedynamic=false -J-XX:+TieredCompilation -J-XX:TieredStopAtLevel=1 -J-noverify -Xcompile.mode=OFF"
 
 # Postgress.app
 export PATH="/Applications/Postgres.app/Contents/Versions/9.4/bin:$PATH"
