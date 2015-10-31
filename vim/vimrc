@@ -23,6 +23,10 @@ call plug#begin('~/.vim/plugged')
   Plug 'tomtom/tlib_vim'
   Plug 'garbas/vim-snipmate'
   Plug 'honza/vim-snippets'
+  " surround
+  Plug 'tpope/vim-surround'
+  " blocks converting (gS gJ)
+  Plug 'AndrewRadev/splitjoin.vim'
 " }
 
 call plug#end()
@@ -109,6 +113,8 @@ call plug#end()
   command Cq cq
   command W w
   command Q q
+
+  command! -range ConvertHashSyntax <line1>,<line2>s/:\(\S\{-}\)\(\s\{-}\)=> /\1:\2/
 " }
 
 " Theme {
