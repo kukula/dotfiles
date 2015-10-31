@@ -1,9 +1,20 @@
 #!/usr/bin/env bash
 
+# Please install homebrew before
+brew install vim
+brew instal tmux
+brew install reattach-to-user-namespace
+brew install the_silver_searcher
+brew install ctags
+
+# install vim-plug
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
 # Add links
 ln -sf ~/dotfiles/bash/profile.sh ~/.bash_profile
-ln -sf ~/dotfiles/vim/vimrc ~/.vimrc
-ln -sf ~/dotfiles/tmux.conf.sh ~/.tmux.conf
+ln -sf ~/dotfiles/vimrc ~/.vimrc
+ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
 ln -sf ~/dotfiles/git/config ~/.gitconfig
 ln -sf ~/dotfiles/gemrc ~/.gemrc
 
