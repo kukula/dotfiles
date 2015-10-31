@@ -1,6 +1,5 @@
 " Oldie {
   set nocompatible               " be iMproved
-  filetype off                   " required!
   set backspace=indent,eol,start
   set history=5000
   set t_Co=256
@@ -27,29 +26,31 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-surround'
   " blocks converting (gS gJ)
   Plug 'AndrewRadev/splitjoin.vim'
+  " send command from vim to tmux
+  Plug 'jgdavey/tslime.vim'
+  " vim rspec
+  Plug 'thoughtbot/vim-rspec'
 " }
 
 call plug#end()
 
 " Settings {
+  " Show numbers and highlight currentline
   set number relativenumber
   set cursorline
 
-  " disable swap and backup
+  " Disable swap and backup
   set nobackup
   set noswapfile
 
-  " split below/right
+  " Split below/right
   set splitbelow
   set splitright
 
-  let mapleader=','
-
+  " Syntax and filetype detection
   syntax on
-  filetype on
   filetype plugin on
   filetype indent on
-  filetype plugin indent on
 
   " Indentation
   set expandtab     " all tabs expands to spaces
@@ -61,26 +62,29 @@ call plug#end()
   set softtabstop=2 " number of spaces that a <Tab> counts for
                     " while performing editing operations
 
-  " smartcase -- normally ignores case, but when we type uppercase character
+  " Smartcase -- normally ignores case, but when we type uppercase character
   " in search box it will be CASE SENSITIVE
   set ignorecase
   set smartcase
   set hlsearch
 
-  " statusline
+  " Statusline
   set laststatus=2
   set statusline=%f\ %m%r%w%y%=:b%n\ 🐘\ \ %l/%L
 
-  " show trailing whitespace
+  " Show trailing whitespace
   highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
   autocmd ColorScheme * highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
   match ExtraWhitespace /\s\+$\| \+\ze\t/
+
+  " Tying rspec-vim and tslime
+  let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
 " }
 
-" Keybindings {
-  " Save file
-  nnoremap <Leader>w :w<CR>
-  "Copy and paste from system clipboard
+" Key mappings {
+  let mapleader=','
+
+  " Copy and paste from system clipboard
   vmap <Leader>y "+y
   nmap <Leader>Y "+Y
   vmap <Leader>d "+d
@@ -89,7 +93,7 @@ call plug#end()
   vmap <Leader>p "+p
   vmap <Leader>P "+P
 
-  map <Leader>gs :Gstatus<CR>
+  " Remove selection
   map <Esc><Esc> :noh<CR>
 
   " Buffers
@@ -108,13 +112,29 @@ call plug#end()
   nnoremap <Leader>9 :9b<CR>
   nnoremap <Leader>0 :10b<CR>
 
-  command WQ wq "Error prone
+  " Error prone
+  command WQ wq
   command Wq wq
   command Cq cq
   command W w
   command Q q
 
+  " Convert old ruby hash syntaxt
   command! -range ConvertHashSyntax <line1>,<line2>s/:\(\S\{-}\)\(\s\{-}\)=> /\1:\2/
+
+  " Fugitive
+  map <Leader>gs :Gstatus<CR>
+
+  " Tslime keys
+  vmap <C-c><C-c> <Plug>SendSelectionToTmux
+  nmap <C-c><C-c> <Plug>NormalModeSendToTmux
+  nmap <C-c>r <Plug>SetTmuxVars
+
+  " RSpec.vim mappings
+  map <Leader>st :call RunCurrentSpecFile()<CR>
+  map <Leader>ss :call RunNearestSpec()<CR>
+  map <Leader>sl :call RunLastSpec()<CR>
+  map <Leader>sa :call RunAllSpecs()<CR>
 " }
 
 " Theme {
