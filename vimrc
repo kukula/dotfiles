@@ -9,12 +9,16 @@
 call plug#begin('~/.vim/plugged')
 
 " Plugins {
-  " ctrl-p is a fuzzy file finder.
-  Plug 'kien/ctrlp.vim'
-  " themes
-  Plug 'chriskempson/base16-vim'
+  " ruby
+  Plug 'vim-ruby/vim-ruby'
+  " rspec
+  Plug 'thoughtbot/vim-rspec'
+  " elixir-lang
+  Plug 'elixir-lang/vim-elixir'
   " git wrapper
   Plug 'tpope/vim-fugitive'
+  " ctrl-p is a fuzzy file finder.
+  Plug 'kien/ctrlp.vim'
   " search
   Plug 'rking/ag.vim'
   " snippets
@@ -28,8 +32,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'AndrewRadev/splitjoin.vim'
   " send command from vim to tmux
   Plug 'jgdavey/tslime.vim'
-  " vim rspec
-  Plug 'thoughtbot/vim-rspec'
+  " themes
+  Plug 'chriskempson/base16-vim'
 " }
 
 call plug#end()
