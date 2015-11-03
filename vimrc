@@ -32,6 +32,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'AndrewRadev/splitjoin.vim'
   " send command from vim to tmux
   Plug 'jgdavey/tslime.vim'
+  " find/replace
+  Plug 'vim-scripts/Greplace.vim'
   " themes
   Plug 'chriskempson/base16-vim'
 " }
