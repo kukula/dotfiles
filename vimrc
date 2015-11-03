@@ -49,6 +49,9 @@ call plug#end()
   set nobackup
   set noswapfile
 
+  " Change unsaved beffers
+  set hidden
+
   " Split below/right
   set splitbelow
   set splitright
