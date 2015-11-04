@@ -15,6 +15,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'thoughtbot/vim-rspec'
   " elixir-lang
   Plug 'elixir-lang/vim-elixir'
+  " slim templates
+  Plug 'slim-template/vim-slim'
   " git wrapper
   Plug 'tpope/vim-fugitive'
   " ctrl-p is a fuzzy file finder.
