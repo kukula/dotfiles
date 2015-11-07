@@ -44,17 +44,6 @@ export PHANTOMJS_BIN=phantomjs
 # Aliases
 alias la='ls -hal'
 alias ll='ls -hAl'
-alias gst='git status'
-alias gc='git commit'
-alias gco='git checkout'
-alias ga='git add'
-alias gd='git diff'
-alias gdc='git diff --cached'
-alias gl='git pull'
-alias gp='git push'
-alias gs='git show'
-alias gb='git branch'
-alias glo='git log'
 
 # Simple calc in cli
 function calc () {

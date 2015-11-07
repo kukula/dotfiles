@@ -6,7 +6,15 @@
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 	excludesfile = ~/dotfiles/git/gitignore_global
 [push]
-	default = matching
+	default = simple
+[alias]
+  co = checkout
+  br = branch
+  st = status
+  d = diff
+  dc = diff --cached
+  c = commit
+  a = add
 [color]
 	ui = auto
 [color "branch"]
