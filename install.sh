@@ -4,7 +4,6 @@
 brew install vim
 brew instal tmux
 brew install reattach-to-user-namespace
-brew install the_silver_searcher
 brew install ctags
 
 # install vim-plug

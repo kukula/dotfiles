@@ -21,8 +21,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-fugitive'
   " ctrl-p is a fuzzy file finder.
   Plug 'kien/ctrlp.vim'
-  " search
-  Plug 'rking/ag.vim'
+  " search/replace
+  Plug 'dkprice/vim-easygrep'
   " snippets
   Plug 'MarcWeber/vim-addon-mw-utils'
   Plug 'tomtom/tlib_vim'
@@ -34,8 +34,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'AndrewRadev/splitjoin.vim'
   " send command from vim to tmux
   Plug 'jgdavey/tslime.vim'
-  " find/replace
-  Plug 'vim-scripts/Greplace.vim'
   " themes
   Plug 'chriskempson/base16-vim'
 " }
