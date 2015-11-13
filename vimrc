@@ -41,6 +41,16 @@ call plug#begin('~/.vim/plugged')
 call plug#end()
 
 " Settings {
+  " Syntax and filetype detection
+  syntax on
+  filetype indent plugin on
+
+  " Change unsaved beffers
+  set hidden
+
+  " Better command-line completion
+  set wildmenu
+
   " Show numbers and highlight currentline
   set number relativenumber
   set cursorline
@@ -49,17 +59,9 @@ call plug#end()
   set nobackup
   set noswapfile
 
-  " Change unsaved beffers
-  set hidden
-
   " Split below/right
   set splitbelow
   set splitright
-
-  " Syntax and filetype detection
-  syntax on
-  filetype plugin on
-  filetype indent on
 
   " Indentation
   set expandtab     " all tabs expands to spaces
@@ -81,6 +83,16 @@ call plug#end()
   set laststatus=2
   set statusline=%f\ %m%r%w%y%=:b%n\ 🐘\ \ %l/%L
 
+  " Instead of failing a command because of unsaved changes, instead raise a
+  " dialogue asking if you wish to save changed files.
+  set confirm
+
+  " Use visual bell instead of beeping when doing something wrong
+  set visualbell
+
+  " Reset the terminal code for the visual bell
+  set t_vb=
+
   " Show trailing whitespace
   highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
   autocmd ColorScheme * highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
@@ -92,6 +104,9 @@ call plug#end()
 
 " Key mappings {
   let mapleader=','
+
+  " Map Y to act like D and C, i.e. to yank until EOL
+  map Y y$
 
   " Copy and paste from system clipboard
   vmap <Leader>y "+y
