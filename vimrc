@@ -107,6 +107,11 @@ call plug#end()
 
   " Map Y to act like D and C, i.e. to yank until EOL
   map Y y$
+  " Sodium style mappings :)
+  map H ^
+  map L $
+  map J 15j
+  map K 15k
 
   " Copy and paste from system clipboard
   vmap <Leader>y "+y
