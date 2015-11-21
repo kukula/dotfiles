@@ -13,7 +13,8 @@
   st = status
   d = diff
   dc = diff --cached
-  c = commit
+  cc = commit
+  ca = commit --amend
   a = add
 [color]
 	ui = auto
