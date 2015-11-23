@@ -112,6 +112,8 @@ call plug#end()
   map L $
   map J 15j
   map K 15k
+  " File browsing
+  nnoremap - :Explore<CR>
 
   " Copy and paste from system clipboard
   vmap <Leader>y "+y
