@@ -45,6 +45,14 @@ call plug#end()
   syntax on
   filetype indent plugin on
 
+  " Syntax coloring lines that are too long just slows down the world
+  set synmaxcol=128
+
+  " For better terminal perfomance
+  set ttyfast " u got a fast terminal
+  set ttyscroll=3
+  set lazyredraw " to avoid scrolling problems
+
   " Change unsaved beffers
   set hidden
 
