@@ -19,6 +19,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'slim-template/vim-slim'
   " git wrapper
   Plug 'tpope/vim-fugitive'
+  " git commit browser
+  Plug 'junegunn/gv.vim'
   " ctrl-p is a fuzzy file finder.
   Plug 'kien/ctrlp.vim'
   " search/replace
