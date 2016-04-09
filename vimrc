@@ -11,15 +11,19 @@ call plug#begin('~/.vim/plugged')
 " Plugins {
   " ruby
   Plug 'vim-ruby/vim-ruby'
+  " ruby
+  Plug 'tpope/vim-rails'
   " rspec
   Plug 'thoughtbot/vim-rspec'
   " elixir-lang
   Plug 'elixir-lang/vim-elixir'
   " slim templates
   Plug 'slim-template/vim-slim'
+  " Elm
+  Plug 'lambdatoast/elm.vim'
   " git wrapper
   Plug 'tpope/vim-fugitive'
-  " git commit browser
+  " git commit browser :GV
   Plug 'junegunn/gv.vim'
   " ctrl-p is a fuzzy file finder.
   Plug 'kien/ctrlp.vim'
@@ -30,8 +34,10 @@ call plug#begin('~/.vim/plugged')
   Plug 'tomtom/tlib_vim'
   Plug 'garbas/vim-snipmate'
   Plug 'honza/vim-snippets'
-  " surround
+  " surround cs, ds, ys
   Plug 'tpope/vim-surround'
+  " Match do end
+  Plug 'vim-scripts/matchit.zip'
   " blocks converting (gS gJ)
   Plug 'AndrewRadev/splitjoin.vim'
   " send command from vim to tmux
