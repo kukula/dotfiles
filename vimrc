@@ -172,6 +172,10 @@ call plug#end()
   " Fugitive
   map <Leader>gs :Gstatus<CR>
 
+  " Rubocop
+  map <Leader>r :!rubocop -a %<CR>
+
+
   " Tslime keys
   vmap <C-c><C-c> <Plug>SendSelectionToTmux
   nmap <C-c><C-c> <Plug>NormalModeSendToTmux
