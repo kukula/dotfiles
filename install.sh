@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
 
-# Please install homebrew before
-brew install vim
-brew instal tmux
-brew install reattach-to-user-namespace
-brew install the_silver_searcher
-brew install ctags
+# install Brew
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+# brew some apps
+brew bundle Brewfile
 
 # install vim-plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -14,6 +13,8 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 # Add links
 ln -sf ~/dotfiles/bash/profile.sh ~/.bash_profile
 ln -sf ~/dotfiles/vimrc ~/.vimrc
+mkdir -p ~/.config/nvim
+ln -sf ~/dotfiles/vimrc ~/.config/nvim/init.vim
 ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
 ln -sf ~/dotfiles/git/config ~/.gitconfig
 ln -sf ~/dotfiles/gemrc ~/.gemrc
