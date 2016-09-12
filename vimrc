@@ -4,6 +4,7 @@
   set history=5000
   set t_Co=256
   set encoding=utf-8 fileencoding=utf-8
+  set mouse=""
 " }
 
 call plug#begin('~/.vim/plugged')
@@ -60,7 +61,7 @@ call plug#end()
 
   " For better terminal perfomance
   set ttyfast " u got a fast terminal
-  set ttyscroll=3
+  "set ttyscroll=3
   set lazyredraw " to avoid scrolling problems
 
   " Change unsaved beffers
@@ -146,7 +147,7 @@ call plug#end()
   map <Esc><Esc> :noh<CR>
 
   " Buffers
-  nnoremap <Leader>l :ls<CR>
+  nnoremap <Leader>l :ls!<CR>
   nnoremap <Leader>b :bp<CR>
   nnoremap <Leader>f :bn<CR>
   nnoremap <Leader>e :e#<CR>
@@ -175,7 +176,7 @@ call plug#end()
   map <Leader>gs :Gstatus<CR>
 
   " Rubocop
-  map <Leader>r :!rubocop -a %<CR>
+  map <Leader>r :!rubocop -a --rails %<CR>
 
 
   " Tslime keys
