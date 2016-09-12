@@ -44,6 +44,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'jgdavey/tslime.vim'
   " themes
   Plug 'chriskempson/base16-vim'
+  " Coffeescript :(
+  Plug 'kchmck/vim-coffee-script'
 " }
 
 call plug#end()

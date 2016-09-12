@@ -9,13 +9,18 @@ for script in $script_dir/base16*.sh; do
 base16_${theme}_${variation}()
 {
   . $script
-  ln -fs $script ~/.base16_theme 
+  ln -fs $script ~/.base16_theme
   export BASE16_THEME=base16-${theme}
   export BASE16_VARIATION=$variation
-  cat <<vimrc_background > ~/.vimrc_background
+  echo $variation > ~/.base16_variation.rc
+  #if type tmux_${variation} >/dev/null; then
+    #tmux_${variation}
+  #fi
+  [ -f ~/.vimrc_background ] && rm ~/.vimrc_background
+  cat <<VIMRC_BACKGROUND > ~/.vimrc_background
 set background=$variation
-colorscheme base16-$theme
-vimrc_background
+colorscheme base16-$theme-$variation
+VIMRC_BACKGROUND
 }
 FUNC
 done;
