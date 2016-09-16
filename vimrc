@@ -124,6 +124,11 @@ call plug#end()
   " Reset the terminal code for the visual bell
   set t_vb=
 
+  " new vim8 options
+  set breakindent
+  set emoji
+  set fixendofline
+
   " Show trailing whitespace
   highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
   autocmd ColorScheme * highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
