@@ -47,7 +47,7 @@ export PATH=$HOME/npm/bin:$PATH
 export PHANTOMJS_BIN=phantomjs
 
 # default Ruby
-chruby 2.2.3
+chruby 2.2.5
 
 # I don't want to 'bundle exec'
 mkdir -p .git/safe && export PATH=".git/safe/../../bin:$PATH"

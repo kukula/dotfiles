@@ -4,7 +4,7 @@
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 # brew some apps
-brew bundle Brewfile
+brew bundle install
 
 # install vim-plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \

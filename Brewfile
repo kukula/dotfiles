@@ -29,7 +29,6 @@ brew 'homebrew/versions/postgresql94'
 brew 'neovim/neovim/neovim', args: ['HEAD']
 
 cask 'iterm2'
-cask 'chrome'
 cask 'spectacle'
 cask 'skype'
 cask 'hipchat'

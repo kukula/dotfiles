@@ -47,6 +47,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'chriskempson/base16-vim'
   " Coffeescript :(
   Plug 'kchmck/vim-coffee-script'
+  " Comments
+  Plug 'tomtom/tcomment_vim'
 " }
 
 call plug#end()
@@ -100,7 +102,17 @@ call plug#end()
 
   " Statusline
   set laststatus=2
-  set statusline=%f\ %m%r%w%y%=:b%n\ 🐘\ \ %l/%L
+  set statusline=%f         " Path to the file
+  set statusline+=\ 
+  set statusline+=%m%r%w%y  " General info
+  set statusline+=%=        " Switch to the right side
+  set statusline+=:b%n       " Buffer number
+  set statusline+=\ 
+  set statusline+=🐘         " Elephant
+  set statusline+=\ \ 
+  set statusline+=%l        " Current line
+  set statusline+=\ /
+  set statusline+=%L        " Total lines
 
   " Instead of failing a command because of unsaved changes, instead raise a
   " dialogue asking if you wish to save changed files.
