@@ -1,7 +1,5 @@
 # In case of nano
 export EDITOR=vim
-alias vim='nvim'
-alias ni='nvim'
 
 # Enable colors
 export CLICOLOR=1
@@ -9,9 +7,6 @@ export CLICOLOR=1
 # RVM
 export PATH="$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-# chruby
-source /usr/local/opt/chruby/share/chruby/chruby.sh
 
 # Base16 Shell color switching
 if [ -n "$PS1" ]; then # if statement guards adding these helpers for non-interative shells
@@ -45,9 +40,6 @@ export PATH=$HOME/npm/bin:$PATH
 
 # PhantomJS
 export PHANTOMJS_BIN=phantomjs
-
-# default Ruby
-chruby 2.2.5
 
 # I don't want to 'bundle exec'
 mkdir -p .git/safe && export PATH=".git/safe/../../bin:$PATH"
