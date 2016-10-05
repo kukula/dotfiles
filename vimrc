@@ -45,6 +45,10 @@ call plug#begin('~/.vim/plugged')
   Plug 'jgdavey/tslime.vim'
   " themes
   Plug 'chriskempson/base16-vim'
+  " JS
+  Plug 'pangloss/vim-javascript'
+  " JSX
+  Plug 'mxw/vim-jsx'
   " Coffeescript :(
   Plug 'kchmck/vim-coffee-script'
   " Comments
@@ -136,6 +140,9 @@ call plug#end()
 
   " Tying rspec-vim and tslime
   let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
+
+  " JSX indentation in JS files
+  let g:jsx_ext_required = 0
 " }
 
 " Key mappings {
@@ -178,6 +185,9 @@ call plug#end()
   nnoremap <Leader>8 :8b<CR>
   nnoremap <Leader>9 :9b<CR>
   nnoremap <Leader>0 :10b<CR>
+
+  noremap <Leader>pp :silent w !sonic_pi<CR>
+  noremap <Leader>ps :call system("sonic_pi stop")<CR>
 
   " Error prone
   command WQ wq
