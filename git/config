@@ -16,6 +16,11 @@
   cc = commit
   ca = commit --amend
   a = add
+  branch-name = "!git rev-parse --abbrev-ref HEAD"
+  publish = "!git push -u origin $(git branch-name)"
+  please = "push --force-with-lease"
+  staash = "stash --include-untracked"
+  merc = "merge --no-ff"
 [color]
 	ui = auto
 [color "branch"]
