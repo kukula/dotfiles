@@ -4,10 +4,6 @@ export EDITOR=vim
 # Enable colors
 export CLICOLOR=1
 
-# RVM
-export PATH="$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
 # Base16 Shell color switching
 if [ -n "$PS1" ]; then # if statement guards adding these helpers for non-interative shells
   eval "$(~/dotfiles/base16-shell/profile_helper.sh)"
@@ -41,8 +37,10 @@ export PATH=$HOME/npm/bin:$PATH
 # PhantomJS
 export PHANTOMJS_BIN=phantomjs
 
-# I don't want to 'bundle exec'
-mkdir -p .git/safe && export PATH=".git/safe/../../bin:$PATH"
+# RVM
+export PATH="$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+rvm use --default 2.3.1
 
 # Aliases
 alias la='ls -hal'
