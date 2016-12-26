@@ -1,245 +1,216 @@
-" Oldie {
-  set nocompatible               " be iMproved
-  set backspace=indent,eol,start
-  set history=5000
-  set t_Co=256
-  set encoding=utf-8 fileencoding=utf-8
-  set mouse=""
-" }
+set nocompatible " be iMproved
+set backspace=indent,eol,start
+set history=5000
+set t_Co=256
+set encoding=utf-8 fileencoding=utf-8
+set mouse=""
 
 call plug#begin('~/.vim/plugged')
 
-" Plugins {
-  " ruby
-  Plug 'vim-ruby/vim-ruby'
-  " ruby
-  Plug 'tpope/vim-rails'
-  " rspec
-  Plug 'thoughtbot/vim-rspec'
-  " elixir-lang
-  Plug 'elixir-lang/vim-elixir'
-  " slim templates
-  Plug 'slim-template/vim-slim'
-  " Elm
-  Plug 'lambdatoast/elm.vim'
-  " git wrapper
-  Plug 'tpope/vim-fugitive'
-  " git commit browser :GV
-  Plug 'junegunn/gv.vim'
-  " ctrl-p is a fuzzy file finder.
-  Plug 'kien/ctrlp.vim'
-  " search/replace
-  Plug 'dkprice/vim-easygrep'
-  " snippets
-  Plug 'MarcWeber/vim-addon-mw-utils'
-  Plug 'tomtom/tlib_vim'
-  Plug 'garbas/vim-snipmate'
-  Plug 'honza/vim-snippets'
-  " surround cs, ds, ys
-  Plug 'tpope/vim-surround'
-  " Match do end
-  Plug 'vim-scripts/matchit.zip'
-  " blocks converting (gS gJ)
-  Plug 'AndrewRadev/splitjoin.vim'
-  " send command from vim to tmux
-  Plug 'jgdavey/tslime.vim'
-  " themes
-  Plug 'chriskempson/base16-vim'
-  " JS
-  Plug 'pangloss/vim-javascript'
-  " JSX
-  Plug 'mxw/vim-jsx'
-  " Coffeescript :(
-  Plug 'kchmck/vim-coffee-script'
-  " Comments
-  Plug 'tomtom/tcomment_vim'
-" }
+" Plugins
+" Ruby
+Plug 'vim-ruby/vim-ruby'
+" Rails
+Plug 'tpope/vim-rails'
+" RSpec
+Plug 'thoughtbot/vim-rspec'
+" Elixir-lang
+Plug 'elixir-lang/vim-elixir'
+" Slim templates
+Plug 'slim-template/vim-slim'
+" Git wrapper
+Plug 'tpope/vim-fugitive'
+" git commit browser :GV
+Plug 'junegunn/gv.vim'
+" ctrl-p is a fuzzy file finder.
+Plug 'kien/ctrlp.vim'
+" snippets
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
+Plug 'honza/vim-snippets'
+" surround cs, ds, ys
+Plug 'tpope/vim-surround'
+" Match do end
+Plug 'vim-scripts/matchit.zip'
+" blocks converting (gS gJ)
+Plug 'AndrewRadev/splitjoin.vim'
+" send command from vim to tmux
+Plug 'jgdavey/tslime.vim'
+" themes
+Plug 'chriskempson/base16-vim'
+" JS
+Plug 'pangloss/vim-javascript'
+" JSX
+Plug 'mxw/vim-jsx'
+" Comments
+Plug 'tomtom/tcomment_vim'
 
 call plug#end()
 
-" Settings {
-  " Syntax and filetype detection
-  syntax on
-  filetype indent plugin on
+" Syntax and filetype detection
+syntax on
+filetype indent plugin on
 
-  " Syntax coloring lines that are too long just slows down the world
-  set synmaxcol=128
+" Syntax coloring lines that are too long just slows down the world
+set synmaxcol=128
 
-  " For better terminal perfomance
-  set ttyfast " u got a fast terminal
-  "set ttyscroll=3
-  set lazyredraw " to avoid scrolling problems
+" For better terminal perfomance
+set ttyfast " u got a fast terminal
+"set ttyscroll=3
+set lazyredraw " to avoid scrolling problems
 
-  " Change unsaved beffers
-  set hidden
+" Change unsaved beffers
+set hidden
 
-  " Better command-line completion
-  set wildmenu
+" Better command-line completion
+set wildmenu
 
-  " Show numbers and highlight currentline
-  set number relativenumber
-  set cursorline
+" Show numbers and highlight currentline
+set number relativenumber
+set cursorline
 
-  " Disable swap and backup
-  set nobackup
-  set noswapfile
+" Disable swap and backup
+set nobackup
+set noswapfile
 
-  " Split below/right
-  set splitbelow
-  set splitright
+" Split below/right
+set splitbelow
+set splitright
 
-  " Indentation
-  set expandtab     " all tabs expands to spaces
-  set sw=2          " automagic indent width
-  set tabstop=2     " size of tab in spaces
-  set ts=2          " size of tab
-  set shiftround    " round indent to multiple of 'shiftwidth', applies to > and <
-  set smarttab
-  set softtabstop=2 " number of spaces that a <Tab> counts for
-                    " while performing editing operations
+" Indentation
+set expandtab     " all tabs expands to spaces
+set sw=2          " automagic indent width
+set tabstop=2     " size of tab in spaces
+set ts=2          " size of tab
+set shiftround    " round indent to multiple of 'shiftwidth', applies to > and <
+set smarttab
+set softtabstop=2 " number of spaces that a <Tab> counts for
+" while performing editing operations
 
-  " Smartcase -- normally ignores case, but when we type uppercase character
-  " in search box it will be CASE SENSITIVE
-  set ignorecase
-  set smartcase
-  set hlsearch
+" Smartcase -- normally ignores case, but when we type uppercase character
+" in search box it will be CASE SENSITIVE
+set ignorecase
+set smartcase
+set hlsearch
 
-  " Statusline
-  set laststatus=2
-  set statusline=%f         " Path to the file
-  set statusline+=\ 
-  set statusline+=%m%r%w%y  " General info
-  set statusline+=%=        " Switch to the right side
-  set statusline+=:b%n       " Buffer number
-  set statusline+=\ 
-  set statusline+=🐘         " Elephant
-  set statusline+=\ \ 
-  set statusline+=%l        " Current line
-  set statusline+=\ /
-  set statusline+=%L        " Total lines
+" Instead of failing a command because of unsaved changes, instead raise a
+" dialogue asking if you wish to save changed files.
+set confirm
 
-  " Instead of failing a command because of unsaved changes, instead raise a
-  " dialogue asking if you wish to save changed files.
-  set confirm
+" Use visual bell instead of beeping when doing something wrong
+set visualbell
 
-  " Use visual bell instead of beeping when doing something wrong
-  set visualbell
+" Reset the terminal code for the visual bell
+set t_vb=
 
-  " Reset the terminal code for the visual bell
-  set t_vb=
+" new vim8 options
+set breakindent
+set emoji
+set fixendofline
 
-  " new vim8 options
-  set breakindent
-  set emoji
-  set fixendofline
+" Show trailing whitespace
+highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
+match ExtraWhitespace /\s\+$\| \+\ze\t/
 
-  " Show trailing whitespace
-  highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
-  autocmd ColorScheme * highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
-  match ExtraWhitespace /\s\+$\| \+\ze\t/
+" Tying rspec-vim and tslime
+let g:rspec_command = 'call Send_to_Tmux("bundle exec bin/rspec {spec}\n")'
 
-  " Tying rspec-vim and tslime
-  let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
+" JSX indentation in JS files
+let g:jsx_ext_required = 0
 
-  " JSX indentation in JS files
-  let g:jsx_ext_required = 0
-" }
+" Key mappings
+let mapleader=','
 
-" Key mappings {
-  let mapleader=','
+" Map Y to act like D and C, i.e. to yank until EOL
+" map Y y$
+" Sodium style mappings :)
+map H ^
+map L $
+map J 20jzz
+map K 20kzz
+" File browsing
+nnoremap <leader>f :Explore<CR>
 
-  " Map Y to act like D and C, i.e. to yank until EOL
-  map Y y$
-  " Sodium style mappings :)
-  map H ^
-  map L $
-  map J 15j
-  map K 15k
-  " File browsing
-  nnoremap - :Explore<CR>
+" Copy and paste from system clipboard
+vmap <Leader>y "+y
+nmap <Leader>Y "+Y
+vmap <Leader>d "+d
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
 
-  " Copy and paste from system clipboard
-  vmap <Leader>y "+y
-  nmap <Leader>Y "+Y
-  vmap <Leader>d "+d
-  nmap <Leader>p "+p
-  nmap <Leader>P "+P
-  vmap <Leader>p "+p
-  vmap <Leader>P "+P
+" Remove selection
+map <Esc><Esc> :noh<CR>
 
-  " Remove selection
-  map <Esc><Esc> :noh<CR>
+" Buffers
+" nnoremap <Leader>l :ls!<CR>
+nnoremap <Leader>l :CtrlPBuffer<CR>
+" nnoremap <Leader>b :bp<CR>
+" nnoremap <Leader>f :bn<CR>
+nnoremap <Leader>e :e#<CR>
+nnoremap <Leader>1 :1b<CR>
+nnoremap <Leader>2 :2b<CR>
+nnoremap <Leader>3 :3b<CR>
+nnoremap <Leader>4 :4b<CR>
+nnoremap <Leader>5 :5b<CR>
+nnoremap <Leader>6 :6b<CR>
+nnoremap <Leader>7 :7b<CR>
+nnoremap <Leader>8 :8b<CR>
+nnoremap <Leader>9 :9b<CR>
+nnoremap <Leader>0 :10b<CR>
 
-  " Buffers
-  nnoremap <Leader>l :ls!<CR>
-  nnoremap <Leader>b :bp<CR>
-  nnoremap <Leader>f :bn<CR>
-  nnoremap <Leader>e :e#<CR>
-  nnoremap <Leader>1 :1b<CR>
-  nnoremap <Leader>2 :2b<CR>
-  nnoremap <Leader>3 :3b<CR>
-  nnoremap <Leader>4 :4b<CR>
-  nnoremap <Leader>5 :5b<CR>
-  nnoremap <Leader>6 :6b<CR>
-  nnoremap <Leader>7 :7b<CR>
-  nnoremap <Leader>8 :8b<CR>
-  nnoremap <Leader>9 :9b<CR>
-  nnoremap <Leader>0 :10b<CR>
+" Error prone
+command WQ wq
+command Wq wq
+command Cq cq
+command W w
+command Q q
 
-  noremap <Leader>pp :silent w !sonic_pi<CR>
-  noremap <Leader>ps :call system("sonic_pi stop")<CR>
+" Convert old ruby hash syntaxt
+command! -range ConvertHashSyntax <line1>,<line2>s/:\(\S\{-}\)\(\s\{-}\)=> /\1:\2/
 
-  " Error prone
-  command WQ wq
-  command Wq wq
-  command Cq cq
-  command W w
-  command Q q
+" Fugitive
+map <Leader>gs :Gstatus<CR>
 
-  " Convert old ruby hash syntaxt
-  command! -range ConvertHashSyntax <line1>,<line2>s/:\(\S\{-}\)\(\s\{-}\)=> /\1:\2/
-
-  " Fugitive
-  map <Leader>gs :Gstatus<CR>
-
-  " Rubocop
-  map <Leader>r :!rubocop -a --rails %<CR>
+" Rubocop
+map <Leader>r :!rubocop -a --rails %<CR>
 
 
-  " Tslime keys
-  vmap <C-c><C-c> <Plug>SendSelectionToTmux
-  nmap <C-c><C-c> <Plug>NormalModeSendToTmux
-  nmap <C-c>r <Plug>SetTmuxVars
+" Tslime keys
+vmap <C-c><C-c> <Plug>SendSelectionToTmux
+nmap <C-c><C-c> <Plug>NormalModeSendToTmux
+nmap <C-c>r <Plug>SetTmuxVars
 
-  " RSpec.vim mappings
-  map <Leader>st :call RunCurrentSpecFile()<CR>
-  map <Leader>ss :call RunNearestSpec()<CR>
-  map <Leader>sl :call RunLastSpec()<CR>
-  map <Leader>sa :call RunAllSpecs()<CR>
+" RSpec.vim mappings
+map <Leader>st :call RunCurrentSpecFile()<CR>
+map <Leader>ss :call RunNearestSpec()<CR>
+map <Leader>sl :call RunLastSpec()<CR>
+map <Leader>sa :call RunAllSpecs()<CR>
 
-  " The Silver Searcher
-  if executable('ag')
-    " Use ag over grep
-    set grepprg=ag\ --nogroup\ --nocolor
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --hidden\ --vimgrep
+  set grepformat=%f:%l:%c:%m
 
-    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  " let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  " ag is fast enough that CtrlP doesn't need to cache
+  " let g:ctrlp_use_caching = 0
+endif
 
-    " ag is fast enough that CtrlP doesn't need to cache
-    let g:ctrlp_use_caching = 0
-  endif
+" bind grep word under cursor
+nnoremap <Leader>ff :grep! "\b<C-R><C-W>\b"<CR>:cw<CR><CR>
 
-  " bind K to grep word under cursor
-  nnoremap <Leader>ff :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+" bind \ (backward slash) to Ag shortcut
+command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+nnoremap \ :Ag<SPACE>
 
-  " bind \ (backward slash) to grep shortcut
-  command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-  nnoremap \ :Ag<SPACE>
-" }
-
-" Theme {
-  if filereadable(expand("~/.vimrc_background"))
-    let base16colorspace=256
-    source ~/.vimrc_background
-  endif
-" }
+" Theme
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
