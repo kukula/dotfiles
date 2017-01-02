@@ -114,6 +114,9 @@ highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
 match ExtraWhitespace /\s\+$\| \+\ze\t/
 
+" Nice commit messages
+autocmd Filetype gitcommit setlocal spell textwidth=72
+
 " Tying rspec-vim and tslime
 let g:rspec_command = 'call Send_to_Tmux("bundle exec bin/rspec {spec}\n")'
 
