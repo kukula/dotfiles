@@ -133,6 +133,7 @@ map H ^
 map L $
 map J 20jzz
 map K 20kzz
+
 " File browsing
 nnoremap <leader>f :Explore<CR>
 
@@ -149,21 +150,8 @@ vmap <Leader>P "+P
 map <Esc><Esc> :noh<CR>
 
 " Buffers
-" nnoremap <Leader>l :ls!<CR>
 nnoremap <Leader>l :CtrlPBuffer<CR>
-" nnoremap <Leader>b :bp<CR>
-" nnoremap <Leader>f :bn<CR>
 nnoremap <Leader>e :e#<CR>
-nnoremap <Leader>1 :1b<CR>
-nnoremap <Leader>2 :2b<CR>
-nnoremap <Leader>3 :3b<CR>
-nnoremap <Leader>4 :4b<CR>
-nnoremap <Leader>5 :5b<CR>
-nnoremap <Leader>6 :6b<CR>
-nnoremap <Leader>7 :7b<CR>
-nnoremap <Leader>8 :8b<CR>
-nnoremap <Leader>9 :9b<CR>
-nnoremap <Leader>0 :10b<CR>
 
 " Error prone
 command WQ wq
