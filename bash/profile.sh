@@ -24,9 +24,10 @@ alias egrep='egrep --color=auto'
 export PATH="/usr/local/bin:$PATH"
 
 # Git
-if [ -f ~/dotfiles/bash/git-completion.bash ]; then
-  . ~/dotfiles/bash/git-completion.bash
-fi
+# if [ -f ~/dotfiles/bash/git-completion.bash ]; then
+#   . ~/dotfiles/bash/git-completion.bash
+# fi
+/usr/local/etc/bash_completion.d/git-completion.bash
 
 # Postgress.app
 export PATH="/Applications/Postgres.app/Contents/Versions/9.4/bin:$PATH"
