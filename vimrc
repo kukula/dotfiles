@@ -144,8 +144,6 @@ vmap <Leader>d "+d
 nmap <Leader>p "+p
 nmap <Leader>P "+P
 vmap <Leader>p "+p
-vmap <Leader>P "+P
-
 " Remove selection
 map <Esc><Esc> :noh<CR>
 
@@ -169,6 +167,8 @@ map <Leader>gs :Gstatus<CR>
 " Rubocop
 map <Leader>r :!rubocop -a --rails %<CR>
 
+" Dispatch to rspec
+map <Leader>d :!bundle exec bin/rspec %<CR>
 
 " Tslime keys
 vmap <C-c><C-c> <Plug>SendSelectionToTmux
