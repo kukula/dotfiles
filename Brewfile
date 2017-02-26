@@ -24,6 +24,7 @@ brew 'wget'
 brew 'homebrew/versions/postgresql94'
 brew 'gpg'
 brew 'ripgrep'
+brew 'bash-completion'
 
 cask 'iterm2'
 cask 'spectacle'

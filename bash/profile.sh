@@ -23,17 +23,16 @@ alias egrep='egrep --color=auto'
 
 export PATH="/usr/local/bin:$PATH"
 
-# Git
-# if [ -f ~/dotfiles/bash/git-completion.bash ]; then
-#   . ~/dotfiles/bash/git-completion.bash
-# fi
-/usr/local/etc/bash_completion.d/git-completion.bash
+# Bash completion
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+fi
 
 # Postgress.app
 export PATH="/Applications/Postgres.app/Contents/Versions/9.4/bin:$PATH"
 
 # NPM
-export PATH=$HOME/npm/bin:$PATH
+npm config set prefix /usr/local
 
 # PhantomJS
 export PHANTOMJS_BIN=phantomjs
