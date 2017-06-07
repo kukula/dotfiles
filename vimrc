@@ -41,6 +41,8 @@ Plug 'jgdavey/tslime.vim'
 Plug 'chriskempson/base16-vim'
 " JS
 Plug 'pangloss/vim-javascript'
+" Vue
+Plug 'posva/vim-vue'
 " JSX
 Plug 'mxw/vim-jsx'
 " Comments
