@@ -31,6 +31,7 @@ Plug 'garbas/vim-snipmate'
 Plug 'honza/vim-snippets'
 " surround cs, ds, ys
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-dispatch'
 " Match do end
 Plug 'vim-scripts/matchit.zip'
 " blocks converting (gS gJ)
@@ -69,8 +70,8 @@ set hidden
 set wildmenu
 
 " Show numbers and highlight currentline
-set number relativenumber
-set cursorline
+" set number relativenumber
+" set cursorline
 
 " Disable swap and backup
 set nobackup
@@ -166,11 +167,13 @@ command! -range ConvertHashSyntax <line1>,<line2>s/:\(\S\{-}\)\(\s\{-}\)=> /\1:\
 " Fugitive
 map <Leader>gs :Gstatus<CR>
 
-" Rubocop
-map <Leader>r :!rubocop -a --rails %<CR>
 
 " Dispatch to rspec
-map <Leader>d :!bundle exec bin/rspec %<CR>
+map <Leader>d :Dispatch<CR>
+autocmd FileType ruby let b:dispatch = 'bin/rspec %'
+autocmd FileType javascript let b:dispatch = 'npm test %'
+" Rubocop
+map <Leader>r :Dispatch rubocop -a --rails %<CR>
 
 " Tslime keys
 vmap <C-c><C-c> <Plug>SendSelectionToTmux
