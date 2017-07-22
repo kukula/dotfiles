@@ -199,9 +199,3 @@ nnoremap <Leader>ff :grep! "\b<C-R><C-W>\b"<CR>:cw<CR><CR>
 " bind \ (backward slash) to Ag shortcut
 command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 nnoremap \ :Ag<SPACE>
-
-" Theme
-if filereadable(expand("~/.vimrc_background"))
-  let base16colorspace=256
-  source ~/.vimrc_background
-endif

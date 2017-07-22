@@ -5,9 +5,9 @@ export EDITOR=vim
 export CLICOLOR=1
 
 # Base16 Shell color switching
-if [ -n "$PS1" ]; then # if statement guards adding these helpers for non-interative shells
-  eval "$(~/dotfiles/base16-shell/profile_helper.sh)"
-fi
+# if [ -n "$PS1" ]; then # if statement guards adding these helpers for non-interative shells
+#   eval "$(~/dotfiles/base16-shell/profile_helper.sh)"
+# fi
 
 # Promt
 PROMPT_SHELL="$HOME/dotfiles/bash/prompt.sh"
