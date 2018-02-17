@@ -48,6 +48,8 @@ Plug 'posva/vim-vue'
 Plug 'mxw/vim-jsx'
 " Comments
 Plug 'tomtom/tcomment_vim'
+" Golang
+Plug 'fatih/vim-go'
 
 call plug#end()
 
