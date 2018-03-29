@@ -3,6 +3,8 @@ export EDITOR=vim
 
 # Enable colors
 export CLICOLOR=1
+export TERM="screen-256color"
+alias tmux="tmux -2"
 
 # Base16 Shell color switching
 # if [ -n "$PS1" ]; then # if statement guards adding these helpers for non-interative shells
@@ -37,10 +39,13 @@ npm config set prefix /usr/local
 # PhantomJS
 export PHANTOMJS_BIN=phantomjs
 
+# PyEnv
+eval "$(pyenv init -)"
+
 # RVM
 export PATH="$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-rvm use --default 2.3.1
+rvm use --default 2.4.1
 
 # Aliases
 alias la='ls -hal'

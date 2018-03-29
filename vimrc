@@ -1,9 +1,9 @@
 set nocompatible " be iMproved
 set backspace=indent,eol,start
 set history=5000
-set t_Co=256
 set encoding=utf-8 fileencoding=utf-8
 set mouse=""
+let g:solarized_termcolors=256
 
 call plug#begin('~/.vim/plugged')
 
@@ -39,7 +39,7 @@ Plug 'AndrewRadev/splitjoin.vim'
 " send command from vim to tmux
 Plug 'jgdavey/tslime.vim'
 " themes
-Plug 'chriskempson/base16-vim'
+Plug 'altercation/vim-colors-solarized'
 " JS
 Plug 'pangloss/vim-javascript'
 " Vue
@@ -53,8 +53,10 @@ Plug 'fatih/vim-go'
 
 call plug#end()
 
-" Syntax and filetype detection
-syntax on
+syntax enable
+set background=light
+set t_Co=16
+colorscheme solarized
 filetype indent plugin on
 
 " Syntax coloring lines that are too long just slows down the world
@@ -123,7 +125,7 @@ match ExtraWhitespace /\s\+$\| \+\ze\t/
 autocmd Filetype gitcommit setlocal spell textwidth=72
 
 " Tying rspec-vim and tslime
-let g:rspec_command = 'call Send_to_Tmux("bundle exec bin/rspec {spec}\n")'
+let g:rspec_command = 'call Send_to_Tmux("bundle exec rspec {spec}\n")'
 
 " JSX indentation in JS files
 let g:jsx_ext_required = 0
