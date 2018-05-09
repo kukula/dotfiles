@@ -14,7 +14,8 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 ln -sf ~/dotfiles/bash/profile.sh ~/.bash_profile
 ln -sf ~/dotfiles/vimrc ~/.vimrc
 mkdir -p ~/.config/nvim
-ln -sf ~/dotfiles/vimrc ~/.config/nvim/init.vim
+ln -sf ~/dotfiles/init.vim ~/.config/nvim/init.vim
+ln -sf ~/dotfiles/kitty.conf ~/.config/kitty/kitty.conf
 ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
 ln -sf ~/dotfiles/git/config ~/.gitconfig
 ln -sf ~/dotfiles/gemrc ~/.gemrc

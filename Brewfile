@@ -27,6 +27,8 @@ brew 'ripgrep'
 brew 'bash-completion'
 brew 'tldr'
 brew 'python3'
+brew 'nvim'
+brew 'caskroom/cask/kitty'
 
 cask 'iterm2'
 cask 'spectacle'

@@ -3,7 +3,6 @@ set backspace=indent,eol,start
 set history=5000
 set encoding=utf-8 fileencoding=utf-8
 set mouse=""
-let g:solarized_termcolors=256
 
 call plug#begin('~/.vim/plugged')
 
@@ -39,7 +38,7 @@ Plug 'AndrewRadev/splitjoin.vim'
 " send command from vim to tmux
 Plug 'jgdavey/tslime.vim'
 " themes
-Plug 'altercation/vim-colors-solarized'
+Plug 'chriskempson/base16-vim'
 " JS
 Plug 'pangloss/vim-javascript'
 " Vue
@@ -50,13 +49,16 @@ Plug 'mxw/vim-jsx'
 Plug 'tomtom/tcomment_vim'
 " Golang
 Plug 'fatih/vim-go'
+" Test
+Plug 'janko-m/vim-test'
+Plug 'kassio/neoterm'
 
 call plug#end()
 
 syntax enable
 set background=light
-set t_Co=16
-colorscheme solarized
+set t_Co=256
+colorscheme  ron
 filetype indent plugin on
 
 " Syntax coloring lines that are too long just slows down the world
@@ -152,7 +154,7 @@ nmap <Leader>p "+p
 nmap <Leader>P "+P
 vmap <Leader>p "+p
 " Remove selection
-map <Esc><Esc> :noh<CR>
+map <Esc> :noh<CR>
 
 " Buffers
 nnoremap <Leader>l :CtrlPBuffer<CR>
@@ -203,3 +205,8 @@ nnoremap <Leader>ff :grep! "\b<C-R><C-W>\b"<CR>:cw<CR><CR>
 " bind \ (backward slash) to Ag shortcut
 command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 nnoremap \ :Ag<SPACE>
+
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
