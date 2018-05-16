@@ -42,10 +42,8 @@ export PHANTOMJS_BIN=phantomjs
 # PyEnv
 eval "$(pyenv init -)"
 
-# RVM
-export PATH="$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-rvm use --default 2.4.1
+# rbenv
+eval "$(rbenv init -)"
 
 # Aliases
 alias la='ls -hal'
