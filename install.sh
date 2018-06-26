@@ -9,6 +9,9 @@ brew bundle install
 # install vim-plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
 
 # Add links
 ln -sf ~/dotfiles/bash/profile.sh ~/.bash_profile
