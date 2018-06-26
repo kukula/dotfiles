@@ -12,6 +12,9 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
+# Add base16
+git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
+
 
 # Add links
 ln -sf ~/dotfiles/bash/profile.sh ~/.bash_profile
