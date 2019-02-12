@@ -5,8 +5,12 @@
 	editor = vim
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 	excludesfile = ~/dotfiles/git/gitignore_global
+[commit]
+	verbose = true
 [push]
 	default = simple
+[pull]
+	ff = only
 [alias]
   co = checkout
   br = branch
@@ -34,5 +38,3 @@
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
 	required = true
-[pull]
-	ff = only
