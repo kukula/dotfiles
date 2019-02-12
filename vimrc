@@ -52,6 +52,8 @@ Plug 'fatih/vim-go'
 " Test
 Plug 'janko-m/vim-test'
 Plug 'kassio/neoterm'
+Plug 'kchmck/vim-coffee-script'
+Plug 'johngrib/vim-game-code-break'
 
 call plug#end()
 
@@ -117,6 +119,10 @@ set t_vb=
 set breakindent
 set emoji
 set fixendofline
+
+" folds (za)
+set foldmethod=indent
+set foldlevel=99
 
 " Show trailing whitespace
 highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
@@ -210,3 +216,7 @@ if filereadable(expand("~/.vimrc_background"))
   let base16colorspace=256
   source ~/.vimrc_background
 endif
+
+" Language specific
+autocmd FileType ruby setlocal expandtab tabstop=2 shiftwidth=2
+autocmd FileType python setlocal expandtab tabstop=4 shiftwidth=4
