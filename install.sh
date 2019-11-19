@@ -3,6 +3,9 @@
 # install Brew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
+# install oh my Zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
 # brew some apps
 brew bundle install
 
@@ -18,6 +21,7 @@ git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shel
 
 # Add links
 ln -sf ~/dotfiles/bash/profile.sh ~/.bash_profile
+ln -sf ~/dotfiles/zshrc ~/.zshrc
 ln -sf ~/dotfiles/vimrc ~/.vimrc
 mkdir -p ~/.config/nvim
 ln -sf ~/dotfiles/init.vim ~/.config/nvim/init.vim

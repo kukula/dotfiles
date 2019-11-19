@@ -41,9 +41,7 @@ Plug 'jgdavey/tslime.vim'
 Plug 'chriskempson/base16-vim'
 " JS
 Plug 'pangloss/vim-javascript'
-" Vue
-Plug 'posva/vim-vue'
-" JSX
+Plug 'leafgarland/typescript-vim'
 Plug 'mxw/vim-jsx'
 " Comments
 Plug 'tomtom/tcomment_vim'
@@ -185,7 +183,7 @@ map <Leader>d :Dispatch<CR>
 autocmd FileType ruby let b:dispatch = 'bin/rspec %'
 autocmd FileType javascript let b:dispatch = 'npm test %'
 " Rubocop
-map <Leader>r :Dispatch rubocop -a --rails %<CR>
+map <Leader>r :Dispatch rubocop -a %<CR>
 
 " Tslime keys
 vmap <C-c><C-c> <Plug>SendSelectionToTmux

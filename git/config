@@ -8,9 +8,10 @@
 [commit]
 	verbose = true
 [push]
-	default = simple
+	default = current
 [pull]
 	ff = only
+	default = current
 [alias]
   co = checkout
   br = branch
@@ -38,3 +39,7 @@
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
 	required = true
+[credential]
+	helper = osxkeychain
+[url "git@github.com:jobseekerltd/"]
+	insteadOf = https://github.com/jobseekerltd/
