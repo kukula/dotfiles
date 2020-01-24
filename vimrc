@@ -17,6 +17,7 @@ Plug 'thoughtbot/vim-rspec'
 Plug 'slim-template/vim-slim'
 " Git wrapper
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 " git commit browser :GV
 Plug 'junegunn/gv.vim'
 " ctrl-p is a fuzzy file finder.
@@ -28,7 +29,6 @@ Plug 'kien/ctrlp.vim'
 Plug 'honza/vim-snippets'
 " surround cs, ds, ys
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-dispatch'
 " Match do end
 Plug 'vim-scripts/matchit.zip'
 " blocks converting (gS gJ)
@@ -48,18 +48,23 @@ Plug 'fatih/vim-go'
 " Test
 Plug 'janko-m/vim-test'
 Plug 'kassio/neoterm'
-Plug 'kchmck/vim-coffee-script'
+" Other
+Plug 'rhysd/vim-crystal'
 Plug 'johngrib/vim-game-code-break'
+" Search
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
 
-" Conquer of Completion
+" LSP
+" Plug 'neovim/nvim-lsp'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
 syntax enable
-set background=light
 set t_Co=256
-colorscheme  ron
+" set background=light
+" colorscheme  ron
 filetype indent plugin on
 
 " Syntax coloring lines that are too long just slows down the world
@@ -180,14 +185,6 @@ command! -range ConvertHashSyntax <line1>,<line2>s/:\(\S\{-}\)\(\s\{-}\)=> /\1:\
 " Fugitive
 map <Leader>gs :Gstatus<CR>
 
-
-" Dispatch to rspec
-map <Leader>d :Dispatch<CR>
-autocmd FileType ruby let b:dispatch = 'bin/rspec %'
-autocmd FileType javascript let b:dispatch = 'npm test %'
-" Rubocop
-map <Leader>r :Dispatch rubocop -a %<CR>
-
 " Tslime keys
 vmap <C-c><C-c> <Plug>SendSelectionToTmux
 nmap <C-c><C-c> <Plug>NormalModeSendToTmux
@@ -202,6 +199,7 @@ map <Leader>sa :call RunAllSpecs()<CR>
 if executable("rg")
   set grepprg=rg\ --vimgrep\ --no-heading
   set grepformat=%f:%l:%c:%m,%f:%l:%m
+  let g:ackprg='rg --vimgrep --no-heading'
   let g:ctrlp_user_command='rg %s --files --color=never'
   let g:ctrlp_use_caching = 0
 endif
@@ -212,12 +210,13 @@ nnoremap <Leader>r :grep! "\b<C-R><C-W>\b"<CR>:cw<CR><CR>
 if filereadable(expand("~/.vimrc_background"))
   let base16colorspace=256
   source ~/.vimrc_background
+
+  highlight Normal guibg=NONE ctermbg=NONE
 endif
 
 " Language specific
 autocmd FileType ruby setlocal expandtab tabstop=2 shiftwidth=2
 autocmd FileType python setlocal expandtab tabstop=4 shiftwidth=4
-
 
 " CoC setup
 
@@ -277,7 +276,7 @@ function! s:show_documentation()
 endfunction
 
 " Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
+" autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)

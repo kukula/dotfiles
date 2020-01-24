@@ -76,3 +76,5 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 echo lol
 rbenv global 2.4.5
+
+source /Users/akukul/Library/Preferences/org.dystroy.broot/launcher/bash/br
