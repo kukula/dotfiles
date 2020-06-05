@@ -70,8 +70,6 @@ export PATH="/usr/local/opt/qt@5.5/bin:$PATH"
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
-export AWS_PROFILE=dev
-
 export PATH="$HOME/.cargo/bin:$PATH"
 
 echo lol

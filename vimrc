@@ -136,6 +136,7 @@ match ExtraWhitespace /\s\+$\| \+\ze\t/
 
 " Nice commit messages
 autocmd Filetype gitcommit setlocal spell textwidth=72
+set spelllang=en_au
 
 " Tying rspec-vim and tslime
 let g:rspec_command = 'call Send_to_Tmux("bundle exec rspec {spec}\n")'

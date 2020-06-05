@@ -3,7 +3,6 @@
 
 # Path to your oh-my-zsh installation.
 export EDITOR="nvim"
-export AWS_PROFILE="dev"
 export ZSH="/Users/akukul/.oh-my-zsh"
 # Go development
 export GOPATH="${HOME}/go"
@@ -114,4 +113,5 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
         eval "$("$BASE16_SHELL/profile_helper.sh")"
 
-source /Users/akukul/Library/Preferences/org.dystroy.broot/launcher/bash/br
+# source /Users/akukul/Library/Preferences/org.dystroy.broot/launcher/bash/br
+. $(brew --prefix asdf)/asdf.sh
