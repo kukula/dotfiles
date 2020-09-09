@@ -115,3 +115,4 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
 
 # source /Users/akukul/Library/Preferences/org.dystroy.broot/launcher/bash/br
 . $(brew --prefix asdf)/asdf.sh
+export PKG_CONFIG_PATH=/usr/local/opt/openssl/lib/pkgconfig
