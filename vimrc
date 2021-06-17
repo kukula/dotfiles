@@ -210,16 +210,16 @@ if filereadable(expand("~/.vimrc_background"))
   let base16colorspace=256
   source ~/.vimrc_background
 
-  highlight Normal ctermbg=NONE
-  highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE
-  highlight DiffAdd ctermfg=2 ctermbg=NONE
-  highlight DiffChange ctermfg=8 ctermbg=NONE
-  highlight DiffDelete ctermfg=1 ctermbg=NONE
-  highlight DiffText cterm=bold ctermfg=4 ctermbg=NONE
-  highlight SignColumn cterm=bold ctermfg=4 ctermbg=NONE
-  highlight VertSplit ctermfg=0 ctermbg=NONE
-  highlight StatusLine ctermfg=0 ctermbg=8
-  highlight StatusLineNC ctermfg=8 ctermbg=NONE
+  hi Normal ctermbg=NONE
+  hi LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE
+  hi DiffAdd ctermfg=2 ctermbg=NONE
+  hi DiffChange ctermfg=8 ctermbg=NONE
+  hi DiffDelete ctermfg=1 ctermbg=NONE
+  hi DiffText cterm=bold ctermfg=4 ctermbg=NONE
+  hi SignColumn cterm=bold ctermfg=4 ctermbg=NONE
+  hi VertSplit ctermfg=0 ctermbg=NONE
+  hi StatusLine ctermfg=0 ctermbg=8
+  hi StatusLineNC ctermfg=8 ctermbg=NONE
   hi SpellBad cterm=undercurl ctermbg=0
   hi SpellCap cterm=undercurl ctermbg=0
   hi SpellRare cterm=undercurl ctermbg=0
@@ -227,7 +227,7 @@ if filereadable(expand("~/.vimrc_background"))
 endif
 
 " Show trailing whitespace
-highlight ExtraWhitespace ctermbg=9 guibg=9
+highlight ExtraWhitespace ctermbg=1 guibg=1
 match ExtraWhitespace /\s\+$/
 
 " Language specific
@@ -238,8 +238,8 @@ autocmd FileType python setlocal expandtab tabstop=4 shiftwidth=4
 " " Give more space for displaying messages.
 " set cmdheight=2
 "
-" " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" " delays and poor user experience.
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
 " set updatetime=300
 "
 " " Don't pass messages to |ins-completion-menu|.

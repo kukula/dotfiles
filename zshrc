@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
 
 # Path to your oh-my-zsh installation.
 export EDITOR="nvim"
@@ -12,6 +12,7 @@ test -d "${GOPATH}" || mkdir "${GOPATH}"
 test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
 export GO111MODULE=on
 export PATH="$PATH:$HOME/.cargo/bin"
+export PATH="/usr/local/opt/inetutils/libexec/gnubin:$PATH"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -116,3 +117,5 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
 # source /Users/akukul/Library/Preferences/org.dystroy.broot/launcher/bash/br
 . $(brew --prefix asdf)/asdf.sh
 export PKG_CONFIG_PATH=/usr/local/opt/openssl/lib/pkgconfig
+
+export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"

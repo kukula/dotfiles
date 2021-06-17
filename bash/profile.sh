@@ -1,5 +1,4 @@
-# In case of nano
-export EDITOR=vim
+export EDITOR=nvim
 
 # Enable colors
 export CLICOLOR=1
@@ -24,6 +23,7 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
 
 # Bash completion
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
@@ -65,14 +65,7 @@ export GOROOT=/usr/local/opt/go/libexec
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
 
-export PATH="/usr/local/opt/qt@5.5/bin:$PATH"
-
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
-export PATH="$HOME/.cargo/bin:$PATH"
-
-echo lol
 rbenv global 2.4.5
-
-source /Users/akukul/Library/Preferences/org.dystroy.broot/launcher/bash/br
