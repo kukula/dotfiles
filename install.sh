@@ -30,11 +30,20 @@ ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
 ln -sf ~/dotfiles/git/config ~/.gitconfig
 ln -sf ~/dotfiles/gemrc ~/.gemrc
 
-rbenv init
+
+#ASDF
+
+asdf plugin add ruby
+asdf plugin add crystal
+asdf plugin add nodejs
+asdf plugin add python
+
+asdf install ruby latest
+asdf install crystal latest
+asdf install nodejs latest
+asdf install python latest
 
 # Configurate bundler to install gems in parallel
 # Can be changed in ~/.bundle/config
 number_of_cores=`sysctl -n hw.ncpu`
 bundle config --global jobs `expr $number_of_cores - 1`
-
-sudo easy_install pip
