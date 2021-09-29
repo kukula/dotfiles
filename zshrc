@@ -3,7 +3,7 @@ export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
 
 # Path to your oh-my-zsh installation.
 export EDITOR="nvim"
-export ZSH="/Users/akukul/.oh-my-zsh"
+export ZSH="${HOME}/.oh-my-zsh"
 # Go development
 export GOPATH="${HOME}/go"
 # export GOROOT="$(brew --prefix golang)/libexec"
@@ -114,7 +114,6 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
         eval "$("$BASE16_SHELL/profile_helper.sh")"
 
-# source /Users/akukul/Library/Preferences/org.dystroy.broot/launcher/bash/br
 . $(brew --prefix asdf)/asdf.sh
 export PKG_CONFIG_PATH=/usr/local/opt/openssl/lib/pkgconfig
 

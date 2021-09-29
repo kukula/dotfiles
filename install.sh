@@ -4,7 +4,7 @@
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 # install oh my Zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # brew some apps
 brew bundle install
@@ -17,7 +17,6 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 
 # Add base16
 git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
-
 
 # Add links
 ln -sf ~/dotfiles/bash/profile.sh ~/.bash_profile

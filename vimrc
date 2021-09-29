@@ -34,6 +34,9 @@ Plug 'vim-scripts/matchit.zip'
 Plug 'AndrewRadev/splitjoin.vim'
 " themes
 Plug 'chriskempson/base16-vim'
+" Elixir
+Plug 'elixir-editors/vim-elixir'
+Plug 'slashmili/alchemist.vim'
 " JS
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
@@ -171,7 +174,7 @@ command! Q q
 command! -range ConvertHashSyntax <line1>,<line2>s/:\(\S\{-}\)\(\s\{-}\)=> /\1:\2/
 
 " Fugitive
-map <Leader>gs :Gstatus<CR>
+map <Leader>gs :Git<CR>
 
 " FZF
 nnoremap <C-p> :<C-u>GFiles<CR>
