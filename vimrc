@@ -4,20 +4,17 @@ set backspace=indent,eol,start
 set history=5000
 set encoding=utf-8 fileencoding=utf-8
 set mouse=""
+set completeopt=menu,menuone,noselect
 
 call plug#begin('~/.vim/plugged')
 
 " Plugins
-" Ruby
 Plug 'vim-ruby/vim-ruby'
-" Rails
 Plug 'tpope/vim-rails'
-" RSpec
 Plug 'thoughtbot/vim-rspec'
-" Slim templates
-Plug 'slim-template/vim-slim'
-" Coffeescript
-Plug 'kchmck/vim-coffee-script'
+Plug 'elixir-editors/vim-elixir'
+" themes
+Plug 'chriskempson/base16-vim'
 " Git wrapper
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
@@ -32,11 +29,6 @@ Plug 'tpope/vim-surround'
 Plug 'vim-scripts/matchit.zip'
 " blocks converting (gS gJ)
 Plug 'AndrewRadev/splitjoin.vim'
-" themes
-Plug 'chriskempson/base16-vim'
-" Elixir
-Plug 'elixir-editors/vim-elixir'
-Plug 'slashmili/alchemist.vim'
 " JS
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
@@ -48,16 +40,15 @@ Plug 'janko-m/vim-test'
 Plug 'kassio/neoterm'
 " Other
 Plug 'rhysd/vim-crystal'
-Plug 'johngrib/vim-game-code-break'
 " Search
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " LSP
-Plug 'github/copilot.vim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'
+" Plug 'github/copilot.vim'
 
 call plug#end()
 
@@ -84,6 +75,7 @@ set wildmenu
 " Show numbers and highlight currentline
 " set number relativenumber
 " set cursorline
+set signcolumn=yes
 
 " Disable swap and backup
 set nobackup
@@ -243,6 +235,7 @@ autocmd FileType python setlocal expandtab tabstop=4 shiftwidth=4
 
 " LSP
 lua <<EOF
+vim.lsp.set_log_level("debug")
 local lsp_installer = require("nvim-lsp-installer")
 
 -- Register a handler that will be called for each installed server when it's ready (i.e. when installation is finished
@@ -272,4 +265,56 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
 }
+
+-- Mappings.
+-- See `:help vim.diagnostic.*` for documentation on any of the below functions
+local opts = { noremap=true, silent=true }
+vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+local on_attach = function(client, bufnr)
+  -- Enable completion triggered by <c-x><c-o>
+  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  -- Mappings.
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+  vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+  vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+  vim.keymap.set('n', '<space>wl', function()
+    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+  end, bufopts)
+  vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
+  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+  vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
+end
+
+-- Use a loop to conveniently call 'setup' on multiple servers and
+-- map buffer local keybindings when the language server attaches
+local servers = { 'sorbet', 'tsserver', 'elixirls' }
+for _, lsp in pairs(servers) do
+  require('lspconfig')[lsp].setup {
+    on_attach = on_attach,
+    flags = {
+      debounce_text_changes = 150,
+    }
+  }
+end
+
+vim.diagnostic.config({
+  virtual_text = false,
+  signs = true,
+  float = { border = "single" },
+})
 EOF
