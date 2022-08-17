@@ -232,6 +232,9 @@ match ExtraWhitespace /\s\+$/
 " Language specific
 autocmd FileType ruby setlocal expandtab tabstop=2 shiftwidth=2
 autocmd FileType python setlocal expandtab tabstop=4 shiftwidth=4
+au BufRead,BufNewFile *.ex,*.exs set filetype=elixir
+au BufRead,BufNewFile *.eex,*.heex,*.leex,*.sface,*.lexs set filetype=eelixir
+au BufRead,BufNewFile mix.lock set filetype=elixir
 
 " LSP
 lua <<EOF

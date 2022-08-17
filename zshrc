@@ -40,7 +40,7 @@ ZSH_THEME="sunrise"
 # DISABLE_UPDATE_PROMPT="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+export UPDATE_ZSH_DAYS=10
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS=true
@@ -116,5 +116,3 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
 
 . $(brew --prefix asdf)/asdf.sh
 export PKG_CONFIG_PATH=/usr/local/opt/openssl/lib/pkgconfig
-
-export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
