@@ -159,8 +159,13 @@ vim.g.neoterm_default_mod = 'vertical'
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true })
 vim.keymap.set('n', '<leader>f', '<cmd>Explore<CR>', { noremap = true })
 vim.keymap.set('n', '<leader>e', '<cmd>e#<CR>', { noremap = true })
-vim.keymap.set('n', '<leader>gd', '<cmd>@:<CR>', { noremap = true })
 vim.keymap.set('n', '<leader>gs', '<cmd>Git<CR>', { noremap = true })
+
+-- For fat fingers
+vim.api.nvim_create_user_command('W', 'w', { nargs='?' })
+vim.api.nvim_create_user_command('WQ', 'wq', { nargs='?' })
+vim.api.nvim_create_user_command('Wq', 'wq', { nargs='?' })
+vim.api.nvim_create_user_command('Q', 'q', { nargs='?' })
 
 -- Custom dispatcher
 local custom_dispatch = function(args)
@@ -174,9 +179,9 @@ local custom_dispatch = function(args)
   end
 
   local custom_dispatcher_commands = {
-    ruby = 'T bundle exec rspec  ',
-    typescript = 'T yarn test ',
-    javascript = 'T yarn test ',
+    ruby = 'w | T bundle exec rspec  ',
+    typescript = 'w | T yarn test ',
+    javascript = 'w | T yarn test ',
   }
 
   local command =  custom_dispatcher_commands[vim.bo.filetype]
