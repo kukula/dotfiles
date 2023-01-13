@@ -28,7 +28,22 @@ require('packer').startup(function(use)
 
   use { -- Autocompletion
     'hrsh7th/nvim-cmp',
-    requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
+    requires = {
+      "hrsh7th/cmp-buffer", -- Buffer completions
+      "hrsh7th/cmp-path", -- Path completions
+      "hrsh7th/cmp-cmdline", -- Cmdline completions
+      "hrsh7th/cmp-nvim-lsp", -- LSP completions
+      "hrsh7th/cmp-nvim-lsp-document-symbol", -- For textDocument/documentSymbol
+
+      -- Snippets
+      "saadparwaiz1/cmp_luasnip", -- snippet completions
+      "L3MON4D3/LuaSnip", --snippet engine
+      "rafamadriz/friendly-snippets", -- a bunch of snippets to use
+
+      -- Misc
+      "lukas-reineke/cmp-under-comparator", -- Tweak completion order
+      "f3fora/cmp-spell",
+    },
   }
 
   use { -- Highlight, edit, and navigate code
@@ -141,9 +156,52 @@ vim.g.neoterm_default_mod = 'vertical'
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true })
+vim.keymap.set('n', '<leader>f', '<cmd>Explore<CR>', { noremap = true })
 vim.keymap.set('n', '<leader>e', '<cmd>e#<CR>', { noremap = true })
 vim.keymap.set('n', '<leader>gd', '<cmd>@:<CR>', { noremap = true })
 vim.keymap.set('n', '<leader>gs', '<cmd>Git<CR>', { noremap = true })
+
+-- Custom dispatcher
+local custom_dispatch = function(args)
+  if args.fargs[1] == 'last' then
+    if vim.g.last_custom_dispatcher_command then
+      vim.cmd(vim.g.last_custom_dispatcher_command)
+    else
+      print('No dispatched commands yet')
+    end
+    return
+  end
+
+  local custom_dispatcher_commands = {
+    ruby = 'T bundle exec rspec  ',
+    typescript = 'T yarn test ',
+    javascript = 'T yarn test ',
+  }
+
+  local command =  custom_dispatcher_commands[vim.bo.filetype]
+
+  if not command then
+    print('No command to dispatch for this filetype')
+    return
+  end
+
+  command = command .. vim.api.nvim_buf_get_name(0)
+
+  if args.fargs[1] == 'currentline' then
+    command = command .. ':' .. vim.api.nvim_win_get_cursor(0)[1]
+  end
+
+  vim.g.last_custom_dispatcher_command = command
+  vim.cmd(vim.g.last_custom_dispatcher_command)
+end
+
+vim.api.nvim_create_user_command('CustomDispatch', custom_dispatch, { nargs=1 })
+
+vim.keymap.set('n', '<leader>st', '<cmd>CustomDispatch file<CR>', { noremap = true })
+vim.keymap.set('n', '<leader>ss', '<cmd>CustomDispatch currentline<CR>', { noremap = true })
+vim.keymap.set('n', '<leader>sl', '<cmd>CustomDispatch last<CR>', { noremap = true })
+-- end custom dispatcher
 
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
@@ -211,7 +269,7 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'lua', 'python', 'ruby', 'typescript', 'help' },
+  ensure_installed = { 'lua', 'python', 'ruby', 'typescript', 'help', 'elixir' },
 
   highlight = { enable = true },
   indent = { enable = true, disable = { 'python' } },
@@ -264,7 +322,7 @@ require('nvim-treesitter.configs').setup {
         ['<leader>a'] = '@parameter.inner',
       },
       swap_previous = {
-        ['<leader>A'] = '@parameter.inner',
+       ['<leader>A'] = '@parameter.inner',
       },
     },
   },
@@ -285,6 +343,9 @@ local on_attach = function(_, bufnr)
   --
   -- In this case, we create a function that lets us more easily define mappings specific
   -- for LSP related items. It sets the mode, buffer and description for us each time.
+
+  vim.lsp.set_log_level("debug")
+
   local nmap = function(keys, func, desc)
     if desc then
       desc = 'LSP: ' .. desc
@@ -327,12 +388,8 @@ end
 --  Add any additional override configuration in the following tables. They will be passed to
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
-  -- clangd = {},
-  -- gopls = {},
-  -- pyright = {},
-  -- rust_analyzer = {},
-  -- tsserver = {},
-
+  sorbet = {},
+  tsserver = {},
   sumneko_lua = {
     Lua = {
       workspace = { checkThirdParty = false },
@@ -375,8 +432,53 @@ mason_lspconfig.setup_handlers {
 require('fidget').setup()
 
 -- nvim-cmp setup
-local cmp = require 'cmp'
-local luasnip = require 'luasnip'
+local cmp_status_ok, cmp = pcall(require, "cmp")
+if not cmp_status_ok then return end
+
+local snip_status_ok, luasnip = pcall(require, "luasnip")
+if not snip_status_ok then return end
+
+local cmp_buffer_ok, cmp_buffer = pcall(require, "cmp_buffer")
+if not cmp_buffer_ok then return end
+
+local cmp_under_comparator_ok, cmp_under_comparator = pcall(require, "cmp-under-comparator")
+if not cmp_under_comparator_ok then return end
+
+-- Required or snippets will not be added to the completion options
+require("luasnip/loaders/from_vscode").lazy_load()
+
+local check_backspace = function()
+  local col = vim.fn.col "." - 1
+  return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
+end
+
+local kind_icons = {
+  Text = "",
+  Method = "",
+  Function = "",
+  Constructor = "",
+  Field = "",
+  Variable = "",
+  Class = "ﴯ",
+  Interface = "",
+  Module = "",
+  Property = "ﰠ",
+  Unit = "",
+  Value = "",
+  Enum = "",
+  Keyword = "",
+  Snippet = "",
+  Color = "",
+  File = "",
+  Reference = "",
+  Folder = "",
+  EnumMember = "",
+  Constant = "",
+  Struct = "",
+  Event = "",
+  Operator = "",
+  TypeParameter = ""
+}
 
 cmp.setup {
   snippet = {
@@ -384,24 +486,23 @@ cmp.setup {
       luasnip.lsp_expand(args.body)
     end,
   },
-  mapping = cmp.mapping.preset.insert {
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<CR>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    },
-    ['<Tab>'] = cmp.mapping(function(fallback)
+  mapping = {
+    ["<C-n>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
+      elseif luasnip.jumpable(1) then
+        luasnip.jump(1)
+      elseif luasnip.expandable() then
+        luasnip.expand()
       elseif luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
+      elseif check_backspace() then
+        fallback()
       else
         fallback()
       end
-    end, { 'i', 's' }),
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
+    end, { "i", "s" }),
+    ["<C-p>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
       elseif luasnip.jumpable(-1) then
@@ -409,13 +510,156 @@ cmp.setup {
       else
         fallback()
       end
-    end, { 'i', 's' }),
+    end, { "i", "s" }),
+    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<C-e>"] = cmp.mapping {
+      i = cmp.mapping.abort(),
+      c = cmp.mapping.close(),
+    },
+    ["<CR>"] = cmp.mapping.confirm({
+      select = true,
+    }),
+  },
+  formatting = {
+    fields = { "kind", "abbr", "menu" },
+    format = function(entry, vim_item)
+      vim_item.menu = ({
+        buffer = "[Buffer]",
+        luasnip = "[Snippet]",
+        nvim_lsp = "[LSP]",
+        spell = "[Spelling]",
+      })[entry.source.name]
+
+      return vim_item
+    end
   },
   sources = {
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
+    { name = "luasnip" },
+    { name = "nvim_lsp" },
+    { name = "path" },
+    { name = "buffer",
+      keyword_length = 3,
+      option = {
+        get_bufnrs = function()
+          return vim.api.nvim_list_bufs()
+        end
+      }
+    },
+    {
+      name = "spell",
+      option = {
+        keep_all_entries = false,
+        enable_in_context = function()
+          return require('cmp.config.context').in_treesitter_capture('spell')
+        end,
+      },
+    },
   },
+  confirm_opts = {
+    behavior = cmp.ConfirmBehavior.Replace,
+    select = false,
+  },
+  sorting = {
+    comparators = {
+      function(...) return cmp_buffer:compare_locality(...) end,
+      cmp.config.compare.offset,
+      cmp.config.compare.exact,
+      cmp.config.compare.score,
+      cmp_under_comparator.under,
+      cmp.config.compare.kind,
+      cmp.config.compare.sort_text,
+      cmp.config.compare.length,
+      cmp.config.compare.order,
+    },
+  },
+  window = {
+    documentation = {
+      border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+    },
+  },
+  experimental = {
+    ghost_text = false,
+    native_menu = false,
+  },
+  enabled = function()
+    local in_prompt = vim.api.nvim_buf_get_option(0, 'buftype') == 'prompt'
+    if in_prompt then  -- this will disable cmp in the Telescope window (taken from the default config)
+      return false
+    end
+    local context = require("cmp.config.context")
+    return not(context.in_treesitter_capture("comment") == true or context.in_syntax_group("Comment"))
+  end
 }
 
+cmp.setup.cmdline(":", {
+  completion = { autocomplete = false },
+  sources = {
+    { name = "cmdline" }
+  },
+  mapping = cmp.mapping.preset.cmdline({}),
+})
+
+cmp.setup.cmdline("/", {
+  completion = { autocomplete = false },
+  sources = cmp.config.sources(
+  {
+    { name = "buffer" }
+  },
+  {
+    { name = "nvim_lsp_document_symbol" }
+  }
+  ),
+  mapping = cmp.mapping.preset.cmdline({}),
+})
+
+
+
+-- local luasnip = require 'luasnip'
+-- luasnip.filetype_extend("ruby", {"rails"})
+--
+-- local cmp = require 'cmp'
+--
+-- cmp.setup {
+--   snippet = {
+--     expand = function(args)
+--       luasnip.lsp_expand(args.body)
+--     end,
+--   },
+--   mapping = cmp.mapping.preset.insert {
+--     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+--     ['<C-f>'] = cmp.mapping.scroll_docs(4),
+--     ['<C-Space>'] = cmp.mapping.complete(),
+--     ['<CR>'] = cmp.mapping.confirm {
+--       behavior = cmp.ConfirmBehavior.Replace,
+--       select = true,
+--     },
+--     ['<Tab>'] = cmp.mapping(function(fallback)
+--       if cmp.visible() then
+--         cmp.select_next_item()
+--       elseif luasnip.expand_or_jumpable() then
+--         luasnip.expand_or_jump()
+--       else
+--         fallback()
+--       end
+--     end, { 'i', 's' }),
+--     ['<S-Tab>'] = cmp.mapping(function(fallback)
+--       if cmp.visible() then
+--         cmp.select_prev_item()
+--       elseif luasnip.jumpable(-1) then
+--         luasnip.jump(-1)
+--       else
+--         fallback()
+--       end
+--     end, { 'i', 's' }),
+--   },
+--   sources = {
+--     { name = 'nvim_lsp' },
+--     { name = 'luasnip' },
+--     { name = 'buffer' },
+--   },
+-- }
+--
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
