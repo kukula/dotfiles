@@ -116,7 +116,7 @@ vim.o.splitright = true
 vim.o.splitbelow = true
 
 -- Set highlight on search
-vim.o.hlsearch = false
+vim.o.hlsearch = true
 
 -- Make line numbers default
 vim.wo.number = false
@@ -129,6 +129,7 @@ vim.o.breakindent = true
 
 -- Save undo history
 vim.o.undofile = false
+vim.o.swapfile = false
 
 -- Case insensitive searching UNLESS /C or capital in search
 vim.o.ignorecase = true
@@ -157,9 +158,10 @@ vim.g.neoterm_default_mod = 'vertical'
 -- See `:help vim.keymap.set()`
 
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true })
-vim.keymap.set('n', '<leader>f', '<cmd>Explore<CR>', { noremap = true })
-vim.keymap.set('n', '<leader>e', '<cmd>e#<CR>', { noremap = true })
-vim.keymap.set('n', '<leader>gs', '<cmd>Git<CR>', { noremap = true })
+vim.keymap.set('n', '<Esc>', '<cmd>:noh<cr>', { noremap = true })
+vim.keymap.set('n', '<leader>f', '<cmd>Explore<cr>', { noremap = true })
+vim.keymap.set('n', '<leader>e', '<cmd>e#<cr>', { noremap = true })
+vim.keymap.set('n', '<leader>gs', '<cmd>Git<cr>', { noremap = true })
 
 -- For fat fingers
 vim.api.nvim_create_user_command('W', 'w', { nargs='?' })
