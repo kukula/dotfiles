@@ -76,6 +76,10 @@ require('packer').startup(function(use)
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
 
+  -- surround
+  use { 'echasnovski/mini.surround', branch = 'stable' }
+
+
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')
   if has_plugins then
@@ -162,12 +166,13 @@ vim.keymap.set('n', '<Esc>', '<cmd>:noh<cr>', { noremap = true })
 vim.keymap.set('n', '<leader>f', '<cmd>Explore<cr>', { noremap = true })
 vim.keymap.set('n', '<leader>e', '<cmd>e#<cr>', { noremap = true })
 vim.keymap.set('n', '<leader>gs', '<cmd>Git<cr>', { noremap = true })
+vim.keymap.set('n', '<cr>', 'o<esc>', { noremap = true })
 
 -- For fat fingers
-vim.api.nvim_create_user_command('W', 'w', { nargs='?' })
-vim.api.nvim_create_user_command('WQ', 'wq', { nargs='?' })
-vim.api.nvim_create_user_command('Wq', 'wq', { nargs='?' })
-vim.api.nvim_create_user_command('Q', 'q', { nargs='?' })
+vim.api.nvim_create_user_command('W', 'w', { nargs = '?' })
+vim.api.nvim_create_user_command('WQ', 'wq', { nargs = '?' })
+vim.api.nvim_create_user_command('Wq', 'wq', { nargs = '?' })
+vim.api.nvim_create_user_command('Q', 'q', { nargs = '?' })
 
 -- Custom dispatcher
 local custom_dispatch = function(args)
@@ -186,7 +191,7 @@ local custom_dispatch = function(args)
     javascript = 'w | T yarn test ',
   }
 
-  local command =  custom_dispatcher_commands[vim.bo.filetype]
+  local command = custom_dispatcher_commands[vim.bo.filetype]
 
   if not command then
     print('No command to dispatch for this filetype')
@@ -203,7 +208,7 @@ local custom_dispatch = function(args)
   vim.cmd(vim.g.last_custom_dispatcher_command)
 end
 
-vim.api.nvim_create_user_command('CustomDispatch', custom_dispatch, { nargs=1 })
+vim.api.nvim_create_user_command('CustomDispatch', custom_dispatch, { nargs = 1 })
 
 vim.keymap.set('n', '<leader>st', '<cmd>CustomDispatch file<CR>', { noremap = true })
 vim.keymap.set('n', '<leader>ss', '<cmd>CustomDispatch currentline<CR>', { noremap = true })
@@ -230,6 +235,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- Enable Comment.nvim
 require('Comment').setup()
 
+-- Enable mini.surround
+require('mini.surround').setup()
+
 -- Enable `lukas-reineke/indent-blankline.nvim`
 -- See `:help indent_blankline.txt`
 require('indent_blankline').setup {
@@ -249,28 +257,26 @@ require('telescope').setup {
       },
     },
   },
+  pickers = {
+    buffers = {
+      ignore_current_buffer = true,
+      sort_lastused = true,
+    },
+  },
 }
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
 
 -- See `:help telescope.builtin`
-vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
-vim.keymap.set('n', '<leader>l', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
-vim.keymap.set('n', '<leader>/', function()
-  -- You can pass additional configuration to telescope to change theme, layout, etc.
-  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-    winblend = 10,
-    previewer = false,
-  })
-end, { desc = '[/] Fuzzily search in current buffer]' })
-
-vim.keymap.set('n', '<C-p>', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
-vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
-vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
-vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
-vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
-vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
+vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles)
+vim.keymap.set('n', '<leader>l', require('telescope.builtin').buffers)
+vim.keymap.set('n', '<C-p>', require('telescope.builtin').find_files)
+vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags)
+vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string)
+vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep)
+vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics)
+vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume)
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
@@ -329,7 +335,7 @@ require('nvim-treesitter.configs').setup {
         ['<leader>a'] = '@parameter.inner',
       },
       swap_previous = {
-       ['<leader>A'] = '@parameter.inner',
+        ['<leader>A'] = '@parameter.inner',
       },
     },
   },
@@ -459,34 +465,6 @@ local check_backspace = function()
   return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
 end
 
-local kind_icons = {
-  Text = "",
-  Method = "",
-  Function = "",
-  Constructor = "",
-  Field = "",
-  Variable = "",
-  Class = "ﴯ",
-  Interface = "",
-  Module = "",
-  Property = "ﰠ",
-  Unit = "",
-  Value = "",
-  Enum = "",
-  Keyword = "",
-  Snippet = "",
-  Color = "",
-  File = "",
-  Reference = "",
-  Folder = "",
-  EnumMember = "",
-  Constant = "",
-  Struct = "",
-  Event = "",
-  Operator = "",
-  TypeParameter = ""
-}
-
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -592,11 +570,11 @@ cmp.setup {
   },
   enabled = function()
     local in_prompt = vim.api.nvim_buf_get_option(0, 'buftype') == 'prompt'
-    if in_prompt then  -- this will disable cmp in the Telescope window (taken from the default config)
+    if in_prompt then -- this will disable cmp in the Telescope window (taken from the default config)
       return false
     end
     local context = require("cmp.config.context")
-    return not(context.in_treesitter_capture("comment") == true or context.in_syntax_group("Comment"))
+    return not (context.in_treesitter_capture("comment") == true or context.in_syntax_group("Comment"))
   end
 }
 
@@ -611,12 +589,12 @@ cmp.setup.cmdline(":", {
 cmp.setup.cmdline("/", {
   completion = { autocomplete = false },
   sources = cmp.config.sources(
-  {
-    { name = "buffer" }
-  },
-  {
-    { name = "nvim_lsp_document_symbol" }
-  }
+    {
+      { name = "buffer" }
+    },
+    {
+      { name = "nvim_lsp_document_symbol" }
+    }
   ),
   mapping = cmp.mapping.preset.cmdline({}),
 })
