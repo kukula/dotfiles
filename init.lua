@@ -289,17 +289,17 @@ vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume)
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'lua', 'python', 'ruby', 'typescript', 'help', 'elixir' },
+  ensure_installed = { 'ruby', 'elixir', 'bash', 'css', 'html', 'javascript', 'json', 'jsonc', 'lua', 'typescript' },
 
   highlight = { enable = true },
   indent = { enable = true, disable = { 'python' } },
   incremental_selection = {
     enable = true,
     keymaps = {
-      init_selection = '<c-space>',
-      node_incremental = '<c-space>',
-      scope_incremental = '<c-s>',
-      node_decremental = '<c-backspace>',
+      init_selection = '<cr>',
+      scope_incremental = '<cr>',
+      node_incremental = '<tab>',
+      node_decremental = '<s-tab>',
     },
   },
   textobjects = {
@@ -606,52 +606,5 @@ cmp.setup.cmdline("/", {
   mapping = cmp.mapping.preset.cmdline({}),
 })
 
-
-
--- local luasnip = require 'luasnip'
--- luasnip.filetype_extend("ruby", {"rails"})
---
--- local cmp = require 'cmp'
---
--- cmp.setup {
---   snippet = {
---     expand = function(args)
---       luasnip.lsp_expand(args.body)
---     end,
---   },
---   mapping = cmp.mapping.preset.insert {
---     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
---     ['<C-f>'] = cmp.mapping.scroll_docs(4),
---     ['<C-Space>'] = cmp.mapping.complete(),
---     ['<CR>'] = cmp.mapping.confirm {
---       behavior = cmp.ConfirmBehavior.Replace,
---       select = true,
---     },
---     ['<Tab>'] = cmp.mapping(function(fallback)
---       if cmp.visible() then
---         cmp.select_next_item()
---       elseif luasnip.expand_or_jumpable() then
---         luasnip.expand_or_jump()
---       else
---         fallback()
---       end
---     end, { 'i', 's' }),
---     ['<S-Tab>'] = cmp.mapping(function(fallback)
---       if cmp.visible() then
---         cmp.select_prev_item()
---       elseif luasnip.jumpable(-1) then
---         luasnip.jump(-1)
---       else
---         fallback()
---       end
---     end, { 'i', 's' }),
---   },
---   sources = {
---     { name = 'nvim_lsp' },
---     { name = 'luasnip' },
---     { name = 'buffer' },
---   },
--- }
---
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
