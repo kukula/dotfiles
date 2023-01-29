@@ -79,6 +79,13 @@ require('packer').startup(function(use)
   -- surround
   use { 'echasnovski/mini.surround', branch = 'stable' }
 
+  -- auto mkdir on file write
+  use {
+    'jghauser/mkdir.nvim'
+  }
+
+  -- Split Join
+  use { 'AndrewRadev/splitjoin.vim' }
 
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')
