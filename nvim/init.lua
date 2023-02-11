@@ -88,6 +88,12 @@ require('lazy').setup({
     lazy = false,
     priority = 1000,
     config = function()
+      require("tokyonight").setup({
+        style = "night",
+        light_style = "day",
+        terminal_colors = true,
+      })
+
       vim.cmd([[colorscheme tokyonight]])
     end,
   },
@@ -140,9 +146,6 @@ vim.o.smartcase = true
 -- Decrease update time
 vim.o.updatetime = 250
 vim.wo.signcolumn = 'no'
-
--- Set colorscheme
-vim.o.termguicolors = true
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'

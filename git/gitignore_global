@@ -1,4 +1,3 @@
 .DS_Store
 .ruby-version
 .ruby-gemset
-/core/config/environment.rb

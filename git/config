@@ -1,5 +1,5 @@
 [user]
-	name = Anatoliy Kukul
+	name = Tolik
 	email = anatolkukula@gmail.com
 [core]
 	editor = nvim
@@ -41,7 +41,5 @@
 	required = true
 [credential]
 	helper = osxkeychain
-[url "git@github.com:jobseekerltd/"]
-	insteadOf = https://github.com/jobseekerltd/
 [init]
 	defaultBranch = main
