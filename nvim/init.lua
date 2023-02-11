@@ -9,6 +9,7 @@ if not vim.loop.fs_stat(lazypath) then
     lazypath,
   })
 end
+
 vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = ','
@@ -53,22 +54,17 @@ require('lazy').setup({
 
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
-    build = function()
-      pcall(require('nvim-treesitter.install').update { with_sync = true })
-    end,
+    build = ":TSUpdate",
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
     }
   },
 
-  -- other
-  'kassio/neoterm',
-
   -- Git related plugins
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
 
-  'navarasu/onedark.nvim', -- Theme inspired by Atom
+  'folke/tokyonight.nvim',
   'lukas-reineke/indent-blankline.nvim', -- Add indentation guides even on blank lines
   'numToStr/Comment.nvim', -- "gc" to comment visual regions/lines
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
@@ -121,11 +117,10 @@ vim.wo.signcolumn = 'no'
 
 -- Set colorscheme
 vim.o.termguicolors = true
-vim.cmd.colorscheme('onedark')
+vim.cmd.colorscheme('tokyonight-night')
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
-vim.g.neoterm_default_mod = 'vertical'
 
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true })
 vim.keymap.set('n', '<Esc>', '<cmd>:noh<cr>', { noremap = true })
@@ -139,47 +134,21 @@ vim.api.nvim_create_user_command('W', 'w', { nargs = '?' })
 vim.api.nvim_create_user_command('WQ', 'wq', { nargs = '?' })
 vim.api.nvim_create_user_command('Wq', 'wq', { nargs = '?' })
 vim.api.nvim_create_user_command('Q', 'q', { nargs = '?' })
+vim.api.nvim_create_user_command('Cq', 'cq', { nargs = '?' })
 
--- Custom dispatcher
-local custom_dispatch = function(args)
-  if args.fargs[1] == 'last' then
-    if vim.g.last_custom_dispatcher_command then
-      vim.cmd(vim.g.last_custom_dispatcher_command)
-    else
-      print('No dispatched commands yet')
-    end
-    return
-  end
+-- custom commands
+-- terminal wrapper
+local term_cmd = require('term_wrapper')
+vim.api.nvim_create_user_command('T', term_cmd, { nargs = "*" })
 
-  local custom_dispatcher_commands = {
-    ruby = 'w | T bundle exec rspec  ',
-    typescript = 'w | T yarn test ',
-    javascript = 'w | T yarn test ',
-  }
+-- command dispatcher
+local command_dispatch = require('command_dispatch')
+vim.api.nvim_create_user_command('CommandDispatch', command_dispatch, { nargs = 1 })
 
-  local command = custom_dispatcher_commands[vim.bo.filetype]
+vim.keymap.set('n', '<leader>st', ':CommandDispatch file<cr>', { noremap = true })
+vim.keymap.set('n', '<leader>ss', ':CommandDispatch currentline<cr>', { noremap = true })
+vim.keymap.set('n', '<leader>sl', ':CommandDispatch last<cr>', { noremap = true })
 
-  if not command then
-    print('No command to dispatch for this filetype')
-    return
-  end
-
-  command = command .. vim.api.nvim_buf_get_name(0)
-
-  if args.fargs[1] == 'currentline' then
-    command = command .. ':' .. vim.api.nvim_win_get_cursor(0)[1]
-  end
-
-  vim.g.last_custom_dispatcher_command = command
-  vim.cmd(vim.g.last_custom_dispatcher_command)
-end
-
-vim.api.nvim_create_user_command('CustomDispatch', custom_dispatch, { nargs = 1 })
-
-vim.keymap.set('n', '<leader>st', '<cmd>CustomDispatch file<CR>', { noremap = true })
-vim.keymap.set('n', '<leader>ss', '<cmd>CustomDispatch currentline<CR>', { noremap = true })
-vim.keymap.set('n', '<leader>sl', '<cmd>CustomDispatch last<CR>', { noremap = true })
--- end custom dispatcher
 
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
@@ -248,7 +217,7 @@ vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume)
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'ruby', 'elixir', 'bash', 'css', 'html', 'javascript', 'json', 'jsonc', 'lua', 'typescript' },
+  ensure_installed = { 'ruby', 'elixir', 'bash', 'css', 'html', 'javascript', 'json', 'jsonc', 'lua', 'typescript', 'vim' },
 
   highlight = { enable = true },
   indent = { enable = true, disable = { 'python' } },

@@ -16,7 +16,8 @@ git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shel
 ln -sf ~/dotfiles/bash/profile.sh ~/.bash_profile
 ln -sf ~/dotfiles/zshrc ~/.zshrc
 mkdir -p ~/.config/nvim
-ln -sf ~/dotfiles/init.lua ~/.config/nvim/init.lua
+ln -sf ~/dotfiles/nvim/init.lua ~/.config/nvim/init.lua
+ln -sf ~/dotfiles/nvim/lua ~/.config/nvim/lua
 ln -sf ~/dotfiles/kitty.conf ~/.config/kitty/kitty.conf
 ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
 ln -sf ~/dotfiles/git/config ~/.gitconfig
