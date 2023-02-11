@@ -16,6 +16,25 @@ vim.g.mapleader = ','
 vim.g.maplocalleader = ','
 
 require('lazy').setup({
+  {
+    dir = '~/dotfiles/nvim/term_wrapper',
+    config = function()
+      require('term_wrapper').setup()
+    end,
+  },
+
+  {
+    dir = '~/dotfiles/nvim/command_dispatch',
+    config = function()
+      require('command_dispatch').setup(
+        {
+          ruby = 'w | T bundle exec rspec ',
+          typescript = 'w | T yarn test ',
+          javascript = 'w | T yarn test ',
+        }
+      )
+    end,
+  },
 
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
@@ -64,7 +83,14 @@ require('lazy').setup({
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
 
-  'folke/tokyonight.nvim',
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.cmd([[colorscheme tokyonight]])
+    end,
+  },
   'lukas-reineke/indent-blankline.nvim', -- Add indentation guides even on blank lines
   'numToStr/Comment.nvim', -- "gc" to comment visual regions/lines
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
@@ -117,7 +143,6 @@ vim.wo.signcolumn = 'no'
 
 -- Set colorscheme
 vim.o.termguicolors = true
-vim.cmd.colorscheme('tokyonight-night')
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
@@ -136,15 +161,7 @@ vim.api.nvim_create_user_command('Wq', 'wq', { nargs = '?' })
 vim.api.nvim_create_user_command('Q', 'q', { nargs = '?' })
 vim.api.nvim_create_user_command('Cq', 'cq', { nargs = '?' })
 
--- custom commands
--- terminal wrapper
-local term_cmd = require('term_wrapper')
-vim.api.nvim_create_user_command('T', term_cmd, { nargs = "*" })
-
 -- command dispatcher
-local command_dispatch = require('command_dispatch')
-vim.api.nvim_create_user_command('CommandDispatch', command_dispatch, { nargs = 1 })
-
 vim.keymap.set('n', '<leader>st', ':CommandDispatch file<cr>', { noremap = true })
 vim.keymap.set('n', '<leader>ss', ':CommandDispatch currentline<cr>', { noremap = true })
 vim.keymap.set('n', '<leader>sl', ':CommandDispatch last<cr>', { noremap = true })

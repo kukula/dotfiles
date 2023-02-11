@@ -1,8 +1,4 @@
-local commands = {
-  ruby = 'w | T bundle exec rspec ',
-  typescript = 'w | T yarn test ',
-  javascript = 'w | T yarn test ',
-}
+M = {}
 
 local get_filename = function() return vim.api.nvim_buf_get_name(0) end
 local get_line_number = function() return vim.api.nvim_win_get_cursor(0)[1] end
@@ -10,7 +6,7 @@ local save_command = function(command) vim.g.custom_dispatcher_last_command = co
 local get_saved_command = function() return vim.g.custom_dispatcher_last_command end
 
 local get_command = function(opt)
-  local command = commands[vim.bo.filetype]
+  local command = M.commands[vim.bo.filetype]
 
   if not command then return end
 
@@ -23,7 +19,7 @@ local get_command = function(opt)
   return command
 end
 
-return function(input)
+local command_dispatch = function(input)
   local opt = input.args
 
   if opt == 'last' then
@@ -43,3 +39,10 @@ return function(input)
   save_command(command)
   vim.cmd(command)
 end
+
+M.setup = function(commands)
+  M['commands'] = commands
+  vim.api.nvim_create_user_command('CommandDispatch', command_dispatch, { nargs = 1 })
+end
+
+return M

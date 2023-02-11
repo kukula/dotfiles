@@ -1,3 +1,5 @@
+local M = {}
+
 local scroll_to_bottom = function() vim.cmd("normal G") end
 local switch_win = function() vim.cmd("wincmd w") end
 
@@ -34,18 +36,16 @@ end
 local get_term_chan = function() return get_term_buf().variables.terminal_job_id end
 local send_cmd = function(cmd) vim.fn.chansend(get_term_chan(), cmd .. "\n") end
 
-local function term_cmd(cmd)
+function M.term_cmd(input)
+  local cmd = input.args
   ensure_split()
   ensure_term_buf_exists()
   ensure_term_win_shown()
   send_cmd(cmd)
 end
 
-return function(input)
-  local cmd = input.args
-  if (cmd == nil or cmd == '') then
-    cmd = "echo Howdy!"
-  end
-
-  term_cmd(cmd)
+M.setup = function()
+  vim.api.nvim_create_user_command('T', M.term_cmd, { nargs = "*" })
 end
+
+return M
