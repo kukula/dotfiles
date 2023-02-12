@@ -9,6 +9,7 @@ tap 'homebrew/services'
 
 brew 'asdf'
 brew 'coreutils'
+brew 'fd'
 brew 'fzf'
 brew 'gawk'
 brew 'git'

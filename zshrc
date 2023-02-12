@@ -25,7 +25,7 @@ export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
 export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
 
 # ASDF
-echo -e "\n. $(brew --prefix asdf)/libexec/asdf.sh" >> ${ZDOTDIR:-~}/.zshrc
+source /opt/homebrew/opt/asdf/libexec/asdf.sh
 
 # Editor
 export EDITOR="nvim"
@@ -91,23 +91,3 @@ zstyle ':completion:*:*:*:*:descriptions' format '%F{blue}-- %D %d --%f'
 zstyle ':completion:*:*:*:*:messages' format ' %F{purple} -- %d --%f'
 zstyle ':completion:*:*:*:*:warnings' format ' %F{red}-- no matches found --%f'
 zstyle ':completion:*:*:*:*:default' list-colors ${(s.:.)LS_COLORS}
-
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
-
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
-
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
-
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
-
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
-
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
-
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
-
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
-
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
-
-. /opt/homebrew/opt/asdf/libexec/asdf.sh

@@ -8,19 +8,14 @@ brew bundle install
 
 # Add links
 mkdir -p ~/.zsh
+mkdir -p ~/.config/kitty
+
 ln -sf ~/dotfiles/zshrc ~/.zshrc
-
-mkdir -p ~/.config/nvim
-ln -sf ~/dotfiles/nvim/init.lua ~/.config/nvim/init.lua
-
+ln -sf ~/dotfiles/nvim ~/.config/nvim
 ln -sf ~/dotfiles/kitty.conf ~/.config/kitty/kitty.conf
 ln -sf ~/dotfiles/git/config ~/.gitconfig
+ln -sf ~/dotfiles/tool-versions ~/.tool-versions
 
 #ASDF
-asdf plugin add ruby
-asdf plugin add nodejs
-asdf plugin add python
-
-asdf install ruby latest
-asdf install nodejs latest
-asdf install python latest
+cut -d' ' -f1 .tool-versions|xargs -I{} asdf plugin add {}
+asdf install
