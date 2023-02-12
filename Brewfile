@@ -1,32 +1,31 @@
 # brew bundle Brewfile
 
-tap "caskroom/cask"
-tap "caskroom/versions"
-tap "homebrew/bundle"
-tap "homebrew/core"
-tap "homebrew/services"
-tap "caskroom/fonts"
+tap 'caskroom/cask'
+tap 'caskroom/fonts'
+tap 'caskroom/versions'
+tap 'homebrew/bundle'
+tap 'homebrew/core'
+tap 'homebrew/services'
 
-brew 'git'
-brew 'nvim'
-brew 'htop'
-brew 'openssl'
-brew 'wget'
-brew 'gpg'
-brew 'gawk'
-brew 'ripgrep'
-brew 'fzf'
-brew 'tldr'
+brew 'asdf'
 brew 'coreutils'
+brew 'fzf'
+brew 'gawk'
+brew 'git'
+brew 'gpg'
+brew 'htop'
+brew 'nvim'
 brew 'openssl'
 brew 'readline'
-brew 'asdf'
+brew 'ripgrep'
+brew 'tldr'
+brew 'wget'
 
-cask 'kitty'
-cask 'rectangle'
-cask 'spotify'
-cask 'slack'
-cask 'ngrok'
-cask 'vlc'
 cask 'keepingyouawake'
+cask 'kitty'
+cask 'ngrok'
+cask 'rectangle'
+cask 'slack'
+cask 'spotify'
 cask 'visual-studio-code'
+cask 'vlc'

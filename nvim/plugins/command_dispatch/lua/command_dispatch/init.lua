@@ -19,7 +19,7 @@ local get_command = function(opt)
   return command
 end
 
-local command_dispatch = function(input)
+M.command_dispatch = function(input)
   local opt = input.args
 
   if opt == 'last' then
@@ -42,7 +42,7 @@ end
 
 M.setup = function(commands)
   M['commands'] = commands
-  vim.api.nvim_create_user_command('CommandDispatch', command_dispatch, { nargs = 1 })
+  vim.api.nvim_create_user_command('CommandDispatch', M.command_dispatch, { nargs = 1, desc = "Command dispatcher" })
 end
 
 return M

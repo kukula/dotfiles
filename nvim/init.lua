@@ -17,14 +17,16 @@ vim.g.maplocalleader = ','
 
 require('lazy').setup({
   {
-    dir = '~/dotfiles/nvim/term_wrapper',
+    name = "term_wrapper",
+    dir = "~/dotfiles/nvim/plugins/term_wrapper",
     config = function()
       require('term_wrapper').setup()
     end,
   },
 
   {
-    dir = '~/dotfiles/nvim/command_dispatch',
+    name = "command_dispatch",
+    dir = "~/dotfiles/nvim/plugins/command_dispatch",
     config = function()
       require('command_dispatch').setup(
         {
@@ -115,7 +117,9 @@ require('lazy').setup({
 
   -- Split Join
   'AndrewRadev/splitjoin.vim',
-})
+}
+
+)
 
 -- [[ Setting options ]]
 
@@ -358,15 +362,15 @@ end
 local servers = {
   sorbet = {},
   tsserver = {},
-  sumneko_lua = {
-    Lua = {
-      workspace = { checkThirdParty = false },
-      telemetry = { enable = false },
-      diagnostics = {
-        globals = { 'vim' }
-      }
-    },
-  },
+  -- lua_ls = {
+  --   Lua = {
+  --     workspace = { checkThirdParty = false },
+  --     telemetry = { enable = false },
+  --     diagnostics = {
+  --       globals = { 'vim' }
+  --     }
+  --   },
+  -- },
 }
 
 -- Setup neovim lua configuration

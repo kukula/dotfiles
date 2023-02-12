@@ -36,7 +36,7 @@ end
 local get_term_chan = function() return get_term_buf().variables.terminal_job_id end
 local send_cmd = function(cmd) vim.fn.chansend(get_term_chan(), cmd .. "\n") end
 
-function M.term_cmd(input)
+M.term_cmd = function(input)
   local cmd = input.args
   ensure_split()
   ensure_term_buf_exists()
@@ -45,7 +45,7 @@ function M.term_cmd(input)
 end
 
 M.setup = function()
-  vim.api.nvim_create_user_command('T', M.term_cmd, { nargs = "*" })
+  vim.api.nvim_create_user_command('T', M.term_cmd, { nargs = "*", desc = "Terminal wrapper" })
 end
 
 return M
