@@ -31,6 +31,10 @@ source /opt/homebrew/opt/asdf/libexec/asdf.sh
 export EDITOR="nvim"
 export VISUAL="nvim"
 
+# Colors
+export CLICOLOR=1
+export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+
 # History
 export HISTFILE=$ZSH_HOME/.zsh_history
 SHELL_SESSIONS_DISABLE=1
@@ -40,7 +44,7 @@ export SAVEHIST=10000
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_FIND_NO_DUPS
 
-### Plugins & themes
+# Plugins & themes
 fpath=(
 	$HOMEBREW_PREFIX/share/zsh/site-functions
 	$fpath
@@ -62,7 +66,7 @@ DIR='%F{blue}%~%f'
 NEWLINE=$'\n'
 PROMPT='${TIME} ${DIR} ${vcs_info_msg_0_} ${NEWLINE}$ '
 
-### Completion
+# Completion
 zmodload zsh/complist
 
 bindkey -M menuselect 'h' vi-backward-char
@@ -72,22 +76,15 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 
 autoload -U compinit; compinit
 
-# Define completers
+# Define completion
 zstyle ':completion:*' completer _extensions _complete _approximate
-
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path "$ZSH_HOME/.zcompcache"
-
 zstyle ':completion:*' complete true
-
 zstyle ':completion:*' menu select
 zstyle ':completion:*' complete-options true
-
-zstyle ':completion:*' file-sort modification
-zstyle ':completion:*' file-list all
-
+zstyle ':completion:*:default' list-colors ${(s.:.)LSCOLORS}
 zstyle ':completion:*:*:*:*:corrections' format '%F{yellow}!- %d (errors: %e) -!%f'
 zstyle ':completion:*:*:*:*:descriptions' format '%F{blue}-- %D %d --%f'
 zstyle ':completion:*:*:*:*:messages' format ' %F{purple} -- %d --%f'
 zstyle ':completion:*:*:*:*:warnings' format ' %F{red}-- no matches found --%f'
-zstyle ':completion:*:*:*:*:default' list-colors ${(s.:.)LS_COLORS}
