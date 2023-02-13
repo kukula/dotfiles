@@ -2,8 +2,6 @@ M = {}
 
 local get_filename = function() return vim.api.nvim_buf_get_name(0) end
 local get_line_number = function() return vim.api.nvim_win_get_cursor(0)[1] end
-local save_command = function(command) vim.g.custom_dispatcher_last_command = command end
-local get_saved_command = function() return vim.g.custom_dispatcher_last_command end
 
 local get_command = function(opt)
   local command = M.commands[vim.bo.filetype]
@@ -22,27 +20,35 @@ end
 M.command_dispatch = function(input)
   local opt = input.args
 
+  if (M.write_before_run and vim.bo.modified and not vim.bo.readonly) then vim.cmd('w') end
+
   if opt == 'last' then
-    local command = get_saved_command()
-    if not command then
+    local command = M['last_command']
+    if command then
+      vim.cmd(command)
+      return
+    else
       print('No dispatched commands yet')
       return
     end
-  end
+  else
+    local command = get_command(opt)
+    if not command then
+      print('No command to dispatch for this filetype')
+      return
+    end
 
-  local command = get_command(opt)
-  if not command then
-    print('No command to dispatch for this filetype')
-    return
+    M['last_command'] = command
+    vim.cmd(command)
   end
-
-  save_command(command)
-  vim.cmd(command)
 end
 
-M.setup = function(commands)
-  M['commands'] = commands
-  vim.api.nvim_create_user_command('CommandDispatch', M.command_dispatch, { nargs = 1, desc = "Command dispatcher" })
+M.setup = function(opts)
+  M['commands'] = opts.commands or {}
+  M['user_command'] = opts.user_command or 'CommandDispatch'
+  M['write_before_run'] = opts.write_before_run or true
+
+  vim.api.nvim_create_user_command(M.user_command, M.command_dispatch, { nargs = 1, desc = "Command dispatcher" })
 end
 
 return M

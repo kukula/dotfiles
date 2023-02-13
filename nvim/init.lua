@@ -5,7 +5,7 @@ if not vim.loop.fs_stat(lazypath) then
     "clone",
     "--filter=blob:none",
     "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
+    "--branch=stable",
     lazypath,
   })
 end
@@ -19,26 +19,26 @@ require('lazy').setup({
   {
     name = "term_wrapper",
     dir = "~/dotfiles/nvim/plugins/term_wrapper",
-    config = function()
-      require('term_wrapper').setup()
-    end,
+    opts = { user_command = 'T' },
   },
 
   {
     name = "command_dispatch",
     dir = "~/dotfiles/nvim/plugins/command_dispatch",
-    config = function()
-      require('command_dispatch').setup(
-        {
-          ruby = 'w | T bundle exec rspec ',
-          typescript = 'w | T yarn test ',
-          javascript = 'w | T yarn test ',
-        }
-      )
-    end,
+    opts = {
+      user_command = 'CommandDispatch',
+      write_before_run = true,
+      commands = {
+        javascript = 'T yarn test ',
+        lua = 'T make test ',
+        make = 'T make test ',
+        ruby = 'T bundle exec rspec ',
+        typescript = 'T yarn test ',
+      }
+    },
   },
 
-  { -- LSP Configuration & Plugins
+  {
     'neovim/nvim-lspconfig',
     dependencies = {
       -- Automatically install LSPs to stdpath for neovim
@@ -58,7 +58,6 @@ require('lazy').setup({
     dependencies = {
       "hrsh7th/cmp-buffer", -- Buffer completions
       "hrsh7th/cmp-path", -- Path completions
-      "hrsh7th/cmp-cmdline", -- Cmdline completions
       "hrsh7th/cmp-nvim-lsp", -- LSP completions
       "hrsh7th/cmp-nvim-lsp-document-symbol", -- For textDocument/documentSymbol
 
@@ -523,18 +522,6 @@ cmp.setup {
       border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
     },
   },
-  experimental = {
-    ghost_text = false,
-    native_menu = false,
-  },
-  enabled = function()
-    local in_prompt = vim.api.nvim_buf_get_option(0, 'buftype') == 'prompt'
-    if in_prompt then -- this will disable cmp in the Telescope window (taken from the default config)
-      return false
-    end
-    local context = require("cmp.config.context")
-    return not (context.in_treesitter_capture("comment") == true or context.in_syntax_group("Comment"))
-  end
 }
 
 cmp.setup.cmdline(":", {
