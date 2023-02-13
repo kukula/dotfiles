@@ -53,22 +53,19 @@ require('lazy').setup({
     },
   },
 
-  { -- Autocompletion
+  {
     'hrsh7th/nvim-cmp',
     dependencies = {
-      "hrsh7th/cmp-buffer", -- Buffer completions
-      "hrsh7th/cmp-path", -- Path completions
-      "hrsh7th/cmp-nvim-lsp", -- LSP completions
-      "hrsh7th/cmp-nvim-lsp-document-symbol", -- For textDocument/documentSymbol
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-nvim-lsp",
+      "lukas-reineke/cmp-under-comparator",
 
       -- Snippets
       "saadparwaiz1/cmp_luasnip", -- snippet completions
       "L3MON4D3/LuaSnip", --snippet engine
       "rafamadriz/friendly-snippets", -- a bunch of snippets to use
 
-      -- Misc
-      "lukas-reineke/cmp-under-comparator", -- Tweak completion order
-      "f3fora/cmp-spell",
     },
   },
 
@@ -523,27 +520,6 @@ cmp.setup {
     },
   },
 }
-
-cmp.setup.cmdline(":", {
-  completion = { autocomplete = false },
-  sources = {
-    { name = "cmdline" }
-  },
-  mapping = cmp.mapping.preset.cmdline({}),
-})
-
-cmp.setup.cmdline("/", {
-  completion = { autocomplete = false },
-  sources = cmp.config.sources(
-    {
-      { name = "buffer" }
-    },
-    {
-      { name = "nvim_lsp_document_symbol" }
-    }
-  ),
-  mapping = cmp.mapping.preset.cmdline({}),
-})
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
