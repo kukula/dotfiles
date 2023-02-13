@@ -9,7 +9,7 @@ H.exec = function(cmd)
 end
 
 H.exec_normal = function(cmd)
-  return H.exec('normal', cmd)
+  return H.exec('normal '..cmd)
 end
 
 H.exec_normal_leader = function(cmd)

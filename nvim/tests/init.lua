@@ -2,9 +2,9 @@ local M = {}
 
 M.run = function(test_file)
   print("Running file", test_file)
-  tests = require("tests/"..test_file)
+  local tests = require("tests/"..test_file)
 
-  for k, v in pairs(tests) do
+  for k, _ in pairs(tests) do
     print("Running", k)
     print("\n")
     tests[k]()
@@ -14,7 +14,7 @@ M.run = function(test_file)
 end
 
 M.run_all = function()
-  test_files = {
+  local test_files = {
     "simple",
     "command_dispatch",
     "term_wrapper",

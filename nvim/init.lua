@@ -105,6 +105,7 @@ require('lazy').setup({
 
   -- surround
   { 'echasnovski/mini.surround', branch = 'stable' },
+  { 'echasnovski/mini.pairs', branch = 'stable' },
 
   -- auto mkdir on file write
   'jghauser/mkdir.nvim',
@@ -149,7 +150,7 @@ vim.opt.spell = false
 vim.opt.spelllang = { 'en_us' }
 vim.api.nvim_create_autocmd('FileType', {
   pattern = {'markdown', 'txt', 'gitcommit'},
-  callback = function(ev)
+  callback = function()
     vim.api.nvim_win_set_option(0, "spell", true)
   end
 })
@@ -197,6 +198,7 @@ require('Comment').setup()
 
 -- Enable mini.surround
 require('mini.surround').setup()
+require('mini.pairs').setup()
 
 -- Enable `lukas-reineke/indent-blankline.nvim`
 -- See `:help indent_blankline.txt`
@@ -363,15 +365,15 @@ end
 local servers = {
   sorbet = {},
   tsserver = {},
-  -- lua_ls = {
-  --   Lua = {
-  --     workspace = { checkThirdParty = false },
-  --     telemetry = { enable = false },
-  --     diagnostics = {
-  --       globals = { 'vim' }
-  --     }
-  --   },
-  -- },
+  lua_ls = {
+    Lua = {
+      workspace = { checkThirdParty = false },
+      telemetry = { enable = false },
+      diagnostics = {
+        globals = { 'vim' }
+      }
+    },
+  },
 }
 
 -- Setup neovim lua configuration
@@ -417,13 +419,7 @@ if not cmp_buffer_ok then return end
 local cmp_under_comparator_ok, cmp_under_comparator = pcall(require, 'cmp-under-comparator')
 if not cmp_under_comparator_ok then return end
 
--- Required or snippets will not be added to the completion options
 require('luasnip/loaders/from_vscode').lazy_load()
-
-local check_backspace = function()
-  local col = vim.fn.col '.' - 1
-  return col == 0 or vim.fn.getline('.'):sub(col, col):match '%s'
-end
 
 cmp.setup {
   snippet = {
@@ -441,8 +437,6 @@ cmp.setup {
         luasnip.expand()
       elseif luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
-      elseif check_backspace() then
-        fallback()
       else
         fallback()
       end
@@ -458,7 +452,7 @@ cmp.setup {
     end, { 'i', 's' }),
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-Space>'] = cmp.mapping.complete(0),
     ['<C-e>'] = cmp.mapping {
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
