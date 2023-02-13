@@ -17,7 +17,8 @@ M.run_all = function()
   test_files = {
     "simple",
     "command_dispatch",
-    "term_wrapper"
+    "term_wrapper",
+    "cmp_snippet"
   }
 
   for _, test_file in pairs(test_files) do

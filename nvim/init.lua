@@ -1,11 +1,11 @@
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable",
+    'git',
+    'clone',
+    '--filter=blob:none',
+    'https://github.com/folke/lazy.nvim.git',
+    '--branch=stable',
     lazypath,
   })
 end
@@ -17,14 +17,14 @@ vim.g.maplocalleader = ','
 
 require('lazy').setup({
   {
-    name = "term_wrapper",
-    dir = "~/dotfiles/nvim/plugins/term_wrapper",
+    name = 'term_wrapper',
+    dir = '~/dotfiles/nvim/plugins/term_wrapper',
     opts = { user_command = 'T' },
   },
 
   {
-    name = "command_dispatch",
-    dir = "~/dotfiles/nvim/plugins/command_dispatch",
+    name = 'command_dispatch',
+    dir = '~/dotfiles/nvim/plugins/command_dispatch',
     opts = {
       user_command = 'CommandDispatch',
       write_before_run = true,
@@ -56,22 +56,20 @@ require('lazy').setup({
   {
     'hrsh7th/nvim-cmp',
     dependencies = {
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-nvim-lsp",
-      "lukas-reineke/cmp-under-comparator",
-
-      -- Snippets
-      "saadparwaiz1/cmp_luasnip", -- snippet completions
-      "L3MON4D3/LuaSnip", --snippet engine
-      "rafamadriz/friendly-snippets", -- a bunch of snippets to use
-
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-nvim-lsp',
+      'f3fora/cmp-spell',
+      'saadparwaiz1/cmp_luasnip',
+      'lukas-reineke/cmp-under-comparator',
+      'L3MON4D3/LuaSnip',
+      'rafamadriz/friendly-snippets',
     },
   },
 
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
-    build = ":TSUpdate",
+    build = ':TSUpdate',
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
     }
@@ -82,13 +80,13 @@ require('lazy').setup({
   'tpope/vim-rhubarb',
 
   {
-    "folke/tokyonight.nvim",
+    'folke/tokyonight.nvim',
     lazy = false,
     priority = 1000,
     config = function()
-      require("tokyonight").setup({
-        style = "night",
-        light_style = "day",
+      require('tokyonight').setup({
+        style = 'night',
+        light_style = 'day',
         terminal_colors = true,
       })
 
@@ -96,7 +94,7 @@ require('lazy').setup({
     end,
   },
   'lukas-reineke/indent-blankline.nvim', -- Add indentation guides even on blank lines
-  'numToStr/Comment.nvim', -- "gc" to comment visual regions/lines
+  'numToStr/Comment.nvim', -- 'gc' to comment visual regions/lines
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
   -- Fuzzy Finder (files, lsp, etc)
@@ -119,7 +117,7 @@ require('lazy').setup({
 
 -- [[ Setting options ]]
 
-vim.api.nvim_set_option("clipboard", "unnamed")
+vim.api.nvim_set_option('clipboard', 'unnamed')
 vim.o.splitright = true
 vim.o.splitbelow = true
 
@@ -146,6 +144,15 @@ vim.o.smartcase = true
 -- Decrease update time
 vim.o.updatetime = 250
 vim.wo.signcolumn = 'no'
+
+vim.opt.spell = false
+vim.opt.spelllang = { 'en_us' }
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = {'markdown', 'txt', 'gitcommit'},
+  callback = function(ev)
+    vim.api.nvim_win_set_option(0, "spell", true)
+  end
+})
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
@@ -176,8 +183,6 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
--- [[ Highlight on yank ]]
--- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
@@ -312,7 +317,7 @@ local on_attach = function(_, bufnr)
   -- In this case, we create a function that lets us more easily define mappings specific
   -- for LSP related items. It sets the mode, buffer and description for us each time.
 
-  vim.lsp.set_log_level("debug")
+  vim.lsp.set_log_level('debug')
 
   local nmap = function(keys, func, desc)
     if desc then
@@ -400,24 +405,24 @@ mason_lspconfig.setup_handlers {
 require('fidget').setup()
 
 -- nvim-cmp setup
-local cmp_status_ok, cmp = pcall(require, "cmp")
+local cmp_status_ok, cmp = pcall(require, 'cmp')
 if not cmp_status_ok then return end
 
-local snip_status_ok, luasnip = pcall(require, "luasnip")
+local snip_status_ok, luasnip = pcall(require, 'luasnip')
 if not snip_status_ok then return end
 
-local cmp_buffer_ok, cmp_buffer = pcall(require, "cmp_buffer")
+local cmp_buffer_ok, cmp_buffer = pcall(require, 'cmp_buffer')
 if not cmp_buffer_ok then return end
 
-local cmp_under_comparator_ok, cmp_under_comparator = pcall(require, "cmp-under-comparator")
+local cmp_under_comparator_ok, cmp_under_comparator = pcall(require, 'cmp-under-comparator')
 if not cmp_under_comparator_ok then return end
 
 -- Required or snippets will not be added to the completion options
-require("luasnip/loaders/from_vscode").lazy_load()
+require('luasnip/loaders/from_vscode').lazy_load()
 
 local check_backspace = function()
-  local col = vim.fn.col "." - 1
-  return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
+  local col = vim.fn.col '.' - 1
+  return col == 0 or vim.fn.getline('.'):sub(col, col):match '%s'
 end
 
 cmp.setup {
@@ -427,7 +432,7 @@ cmp.setup {
     end,
   },
   mapping = {
-    ["<C-n>"] = cmp.mapping(function(fallback)
+    ['<C-n>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
       elseif luasnip.jumpable(1) then
@@ -441,8 +446,8 @@ cmp.setup {
       else
         fallback()
       end
-    end, { "i", "s" }),
-    ["<C-p>"] = cmp.mapping(function(fallback)
+    end, { 'i', 's' }),
+    ['<C-p>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
       elseif luasnip.jumpable(-1) then
@@ -450,36 +455,36 @@ cmp.setup {
       else
         fallback()
       end
-    end, { "i", "s" }),
-    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-    ["<C-f>"] = cmp.mapping.scroll_docs(4),
-    ["<C-Space>"] = cmp.mapping.complete(),
-    ["<C-e>"] = cmp.mapping {
+    end, { 'i', 's' }),
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping {
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
     },
-    ["<CR>"] = cmp.mapping.confirm({
+    ['<CR>'] = cmp.mapping.confirm({
       select = true,
     }),
   },
   formatting = {
-    fields = { "kind", "abbr", "menu" },
+    fields = { 'kind', 'abbr', 'menu' },
     format = function(entry, vim_item)
       vim_item.menu = ({
-        buffer = "[Buffer]",
-        luasnip = "[Snippet]",
-        nvim_lsp = "[LSP]",
-        spell = "[Spelling]",
+        buffer = '[Buffer]',
+        luasnip = '[Snippet]',
+        nvim_lsp = '[LSP]',
+        spell = '[Spelling]',
       })[entry.source.name]
 
       return vim_item
     end
   },
   sources = {
-    { name = "luasnip" },
-    { name = "nvim_lsp" },
-    { name = "path" },
-    { name = "buffer",
+    { name = 'luasnip' },
+    { name = 'nvim_lsp' },
+    { name = 'path' },
+    { name = 'buffer',
       keyword_length = 3,
       option = {
         get_bufnrs = function()
@@ -488,7 +493,7 @@ cmp.setup {
       }
     },
     {
-      name = "spell",
+      name = 'spell',
       option = {
         keep_all_entries = false,
         enable_in_context = function()
@@ -516,7 +521,7 @@ cmp.setup {
   },
   window = {
     documentation = {
-      border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+      border = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' },
     },
   },
 }
