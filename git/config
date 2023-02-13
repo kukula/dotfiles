@@ -26,6 +26,7 @@
   please = "push --force-with-lease"
   staash = "stash --include-untracked"
   merc = "merge --no-ff"
+  update = "!git fetch && git rebase origin/main"
 [color]
 	ui = auto
 [diff]
