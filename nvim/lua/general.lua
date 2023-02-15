@@ -44,11 +44,15 @@ vim.api.nvim_create_autocmd('FileType', {
 
 -- Set completeopt to have a better completion experience
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true })
-vim.keymap.set('n', '<Esc>', '<cmd>:noh<cr>', { noremap = true })
-vim.keymap.set('n', '<leader>f', '<cmd>Explore<cr>', { noremap = true })
-vim.keymap.set('n', '<leader>e', '<cmd>e#<cr>', { noremap = true })
-vim.keymap.set('n', '<leader>gs', '<cmd>Git<cr>', { noremap = true })
-vim.keymap.set('n', '<cr>', 'o<esc>', { noremap = true })
+vim.keymap.set('n', '<Esc>', ':noh<cr>', { noremap = true })
+vim.keymap.set('n', '<leader>f', ':Explore<cr>', { noremap = true })
+vim.keymap.set('n', '<leader>e', ':e#<cr>', { noremap = true })
+vim.keymap.set('n', '<leader>gs', ':Git<cr>', { noremap = true })
+vim.keymap.set('n', 'w', ':w<cr>', { noremap = true })
+vim.keymap.set({ 'n', 'v' }, 'J', '<C-d>zz', { silent = true })
+vim.keymap.set({ 'n', 'v' }, 'K', '<C-u>zz', { silent = true })
+vim.keymap.set({ 'n', 'v' }, 'H', '^', { silent = true })
+vim.keymap.set({ 'n', 'v' }, 'L', '$', { silent = true })
 
 -- For fat fingers
 vim.api.nvim_create_user_command('W', 'w', { nargs = '?' })
@@ -69,6 +73,7 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
+
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
@@ -78,7 +83,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
-vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles)
+vim.keymap.set('n', '<leader>so', require('telescope.builtin').oldfiles)
 vim.keymap.set('n', '<leader>l', require('telescope.builtin').buffers)
 vim.keymap.set('n', '<C-p>', require('telescope.builtin').find_files)
 vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags)

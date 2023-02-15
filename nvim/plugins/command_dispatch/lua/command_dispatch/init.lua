@@ -20,7 +20,7 @@ end
 M.command_dispatch = function(input)
   local opt = input.args
 
-  if (M.write_before_run and vim.bo.modified and not vim.bo.readonly) then vim.cmd('w') end
+  if (M.write_before_run and vim.bo.modified and not vim.bo.readonly) then vim.cmd('up') end
 
   if opt == 'last' then
     local command = M['last_command']
