@@ -37,6 +37,10 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.api.nvim_win_set_option(0, 'spell', true)
   end
 })
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'svelte',
+  command = 'set tabstop=2'
+})
 
 -- Set completeopt to have a better completion experience
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true })
