@@ -37,9 +37,18 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.api.nvim_win_set_option(0, 'spell', true)
   end
 })
+
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'svelte',
   command = 'set tabstop=2'
+})
+
+-- JSON format
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'json',
+  callback = function()
+    vim.api.nvim_create_user_command('Format', '%!jq .', { nargs = '?' })
+  end
 })
 
 -- Set completeopt to have a better completion experience
