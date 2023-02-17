@@ -72,7 +72,7 @@ return {
           end
         },
         mapping = cmp.mapping.preset.insert({
-          ['<CR>'] = cmp.mapping.confirm({ select = false }),
+          ['<CR>'] = cmp.mapping.confirm({ select = true }),
         }),
         sources = {
           { name = 'nvim_lsp' },
@@ -108,7 +108,7 @@ return {
     },
     config = function()
       require('nvim-treesitter.configs').setup {
-        ensure_installed = { 'ruby', 'elixir', 'bash', 'css', 'html', 'javascript', 'json', 'jsonc', 'lua', 'typescript', 'vim' },
+        ensure_installed = { 'ruby', 'elixir', 'bash', 'css', 'html', 'javascript', 'json', 'jsonc', 'lua', 'typescript', 'vim', 'tsx' },
 
         highlight = { enable = true },
         indent = { enable = true, disable = { 'python' } },
@@ -218,13 +218,6 @@ return {
     'echasnovski/mini.surround',
     config = function()
       require('mini.surround').setup()
-    end
-  },
-
-  {
-    'echasnovski/mini.pairs',
-    config = function()
-      require('mini.pairs').setup()
     end
   },
 

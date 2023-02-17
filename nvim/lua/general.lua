@@ -7,16 +7,13 @@ vim.o.completeopt = 'menuone,noselect'
 -- Set highlight on search
 vim.o.hlsearch = true
 
--- Make line numbers default
-vim.wo.number = false
-
--- Enable mouse mode
+-- Mouse mode
 vim.o.mouse = false
 
--- Enable break indent
+-- Break indent
 vim.o.breakindent = true
 
--- Save undo history
+-- Undo history and swap
 vim.o.undofile = false
 vim.o.swapfile = false
 
@@ -24,9 +21,16 @@ vim.o.swapfile = false
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
+-- Disable welcome screen
+vim.o.shortmess = 'I'
+
 -- Decrease update time
 vim.o.updatetime = 250
-vim.wo.signcolumn = 'no'
+
+-- Status column
+vim.o.number = false
+vim.o.relativenumber = false
+vim.o.signcolumn = 'no'
 
 -- Spelling
 vim.opt.spell = false
