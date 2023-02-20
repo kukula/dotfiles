@@ -22,11 +22,10 @@
   ca = commit --amend
   a = add
   branch-name = "!git rev-parse --abbrev-ref HEAD"
-  publish = "!git push -u origin $(git branch-name)"
   please = "push --force-with-lease"
-  staash = "stash --include-untracked"
-  merc = "merge --no-ff"
+  last = "log -1 HEAD"
   update = "!git fetch && git rebase origin/main"
+  update-wip = "!git fetch && git stash && git rebase origin/main && git stash pop"
 [color]
 	ui = auto
 [diff]
