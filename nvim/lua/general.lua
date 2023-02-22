@@ -32,6 +32,8 @@ vim.o.number = false
 vim.o.relativenumber = false
 vim.o.signcolumn = 'no'
 
+vim.o.tabstop = 4
+
 -- Spelling
 vim.opt.spell = false
 vim.opt.spelllang = { 'en_us' }
@@ -40,11 +42,6 @@ vim.api.nvim_create_autocmd('FileType', {
   callback = function()
     vim.api.nvim_win_set_option(0, 'spell', true)
   end
-})
-
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'svelte',
-  command = 'set tabstop=2'
 })
 
 -- JSON format
