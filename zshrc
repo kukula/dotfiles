@@ -15,17 +15,8 @@ path=(
 	$path
 )
 
-# Homebrew
-# eval "$(/opt/homebrew/bin/brew shellenv)"
-export HOMEBREW_PREFIX="/opt/homebrew";
-export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
-export HOMEBREW_REPOSITORY="/opt/homebrew";
-export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}";
-export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
-export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
-
 # ASDF
-source /opt/homebrew/opt/asdf/libexec/asdf.sh
+source $(brew --prefix asdf)/libexec/asdf.sh
 
 # Editor
 export EDITOR="nvim"
@@ -96,5 +87,4 @@ zstyle ':completion:*:*:*:*:messages' format ' %F{purple} -- %d --%f'
 zstyle ':completion:*:*:*:*:warnings' format ' %F{red}-- no matches found --%f'
 
 # Aliases
-alias update-nvim-stable='asdf uninstall neovim stable && asdf install neovim stable'
 alias update-nvim-nightly='asdf uninstall neovim nightly && asdf install neovim nightly'

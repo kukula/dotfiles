@@ -1,9 +1,7 @@
 # brew bundle Brewfile
 
-tap 'caskroom/cask'
-tap 'caskroom/fonts'
-tap 'caskroom/versions'
 tap 'homebrew/bundle'
+tap 'homebrew/cask'
 tap 'homebrew/core'
 tap 'homebrew/services'
 
@@ -26,7 +24,6 @@ cask 'keepingyouawake'
 cask 'kitty'
 cask 'ngrok'
 cask 'rectangle'
-cask 'slack'
 cask 'spotify'
 cask 'visual-studio-code'
 cask 'vlc'

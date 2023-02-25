@@ -10,8 +10,11 @@ vim.o.hlsearch = true
 -- Mouse mode
 vim.o.mouse = false
 
--- Break indent
+-- Indentation
 vim.o.breakindent = true
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
+vim.o.expandtab = true
 
 -- Undo history and swap
 vim.o.undofile = false
@@ -32,7 +35,6 @@ vim.o.number = false
 vim.o.relativenumber = false
 vim.o.signcolumn = 'no'
 
-vim.o.tabstop = 4
 
 -- Spelling
 vim.opt.spell = false

@@ -1,21 +1,49 @@
 #!/bin/zsh
 
-# install Brew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-# brew some apps
-brew bundle install
-
 # Add links
 mkdir -p ~/.zsh
 mkdir -p ~/.config/kitty
 
+if [ ! -L ~/.config/nvim ]; then
+ ln -sf ~/dotfiles/nvim ~/.config/nvim
+fi
 ln -sf ~/dotfiles/zshrc ~/.zshrc
-ln -sf ~/dotfiles/nvim ~/.config/nvim
 ln -sf ~/dotfiles/kitty.conf ~/.config/kitty/kitty.conf
 ln -sf ~/dotfiles/git/config ~/.gitconfig
-ln -sf ~/dotfiles/tool-versions ~/.tool-versions
+
+source ~/.zshrc
+
+# Homebrew as a prerequisite
+sudo chown -R $(whoami) $(brew --prefix)/*
+eval "${HOMEBREW_PREFIX}/bin/brew shellenv" > ~/.zprofile
+
+# brew some apps
+brew bundle install
 
 #ASDF
-cut -d' ' -f1 .tool-versions|xargs -I{} asdf plugin add {}
-asdf install
+plugins=(
+  elixir
+  erlang
+  nodejs
+  postgres
+  python
+  ruby
+  rust
+  yarn
+)
+
+# asdf plugin add neovim
+# asdf install neovim nightly
+echo neovim nightly > ~/.tool-versions
+
+for plugin in "${plugins[@]}"
+do
+  asdf plugin add $plugin
+  asdf install $plugin latest
+  asdf list $plugin | xargs echo $plugin $1 >> ~/.tool-versions
+done
+
+cat ~/.tool-versions
+
+echo
+echo Welcome to your new computer!
