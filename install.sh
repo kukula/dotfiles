@@ -25,7 +25,6 @@ plugins=(
   elixir
   erlang
   nodejs
-  postgres
   python
   ruby
   rust

@@ -5,6 +5,7 @@ export GO111MODULE=on
 test -d "${GOPATH}" || mkdir "${GOPATH}"
 test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
 export PKG_CONFIG_PATH=/usr/local/opt/openssl/lib/pkgconfig
+export PNPM_HOME="${HOME}/Library/pnpm"
 
 path=(
 	/usr/local/bin
@@ -12,6 +13,7 @@ path=(
 	$GOPATH/bin
 	$GOROOT/bin
 	$HOME/.cargo/bin
+	$PNPM_HOME
 	$path
 )
 
