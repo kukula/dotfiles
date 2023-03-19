@@ -63,8 +63,9 @@ vim.keymap.set('n', '<leader>gs', ':Git<cr>', { noremap = true })
 vim.keymap.set('n', 'w', ':w<cr>', { noremap = true })
 vim.keymap.set({ 'n', 'v' }, 'J', '<C-d>zz', { silent = true })
 vim.keymap.set({ 'n', 'v' }, 'K', '<C-u>zz', { silent = true })
-vim.keymap.set({ 'n', 'v' }, 'H', '^', { silent = true })
+vim.keymap.set({ 'n', 'v' }, 'H', '0', { silent = true })
 vim.keymap.set({ 'n', 'v' }, 'L', '$', { silent = true })
+vim.keymap.set('n', 'M', ':join<cr>', { silent = true })
 
 -- For fat fingers
 vim.api.nvim_create_user_command('W', 'w', { nargs = '?' })

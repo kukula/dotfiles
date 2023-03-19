@@ -12,7 +12,8 @@ local get_term_buf = function()
 end
 
 local ensure_split = function()
-  if vim.tbl_count(vim.fn.getwininfo()) == 1 then
+  local win_in_first_row = vim.tbl_filter(function(window) return window.winrow == 1 end, vim.fn.getwininfo())
+  if vim.tbl_count(win_in_first_row) == 1 then
     vim.cmd('vsplit')
   end
 end
