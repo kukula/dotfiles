@@ -22,12 +22,64 @@ return {
   },
 
   {
-    'neovim/nvim-lspconfig',
+    'williamboman/mason.nvim',
     dependencies = {
-      'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
-      'folke/neodev.nvim',
+      'neovim/nvim-lspconfig',
+      'jose-elias-alvarez/null-ls.nvim',
+      'hrsh7th/cmp-nvim-lsp'
     },
+    config = function()
+      local servers = {
+        tsserver = {},
+        rust_analyzer = {},
+        lua_ls = {
+          Lua = {
+            workspace = { checkThirdParty = false },
+            telemetry = { enable = false },
+            diagnostics = {
+              globals = { 'vim' }
+            }
+          },
+        },
+        ruby_ls = {},
+        emmet_ls = {
+          filetypes = {
+            "css",
+            "html",
+            "javascriptreact",
+            "less",
+            "sass",
+            "scss",
+            "typescriptreact",
+          },
+        }
+      }
+
+      require("mason").setup()
+
+      -- After setting up mason-lspconfig you may set up servers via lspconfig
+      -- require("lspconfig").lua_ls.setup {}
+      -- require("lspconfig").rust_analyzer.setup {}
+      -- ...
+      local mason_lspconfig = require 'mason-lspconfig'
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+
+      mason_lspconfig.setup {
+        ensure_installed = vim.tbl_keys(servers),
+      }
+
+      mason_lspconfig.setup_handlers {
+        function(server_name)
+          require('lspconfig')[server_name].setup {
+            capabilities = capabilities,
+            settings = servers[server_name],
+          }
+        end,
+      }
+    end,
+    build = ":MasonUpdate"
   },
 
   {
@@ -39,7 +91,8 @@ return {
       'f3fora/cmp-spell',
       'saadparwaiz1/cmp_luasnip',
       'lukas-reineke/cmp-under-comparator',
-      { 'L3MON4D3/LuaSnip',
+      {
+        'L3MON4D3/LuaSnip',
         config = function()
           require('luasnip/loaders/from_vscode').lazy_load()
         end,
@@ -78,7 +131,8 @@ return {
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'path' },
-          { name = 'buffer',
+          {
+            name = 'buffer',
             keyword_length = 1,
             option = {
               get_bufnrs = function()
@@ -108,7 +162,8 @@ return {
     },
     config = function()
       require('nvim-treesitter.configs').setup {
-        ensure_installed = { 'ruby', 'elixir', 'bash', 'css', 'html', 'javascript', 'json', 'jsonc', 'lua', 'typescript', 'vim', 'tsx' },
+        ensure_installed = { 'ruby', 'elixir', 'bash', 'css', 'html', 'javascript', 'json', 'jsonc', 'lua', 'typescript',
+          'vim', 'tsx' },
 
         highlight = { enable = true },
         indent = { enable = true, disable = { 'python' } },
@@ -184,7 +239,8 @@ return {
     end,
   },
 
-  { 'nvim-telescope/telescope.nvim',
+  {
+    'nvim-telescope/telescope.nvim',
     branch = '0.1.x',
     dependencies = { 'nvim-lua/plenary.nvim' },
     opts = {
