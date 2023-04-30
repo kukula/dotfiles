@@ -62,11 +62,11 @@ return {
           fields = { 'kind', 'abbr', 'menu' },
           format = function(entry, vim_item)
             vim_item.menu = ({
-                  buffer = '[Buffer]',
-                  luasnip = '[Snippet]',
-                  nvim_lsp = '[LSP]',
-                  spell = '[Spelling]',
-                })[entry.source.name]
+              buffer = '[Buffer]',
+              luasnip = '[Snippet]',
+              nvim_lsp = '[LSP]',
+              spell = '[Spelling]',
+            })[entry.source.name]
 
             return vim_item
           end
@@ -228,6 +228,25 @@ return {
     end
   },
 
+  {
+    name = 'chatbot-buffer.nvim',
+    dir = '~/projects/chatbot-buffer.nvim',
+    -- 'jay-aye-see-kay/chatbot-buffer.nvim',
+    opts = {},
+  },
+  {
+    "jackMort/ChatGPT.nvim",
+    config = function()
+      require("chatgpt").setup({
+        -- optional configuration
+      })
+    end,
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim"
+    }
+  },
   'jghauser/mkdir.nvim',
   'AndrewRadev/splitjoin.vim',
   'tpope/vim-sleuth',

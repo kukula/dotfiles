@@ -4,7 +4,9 @@ local get_filename = function() return vim.api.nvim_buf_get_name(0) end
 local get_line_number = function() return vim.api.nvim_win_get_cursor(0)[1] end
 
 local get_command = function(opt)
-  local command = M.commands[vim.bo.filetype]
+  print(vim.inspect(vim.bo.filetype))
+  local commands = M.commands
+  local command = commands[vim.bo.filetype]
 
   if not command then return end
 

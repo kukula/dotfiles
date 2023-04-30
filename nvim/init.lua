@@ -89,7 +89,46 @@ local servers = {
       }
     },
   },
-  solargraph = {},
+  ruby_ls = {
+    -- default_config = {
+    --   cmd = { "ruby-lsp" },
+    --   filetypes = { "ruby" },
+    --   init_options = {
+    --     enabledFeatures = {
+    --       "documentHighlights",
+    --       "documentSymbols",
+    --       "foldingRanges",
+    --       "selectionRanges",
+    --       -- "semanticHighlighting",
+    --       "formatting",
+    --       "codeActions",
+    --     }
+    --   },
+    --   settings = {},
+    -- },
+    -- commands = {
+    --   FormatRuby = {
+    --     function()
+    --       vim.lsp.buf.format({
+    --         name = "ruby_lsp",
+    --         async = true,
+    --       })
+    --     end,
+    --     description = "Format using ruby-lsp",
+    --   },
+    -- },
+  },
+  emmet_ls = {
+    filetypes = {
+      "css",
+      "html",
+      "javascriptreact",
+      "less",
+      "sass",
+      "scss",
+      "typescriptreact",
+    },
+  }
 }
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
