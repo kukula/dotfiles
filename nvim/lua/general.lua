@@ -8,7 +8,7 @@ vim.o.completeopt = 'menuone,noselect'
 vim.o.hlsearch = true
 
 -- Mouse mode
-vim.o.mouse = false
+vim.o.mouse = ""
 
 -- Indentation
 vim.o.breakindent = true
@@ -60,7 +60,7 @@ vim.keymap.set('n', '<Esc>', ':noh<cr>', { noremap = true })
 vim.keymap.set('n', '<leader>f', ':Explore<cr>', { noremap = true })
 vim.keymap.set('n', '<leader>e', ':e#<cr>', { noremap = true })
 vim.keymap.set('n', '<leader>gs', ':Git<cr>', { noremap = true })
-vim.keymap.set('n', 'w', ':w<cr>', { noremap = true })
+vim.keymap.set('n', 's', ':w<cr>', { noremap = true })
 vim.keymap.set({ 'n', 'v' }, 'J', '<C-d>zz', { silent = true })
 vim.keymap.set({ 'n', 'v' }, 'K', '<C-u>zz', { silent = true })
 vim.keymap.set({ 'n', 'v' }, 'H', '0', { silent = true })

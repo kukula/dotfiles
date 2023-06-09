@@ -20,7 +20,6 @@ return {
       }
     },
   },
-
   {
     'williamboman/mason.nvim',
     dependencies = {
@@ -45,23 +44,19 @@ return {
         ruby_ls = {},
         emmet_ls = {
           filetypes = {
-            "css",
-            "html",
-            "javascriptreact",
-            "less",
-            "sass",
-            "scss",
-            "typescriptreact",
+            'css',
+            'html',
+            'javascriptreact',
+            'less',
+            'sass',
+            'scss',
+            'typescriptreact',
           },
         }
       }
 
-      require("mason").setup()
+      require('mason').setup()
 
-      -- After setting up mason-lspconfig you may set up servers via lspconfig
-      -- require("lspconfig").lua_ls.setup {}
-      -- require("lspconfig").rust_analyzer.setup {}
-      -- ...
       local mason_lspconfig = require 'mason-lspconfig'
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
@@ -79,9 +74,8 @@ return {
         end,
       }
     end,
-    build = ":MasonUpdate"
+    build = ':MasonUpdate'
   },
-
   {
     'hrsh7th/nvim-cmp',
     dependencies = {
@@ -157,71 +151,6 @@ return {
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
-    },
-    config = function()
-      require('nvim-treesitter.configs').setup {
-        ensure_installed = { 'ruby', 'elixir', 'bash', 'css', 'html', 'javascript', 'json', 'jsonc', 'lua', 'typescript',
-          'vim', 'tsx' },
-
-        highlight = { enable = true },
-        indent = { enable = true, disable = { 'python' } },
-        incremental_selection = {
-          enable = true,
-          keymaps = {
-            init_selection = '<cr>',
-            scope_incremental = '<cr>',
-            node_incremental = '<tab>',
-            node_decremental = '<s-tab>',
-          },
-        },
-        textobjects = {
-          select = {
-            enable = true,
-            lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-            keymaps = {
-              -- You can use the capture groups defined in textobjects.scm
-              ['aa'] = '@parameter.outer',
-              ['ia'] = '@parameter.inner',
-              ['af'] = '@function.outer',
-              ['if'] = '@function.inner',
-              ['ac'] = '@class.outer',
-              ['ic'] = '@class.inner',
-            },
-          },
-          move = {
-            enable = true,
-            set_jumps = true, -- whether to set jumps in the jumplist
-            goto_next_start = {
-              [']m'] = '@function.outer',
-              [']]'] = '@class.outer',
-            },
-            goto_next_end = {
-              [']M'] = '@function.outer',
-              [']['] = '@class.outer',
-            },
-            goto_previous_start = {
-              ['[m'] = '@function.outer',
-              ['[['] = '@class.outer',
-            },
-            goto_previous_end = {
-              ['[M'] = '@function.outer',
-              ['[]'] = '@class.outer',
-            },
-          },
-          swap = {
-            enable = true,
-            swap_next = {
-              ['<leader>a'] = '@parameter.inner',
-            },
-            swap_previous = {
-              ['<leader>A'] = '@parameter.inner',
-            },
-          },
-        },
-      }
-    end
   },
 
   {
@@ -284,25 +213,6 @@ return {
     end
   },
 
-  {
-    name = 'chatbot-buffer.nvim',
-    dir = '~/projects/chatbot-buffer.nvim',
-    -- 'jay-aye-see-kay/chatbot-buffer.nvim',
-    opts = {},
-  },
-  {
-    "jackMort/ChatGPT.nvim",
-    config = function()
-      require("chatgpt").setup({
-        -- optional configuration
-      })
-    end,
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim"
-    }
-  },
   'jghauser/mkdir.nvim',
   'AndrewRadev/splitjoin.vim',
   'tpope/vim-sleuth',
