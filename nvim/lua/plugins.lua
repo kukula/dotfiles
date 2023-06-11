@@ -151,6 +151,12 @@ return {
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
+    opts = {
+      ensure_installed = "maintained",
+      highlight = {
+        enable = true,
+      },
+    },
   },
 
   {
