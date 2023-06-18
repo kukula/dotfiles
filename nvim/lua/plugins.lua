@@ -17,6 +17,7 @@ return {
         make = 'T make test ',
         ruby = 'T bundle exec rspec ',
         typescript = 'T yarn test ',
+        elixir = 'T mix test ',
       }
     },
   },
@@ -229,4 +230,5 @@ return {
   'tpope/vim-sleuth',
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
+  'CamdenClark/flyboy',
 }
