@@ -67,6 +67,9 @@ vim.keymap.set({ 'n', 'v' }, 'H', '0', { silent = true })
 vim.keymap.set({ 'n', 'v' }, 'L', '$', { silent = true })
 vim.keymap.set('n', 'M', ':join<cr>', { silent = true })
 vim.keymap.set('n', '===', "gg=G''", { silent = true })
+vim.keymap.set({ 'n', 'v' }, '<leader>k', function ()
+  vim.diagnostic.open_float()
+end, { silent = true })
 
 -- For fat fingers
 vim.api.nvim_create_user_command('W', 'w', { nargs = '?' })
