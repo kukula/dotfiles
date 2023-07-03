@@ -8,16 +8,72 @@
 return {
 	{ "akinsho/bufferline.nvim", enabled = false },
 	{ "rcarriga/nvim-notify", enabled = false },
-	{ "nvim-lualine/lualine.nvim", enabled = false },
 	{ "ggandor/flit.nvim", enabled = false },
 	{ "ggandor/leap.nvim", enabled = false },
 	{ "lewis6991/gitsigns.nvim", enabled = false },
+
+	{ "TimUntersberger/neogit" },
+	{
+		"dinhhuy258/git.nvim",
+		opts = {
+			default_mappings = true,
+		},
+	},
 
 	{
 		"folke/which-key.nvim",
 		opts = {
 			defaults = {
 				["<leader>t"] = { name = "+test" },
+				["<leader>d"] = { name = "+debug" },
+				["<leader>da"] = { name = "+adapters" },
+			},
+		},
+	},
+
+	{
+		"akinsho/toggleterm.nvim",
+		version = "*",
+		opts = {
+			direction = "vertical",
+			close_on_exit = false,
+			open_mapping = [[<c-\>]],
+			shade_terminals = false,
+		},
+	},
+
+	{
+		"stevearc/overseer.nvim",
+		dependencies = {
+			"akinsho/toggleterm.nvim",
+		},
+		opts = {
+			strategy = {
+				"toggleterm",
+				-- load your default shell before starting the task
+				use_shell = false,
+				-- overwrite the default toggleterm "direction" parameter
+				direction = nil,
+				-- overwrite the default toggleterm "highlights" parameter
+				highlights = nil,
+				-- overwrite the default toggleterm "auto_scroll" parameter
+				auto_scroll = nil,
+				-- have the toggleterm window close and delete the terminal buffer
+				-- automatically after the task exits
+				close_on_exit = false,
+				-- have the toggleterm window close without deleting the terminal buffer
+				-- automatically after the task exits
+				-- can be "never, "success", or "always". "success" will close the window
+				-- only if the exit code is 0.
+				quit_on_exit = "never",
+				-- open the toggleterm window when a task starts
+				open_on_start = true,
+				-- mirrors the toggleterm "hidden" parameter, and keeps the task from
+				-- being rendered in the toggleable window
+				hidden = false,
+				-- command to run when the terminal is created. Combine with `use_shell`
+				-- to run a terminal command before starting the task
+				on_create = nil,
 			},
 		},
 	},
@@ -27,8 +83,12 @@ return {
 		"nvim-neotest/neotest",
 		dependencies = {
 			"olimorris/neotest-rspec",
+			"stevearc/overseer.nvim",
 		},
 		opts = {
+			consumers = {
+				overseer = require("neotest.consumers.overseer"),
+			},
 			adapters = {
 				["neotest-rspec"] = {
 					rspec_cmd = function()
@@ -41,6 +101,23 @@ return {
 				},
 			},
 		},
+	},
+
+	{
+		"mfussenegger/nvim-dap",
+		optional = true,
+		dependencies = {
+			"suketa/nvim-dap-ruby",
+			config = function()
+				require("dap-ruby").setup()
+			end,
+		},
+	},
+	{
+		"suketa/nvim-dap-ruby",
+		config = function()
+			require("dap-ruby").setup()
+		end,
 	},
 
 	{
@@ -259,5 +336,38 @@ return {
 				end, { "i", "s" }),
 			})
 		end,
+	},
+
+	{
+		"nvim-lualine/lualine.nvim",
+		event = "VeryLazy",
+		opts = {
+			options = {
+				component_separators = "",
+				section_separators = "",
+				theme = {
+					-- We are going to use lualine_c an lualine_x as left and
+					-- right section. Both are highlighted by c theme .  So we
+					-- are just setting default looks o statusline
+					normal = { c = { fg = "", bg = "" } },
+					inactive = { c = { fg = "", bg = "" } },
+				},
+			},
+			sections = {
+				lualine_a = { "mode" },
+				lualine_b = { "overseer" },
+				lualine_c = {
+					{ "filename", path = 1, symbols = { modified = "  ", readonly = "", unnamed = "" } },
+				},
+				lualine_x = { "branch" },
+				lualine_y = {
+					{ "progress", separator = " ", padding = { left = 1, right = 1 } },
+				},
+				lualine_z = {
+					{ "location", padding = { left = 1, right = 0 } },
+				},
+			},
+			extensions = {},
+		},
 	},
 }
