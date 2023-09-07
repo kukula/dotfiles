@@ -90,3 +90,4 @@ zstyle ':completion:*:*:*:*:warnings' format ' %F{red}-- no matches found --%f'
 
 # Aliases
 alias update-nvim-nightly='asdf uninstall neovim nightly && asdf install neovim nightly'
+alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
