@@ -231,4 +231,5 @@ return {
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
   'CamdenClark/flyboy',
+  'vim-crystal/vim-crystal',
 }
