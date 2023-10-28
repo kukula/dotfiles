@@ -31,8 +31,7 @@ plugins=(
   yarn
 )
 
-# asdf plugin add neovim
-# asdf install neovim nightly
+asdf plugin add neovim
 echo neovim nightly > ~/.tool-versions
 
 for plugin in "${plugins[@]}"
