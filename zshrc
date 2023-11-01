@@ -13,12 +13,13 @@ path=(
 	$GOPATH/bin
 	$GOROOT/bin
 	$HOME/.cargo/bin
+	$HOME/.local/bin/
 	$PNPM_HOME
 	$path
 )
 
 # ASDF
-source $(brew --prefix asdf)/libexec/asdf.sh
+# source $(brew --prefix asdf)/libexec/asdf.sh
 
 # Editor
 export EDITOR="nvim"

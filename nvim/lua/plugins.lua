@@ -42,18 +42,6 @@ return {
             }
           },
         },
-        ruby_ls = {},
-        emmet_ls = {
-          filetypes = {
-            'css',
-            'html',
-            'javascriptreact',
-            'less',
-            'sass',
-            'scss',
-            'typescriptreact',
-          },
-        }
       }
 
       require('mason').setup()
@@ -225,6 +213,13 @@ return {
     end
   },
 
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    ft = { "markdown" },
+    build = function() vim.fn["mkdp#util#install"]() end,
+  },
+
   'jghauser/mkdir.nvim',
   'AndrewRadev/splitjoin.vim',
   'tpope/vim-sleuth',
@@ -232,4 +227,5 @@ return {
   'tpope/vim-rhubarb',
   'CamdenClark/flyboy',
   'vim-crystal/vim-crystal',
+  'jbyuki/quickmath.nvim',
 }

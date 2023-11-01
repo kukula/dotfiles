@@ -17,6 +17,8 @@ brew 'readline'
 brew 'ripgrep'
 brew 'tldr'
 brew 'wget'
+brew 'xh'
+brew 'difftastic'
 
 cask 'keepingyouawake'
 cask 'kitty'
