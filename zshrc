@@ -19,7 +19,7 @@ path=(
 )
 
 # ASDF
-# source $(brew --prefix asdf)/libexec/asdf.sh
+source $(brew --prefix asdf)/libexec/asdf.sh
 
 # Editor
 export EDITOR="nvim"

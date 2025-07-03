@@ -21,49 +21,12 @@ return {
       }
     },
   },
+
+  'neovim/nvim-lspconfig',
+
   {
-    'williamboman/mason.nvim',
-    dependencies = {
-      'williamboman/mason-lspconfig.nvim',
-      'neovim/nvim-lspconfig',
-      'jose-elias-alvarez/null-ls.nvim',
-      'hrsh7th/cmp-nvim-lsp'
-    },
-    config = function()
-      local servers = {
-        tsserver = {},
-        rust_analyzer = {},
-        lua_ls = {
-          Lua = {
-            workspace = { checkThirdParty = false },
-            telemetry = { enable = false },
-            diagnostics = {
-              globals = { 'vim' }
-            }
-          },
-        },
-      }
-
-      require('mason').setup()
-
-      local mason_lspconfig = require 'mason-lspconfig'
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-
-      mason_lspconfig.setup {
-        ensure_installed = vim.tbl_keys(servers),
-      }
-
-      mason_lspconfig.setup_handlers {
-        function(server_name)
-          require('lspconfig')[server_name].setup {
-            capabilities = capabilities,
-            settings = servers[server_name],
-          }
-        end,
-      }
-    end,
-    build = ':MasonUpdate'
+    "mason-org/mason.nvim",
+    opts = {}
   },
   {
     'hrsh7th/nvim-cmp',
