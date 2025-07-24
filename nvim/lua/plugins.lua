@@ -15,7 +15,7 @@ return {
         javascript = 'T yarn test ',
         lua = 'T make test ',
         make = 'T make test ',
-        ruby = 'T bundle exec rspec ',
+        ruby = 'T RAILS_ENV=test bin/rspec ',
         typescript = 'T yarn test ',
         elixir = 'T mix test ',
       }

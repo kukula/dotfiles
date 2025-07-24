@@ -16,9 +16,12 @@ brew 'openssl'
 brew 'readline'
 brew 'ripgrep'
 brew 'tldr'
+brew 'thefuck'
 brew 'wget'
 brew 'xh'
 brew 'difftastic'
+
+cask 'vale'
 
 cask 'keepingyouawake'
 cask 'kitty'
@@ -27,3 +30,4 @@ cask 'ngrok'
 cask 'rectangle'
 cask 'visual-studio-code'
 cask 'vlc'
+

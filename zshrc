@@ -5,7 +5,6 @@ export GO111MODULE=on
 test -d "${GOPATH}" || mkdir "${GOPATH}"
 test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
 export PKG_CONFIG_PATH=/usr/local/opt/openssl/lib/pkgconfig
-export PNPM_HOME="${HOME}/Library/pnpm"
 
 path=(
 	/usr/local/bin
@@ -13,13 +12,18 @@ path=(
 	$GOPATH/bin
 	$GOROOT/bin
 	$HOME/.cargo/bin
-	$HOME/.local/bin/
+	$HOME/.local/bin
+	$HOME/.pulumi/bin
+	$HOME/Library/pnpm
 	$PNPM_HOME
 	$path
 )
 
 # ASDF
 source $(brew --prefix asdf)/libexec/asdf.sh
+
+# The F
+eval $(thefuck --alias)
 
 # Editor
 export EDITOR="nvim"
