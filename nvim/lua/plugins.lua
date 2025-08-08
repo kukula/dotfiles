@@ -28,6 +28,14 @@ return {
     "mason-org/mason.nvim",
     opts = {}
   },
+
+  {
+    "mason-org/mason-lspconfig.nvim",
+    dependencies = {
+      "mason-org/mason.nvim",
+      "neovim/nvim-lspconfig",
+    },
+  },
   {
     'hrsh7th/nvim-cmp',
     dependencies = {
@@ -105,13 +113,21 @@ return {
     build = ':TSUpdate',
     config = function()
       require('nvim-treesitter.configs').setup({
-        ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "ruby", "elixir", "heex" },
+        ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "ruby", "elixir", "heex", "javascript", "typescript", "tsx", "json", "yaml", "html", "css", "markdown", "markdown_inline", "python", "rust", "go" },
         highlight = {
           enable = true,
         },
         indent = {
           enable = true
-        }
+        },
+        incremental_selection = {
+          enable = true,
+          keymaps = {
+            init_selection = '<c-space>',
+            node_incremental = '<c-space>',
+            node_decremental = '<c-backspace>',
+          },
+        },
       })
     end,
   },
@@ -183,11 +199,73 @@ return {
     build = function() vim.fn["mkdp#util#install"]() end,
   },
 
+  {
+    'madox2/vim-ai',
+    build = 'pip3 install openai',
+    config = function()
+      -- Option 1: Use with OpenAI (requires OPENAI_API_KEY)
+      vim.g.vim_ai_complete = {
+        engine = 'complete',
+        options = {
+          model = 'gpt-4',
+          max_tokens = 1000,
+          temperature = 0.1,
+          request_timeout = 20,
+        },
+      }
+      
+      -- Option 2: Use with OpenRouter for Claude (requires OPENROUTER_API_KEY)
+      -- Uncomment below and comment above to use Claude via OpenRouter:
+      -- vim.g.vim_ai_complete = {
+      --   engine = 'complete',
+      --   options = {
+      --     model = 'anthropic/claude-3-opus',
+      --     endpoint_url = 'https://openrouter.ai/api/v1/completions',
+      --     max_tokens = 1000,
+      --     temperature = 0.1,
+      --     request_timeout = 20,
+      --     api_key_env = 'OPENROUTER_API_KEY',
+      --   },
+      -- }
+      
+      -- Set API key with: export OPENAI_API_KEY='your-key-here'
+      -- Or for OpenRouter: export OPENROUTER_API_KEY='your-key-here'
+    end,
+  },
+
+  {
+    'windwp/nvim-autopairs',
+    event = 'InsertEnter',
+    config = function()
+      require('nvim-autopairs').setup({
+        check_ts = true,
+      })
+      local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+      local cmp = require('cmp')
+      cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
+    end,
+  },
+
+  {
+    'lukas-reineke/indent-blankline.nvim',
+    main = 'ibl',
+    opts = {
+      indent = {
+        char = '┊',
+      },
+      scope = {
+        enabled = false,
+      },
+    },
+  },
+
   'jghauser/mkdir.nvim',
   'AndrewRadev/splitjoin.vim',
   'tpope/vim-sleuth',
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
+  'tpope/vim-rails',
+  'vim-ruby/vim-ruby',
   'CamdenClark/flyboy',
   'vim-crystal/vim-crystal',
   'jbyuki/quickmath.nvim',

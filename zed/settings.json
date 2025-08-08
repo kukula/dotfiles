@@ -1,0 +1,100 @@
+{
+  "telemetry": {
+    "diagnostics": true
+  },
+  "features": {
+    "edit_prediction_provider": "zed"
+  },
+  "vim_mode": true,
+  "ui_font_size": 14,
+  "buffer_font_size": 14,
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "Tokyo Night"
+  },
+  "languages": {
+    "Ruby": {
+      "language_servers": ["ruby-lsp", "!solargraph", "!steep", "!sorbet"],
+      "formatter": "language_server",
+      "format_on_save": "on",
+      "tab_size": 2,
+      "soft_wrap": "preferred_line_length"
+    },
+    "ERB": {
+      "tab_size": 2,
+      "format_on_save": "on"
+    }
+  },
+  "lsp": {
+    "ruby-lsp": {
+      "initialization_options": {
+        "enabledFeatures": {
+          "diagnostics": true,
+          "formatting": true,
+          "codeActions": true,
+          "hover": true,
+          "completion": true,
+          "documentSymbol": true,
+          "workspaceSymbol": true,
+          "semanticHighlighting": true
+        },
+        "formatter": "auto"
+      }
+    }
+  },
+  "relative_line_numbers": true,
+  "show_whitespaces": "selection",
+  "indent_guides": {
+    "enabled": true,
+    "line_width": 1,
+    "active_line_width": 2
+  },
+  "scrollbar": {
+    "show": "auto"
+  },
+  "cursor_blink": false,
+  "show_wrap_guides": true,
+  "wrap_guides": [80, 120],
+  "preferred_line_length": 120,
+  "auto_save": "on_focus_change",
+  "ensure_final_newline_on_save": true,
+  "remove_trailing_whitespace_on_save": true,
+  "project_panel": {
+    "dock": "left",
+    "default_width": 240,
+    "git_status": true
+  },
+  "terminal": {
+    "dock": "bottom",
+    "default_height": 320,
+    "font_size": 14,
+    "working_directory": "current_project_directory"
+  },
+  "git": {
+    "inline_blame": {
+      "enabled": true
+    },
+    "git_gutter": "tracked_files"
+  },
+  "file_types": {
+    "Ruby": [
+      "rb",
+      "ruby",
+      "rake",
+      "gemspec",
+      "Rakefile",
+      "Gemfile",
+      "Guardfile",
+      "Capfile",
+      "Vagrantfile",
+      "Fastfile",
+      "Appfile",
+      "Deliverfile",
+      "Matchfile",
+      "Scanfile",
+      "Snapfile",
+      "Gymfile"
+    ]
+  }
+}

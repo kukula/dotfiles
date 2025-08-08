@@ -16,8 +16,13 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = ','
 vim.g.maplocalleader = ','
 
-require('lazy').setup(require('plugins'))
+require('lazy').setup(require('plugins'), {
+  rocks = {
+    enabled = false, -- Disable luarocks since we don't need it
+  },
+})
 require('general')
+require('lsp')
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

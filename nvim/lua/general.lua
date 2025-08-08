@@ -1,4 +1,7 @@
 vim.api.nvim_set_option('clipboard', 'unnamed')
+
+-- Python provider
+vim.g.python3_host_prog = vim.fn.expand('$HOME/.asdf/shims/python3')
 vim.o.splitright = true
 vim.o.splitbelow = true
 
