@@ -16,6 +16,7 @@ path=(
 	$HOME/.pulumi/bin
 	$HOME/Library/pnpm
 	$PNPM_HOME
+	/opt/homebrew/opt/postgresql@15/bin
 	$path
 )
 
@@ -96,3 +97,4 @@ zstyle ':completion:*:*:*:*:warnings' format ' %F{red}-- no matches found --%f'
 # Aliases
 alias update-nvim-nightly='asdf uninstall neovim nightly && asdf install neovim nightly'
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
+source ${HOME}/.ghcup/env
