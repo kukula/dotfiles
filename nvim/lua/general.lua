@@ -41,7 +41,9 @@ vim.o.signcolumn = 'no'
 
 -- Spelling
 vim.opt.spell = false
-vim.opt.spelllang = { 'en_us' }
+vim.opt.spelllang = { 'en_au', 'en' }
+vim.opt.spellsuggest = 'best,9'
+vim.opt.spellcapcheck = ''  -- Don't check for capital letters at start of sentences
 vim.api.nvim_create_autocmd('FileType', {
   pattern = { 'markdown', 'txt', 'gitcommit' },
   callback = function()

@@ -16,7 +16,7 @@ path=(
 	$HOME/.pulumi/bin
 	$HOME/Library/pnpm
 	$PNPM_HOME
-	/opt/homebrew/opt/postgresql@15/bin
+	/opt/homebrew/opt/postgresql@18/bin
 	$path
 )
 
