@@ -200,40 +200,6 @@ return {
   },
 
   {
-    'madox2/vim-ai',
-    build = 'pip3 install openai',
-    config = function()
-      -- Option 1: Use with OpenAI (requires OPENAI_API_KEY)
-      vim.g.vim_ai_complete = {
-        engine = 'complete',
-        options = {
-          model = 'gpt-4',
-          max_tokens = 1000,
-          temperature = 0.1,
-          request_timeout = 20,
-        },
-      }
-      
-      -- Option 2: Use with OpenRouter for Claude (requires OPENROUTER_API_KEY)
-      -- Uncomment below and comment above to use Claude via OpenRouter:
-      -- vim.g.vim_ai_complete = {
-      --   engine = 'complete',
-      --   options = {
-      --     model = 'anthropic/claude-3-opus',
-      --     endpoint_url = 'https://openrouter.ai/api/v1/completions',
-      --     max_tokens = 1000,
-      --     temperature = 0.1,
-      --     request_timeout = 20,
-      --     api_key_env = 'OPENROUTER_API_KEY',
-      --   },
-      -- }
-      
-      -- Set API key with: export OPENAI_API_KEY='your-key-here'
-      -- Or for OpenRouter: export OPENROUTER_API_KEY='your-key-here'
-    end,
-  },
-
-  {
     'windwp/nvim-autopairs',
     event = 'InsertEnter',
     config = function()
