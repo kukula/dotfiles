@@ -19,6 +19,7 @@ brew 'ripgrep'
 brew 'thefuck'
 brew 'tldr'
 brew 'tree'
+brew 'tree-sitter'
 brew 'wget'
 brew 'xh'
 

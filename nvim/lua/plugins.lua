@@ -44,9 +44,9 @@ return {
       'hrsh7th/cmp-nvim-lsp',
       'f3fora/cmp-spell',
       'saadparwaiz1/cmp_luasnip',
-      'lukas-reineke/cmp-under-comparator',
       {
         'L3MON4D3/LuaSnip',
+        build = 'make install_jsregexp',
         config = function()
           require('luasnip/loaders/from_vscode').lazy_load()
         end,
@@ -110,25 +110,16 @@ return {
 
   {
     'nvim-treesitter/nvim-treesitter',
+    branch = 'main',
+    lazy = false,
     build = ':TSUpdate',
     config = function()
-      require('nvim-treesitter.configs').setup({
-        ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "ruby", "elixir", "heex", "javascript", "typescript", "tsx", "json", "yaml", "html", "css", "markdown", "markdown_inline", "python", "rust", "go" },
-        highlight = {
-          enable = true,
-        },
-        indent = {
-          enable = true
-        },
-        incremental_selection = {
-          enable = true,
-          keymaps = {
-            init_selection = '<c-space>',
-            node_incremental = '<c-space>',
-            node_decremental = '<c-backspace>',
-          },
-        },
-      })
+      require('nvim-treesitter').setup()
+      require('nvim-treesitter').install({ "c", "lua", "vim", "vimdoc", "query", "ruby", "elixir", "heex", "javascript", "typescript", "tsx", "json", "yaml", "html", "css", "markdown", "markdown_inline", "python", "rust", "go" })
+
+      vim.keymap.set('n', '<c-space>', function()
+        vim.treesitter.inspect_tree()
+      end)
     end,
   },
 
@@ -178,19 +169,7 @@ return {
     end
   },
 
-  {
-    'echasnovski/mini.surround',
-    config = function()
-      require('mini.surround').setup()
-    end
-  },
-
-  {
-    'echasnovski/mini.comment',
-    config = function()
-      require('mini.comment').setup()
-    end
-  },
+  { 'echasnovski/mini.surround', opts = {} },
 
   {
     "iamcco/markdown-preview.nvim",
@@ -232,7 +211,4 @@ return {
   'tpope/vim-rhubarb',
   'tpope/vim-rails',
   'vim-ruby/vim-ruby',
-  'CamdenClark/flyboy',
-  'vim-crystal/vim-crystal',
-  'jbyuki/quickmath.nvim',
 }

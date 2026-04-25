@@ -1,4 +1,4 @@
-vim.api.nvim_set_option('clipboard', 'unnamed')
+vim.o.clipboard = 'unnamed'
 
 -- Python provider
 vim.g.python3_host_prog = vim.fn.expand('$HOME/.asdf/shims/python3')
@@ -6,9 +6,6 @@ vim.o.splitright = true
 vim.o.splitbelow = true
 
 vim.o.completeopt = 'menuone,noselect'
-
--- Set highlight on search
-vim.o.hlsearch = true
 
 -- Mouse mode
 vim.o.mouse = ""
@@ -28,7 +25,7 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 
 -- Disable welcome screen
-vim.o.shortmess = 'I'
+vim.opt.shortmess:append('I')
 
 -- Decrease update time
 vim.o.updatetime = 250
@@ -38,7 +35,6 @@ vim.o.number = false
 vim.o.relativenumber = false
 vim.o.signcolumn = 'no'
 
-
 -- Spelling
 vim.opt.spell = false
 vim.opt.spelllang = { 'en_au', 'en' }
@@ -47,7 +43,7 @@ vim.opt.spellcapcheck = ''  -- Don't check for capital letters at start of sente
 vim.api.nvim_create_autocmd('FileType', {
   pattern = { 'markdown', 'txt', 'gitcommit' },
   callback = function()
-    vim.api.nvim_win_set_option(0, 'spell', true)
+    vim.wo[0].spell = true
   end
 })
 
@@ -59,13 +55,12 @@ vim.api.nvim_create_autocmd('FileType', {
   end
 })
 
--- Set completeopt to have a better completion experience
-vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true })
-vim.keymap.set('n', '<Esc>', ':noh<cr>', { noremap = true })
-vim.keymap.set('n', '<leader>f', ':Explore<cr>', { noremap = true })
-vim.keymap.set('n', '<leader>e', ':e#<cr>', { noremap = true })
-vim.keymap.set('n', '<leader>gs', ':Git<cr>', { noremap = true })
-vim.keymap.set('n', 's', ':w<cr>', { noremap = true })
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
+vim.keymap.set('n', '<Esc>', ':noh<cr>')
+vim.keymap.set('n', '<leader>f', ':Explore<cr>')
+vim.keymap.set('n', '<leader>e', ':e#<cr>')
+vim.keymap.set('n', '<leader>gs', ':Git<cr>')
+vim.keymap.set('n', 's', ':w<cr>')
 vim.keymap.set('n', '===', "gg=G''", { silent = true })
 vim.keymap.set({ 'n', 'v' }, '<leader>k', function ()
   vim.diagnostic.open_float()
@@ -79,10 +74,9 @@ vim.api.nvim_create_user_command('Q', 'q', { nargs = '?' })
 vim.api.nvim_create_user_command('Cq', 'cq', { nargs = '?' })
 
 -- Command dispatcher
-vim.keymap.set('n', '<leader>st', ':CommandDispatch file<cr>', { noremap = true })
-vim.keymap.set('n', '<leader>ss', ':CommandDispatch currentline<cr>', { noremap = true })
-vim.keymap.set('n', '<leader>sl', ':CommandDispatch last<cr>', { noremap = true })
-
+vim.keymap.set('n', '<leader>st', ':CommandDispatch file<cr>')
+vim.keymap.set('n', '<leader>ss', ':CommandDispatch currentline<cr>')
+vim.keymap.set('n', '<leader>sl', ':CommandDispatch last<cr>')
 
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 

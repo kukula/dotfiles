@@ -29,36 +29,29 @@ local on_attach = function(_, bufnr)
 end
 
 local servers = {
-  -- Ruby LSP (Shopify's ruby-lsp is better than solargraph)
   ruby_lsp = {
     init_options = {
       formatter = 'auto',
       linters = { 'rubocop' },
     },
   },
-  
-  -- Rubocop for additional linting
-  rubocop = {},
-  
+
   lua_ls = {
-    Lua = {
-      workspace = { checkThirdParty = false },
-      telemetry = { enable = false },
-      diagnostics = {
-        globals = { 'vim' }
+    settings = {
+      Lua = {
+        workspace = { checkThirdParty = false },
+        telemetry = { enable = false },
+        diagnostics = {
+          globals = { 'vim' }
+        },
       },
     },
   },
-  
+
   ts_ls = {},
   eslint = {},
-  
-  elixirls = {
-    cmd = { vim.fn.expand("~/.local/share/nvim/mason/bin/elixir-ls") },
-  },
-  
+  elixirls = {},
   pyright = {},
-  
   jsonls = {},
   yamlls = {},
   html = {},
@@ -66,20 +59,18 @@ local servers = {
   tailwindcss = {},
 }
 
-require('mason').setup()
-
 local mason_lspconfig = require('mason-lspconfig')
 
 mason_lspconfig.setup({
   ensure_installed = vim.tbl_keys(servers),
-  automatic_installation = false, -- Don't automatically install missing servers
+  automatic_installation = false,
 })
 
 for server_name, server_config in pairs(servers) do
   vim.lsp.config[server_name] = {
     capabilities = capabilities,
     on_attach = on_attach,
-    settings = server_config,
+    settings = server_config.settings or {},
     init_options = server_config.init_options,
     cmd = server_config.cmd,
   }
