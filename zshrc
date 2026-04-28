@@ -20,8 +20,10 @@ path=(
 	$path
 )
 
-# ASDF
-source $(brew --prefix asdf)/libexec/asdf.sh
+# ASDF (v0.16+ is a Go binary; just add shims to PATH and load completions)
+export ASDF_DATA_DIR="${ASDF_DATA_DIR:-$HOME/.asdf}"
+path=("${ASDF_DATA_DIR}/shims" $path)
+fpath=("$(brew --prefix asdf)/share/zsh/site-functions" $fpath)
 
 # The F
 eval $(thefuck --alias)
