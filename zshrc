@@ -76,6 +76,15 @@ PROMPT='${TIME} ${DIR} ${vcs_info_msg_0_} ${NEWLINE}$ '
 # Completion
 zmodload zsh/complist
 
+# Prune dangling completion symlinks (e.g. Docker.app removing its bundled
+# completions) so compinit doesn't error on a missing target.
+() {
+	local brew_comps="$HOMEBREW_PREFIX/share/zsh/site-functions"
+	[[ -d "$brew_comps" ]] || return
+	# TODO(human): iterate the _* completion files in $brew_comps and remove
+	# any that are broken symlinks (link exists but target does not).
+}
+
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
