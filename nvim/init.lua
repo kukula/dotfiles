@@ -1,6 +1,12 @@
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 
-if not vim.uv.fs_stat(lazypath) then
+-- Re-bootstrap if the install is missing OR incomplete. Checking for lazy's
+-- actual entry file (not just the directory) lets a partial/corrupted clone
+-- self-heal instead of failing forever with "module 'lazy' not found".
+if not vim.uv.fs_stat(lazypath .. '/lua/lazy/init.lua') then
+  -- Clear any leftover partial clone, otherwise `git clone` refuses a
+  -- non-empty destination and the bootstrap can never recover.
+  vim.fn.delete(lazypath, 'rf')
   vim.fn.system({
     'git',
     'clone',
