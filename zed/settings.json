@@ -1,30 +1,48 @@
 {
-  "telemetry": {
-    "diagnostics": true
+  "diagnostics": {
+    "inline": {
+      "enabled": true
+    }
   },
-  "features": {
-    "edit_prediction_provider": "zed"
+  "prettier": {
+    "allowed": true
+  },
+  "document_symbols": "on",
+  "document_folding_ranges": "on",
+  "semantic_tokens": "combined",
+  "base_keymap": "SublimeText",
+  "session": {
+    "trust_all_worktrees": true,
+  },
+  "agent_servers": {
+    "claude-acp": {
+      "type": "registry",
+    },
+  },
+  "icon_theme": "Zed (Default)",
+  "edit_predictions": {
+    "provider": "zed",
+  },
+  "telemetry": {
+    "metrics": false,
+    "diagnostics": false,
   },
   "vim_mode": true,
   "ui_font_size": 14,
   "buffer_font_size": 14,
-  "theme": {
-    "mode": "system",
-    "light": "One Light",
-    "dark": "Tokyo Night"
-  },
+  "theme": "Ayu Dark",
   "languages": {
     "Ruby": {
       "language_servers": ["ruby-lsp", "!solargraph", "!steep", "!sorbet"],
       "formatter": "language_server",
       "format_on_save": "on",
       "tab_size": 2,
-      "soft_wrap": "preferred_line_length"
+      "soft_wrap": "preferred_line_length",
     },
     "ERB": {
       "tab_size": 2,
-      "format_on_save": "on"
-    }
+      "format_on_save": "on",
+    },
   },
   "lsp": {
     "ruby-lsp": {
@@ -37,21 +55,21 @@
           "completion": true,
           "documentSymbol": true,
           "workspaceSymbol": true,
-          "semanticHighlighting": true
+          "semanticHighlighting": true,
         },
-        "formatter": "auto"
-      }
-    }
+        "formatter": "auto",
+      },
+    },
   },
-  "relative_line_numbers": true,
+  "relative_line_numbers": "enabled",
   "show_whitespaces": "selection",
   "indent_guides": {
     "enabled": true,
     "line_width": 1,
-    "active_line_width": 2
+    "active_line_width": 2,
   },
   "scrollbar": {
-    "show": "auto"
+    "show": "auto",
   },
   "cursor_blink": false,
   "show_wrap_guides": true,
@@ -63,19 +81,19 @@
   "project_panel": {
     "dock": "left",
     "default_width": 240,
-    "git_status": true
+    "git_status": true,
   },
   "terminal": {
     "dock": "bottom",
     "default_height": 320,
     "font_size": 14,
-    "working_directory": "current_project_directory"
+    "working_directory": "current_project_directory",
   },
   "git": {
     "inline_blame": {
-      "enabled": true
+      "enabled": true,
     },
-    "git_gutter": "tracked_files"
+    "git_gutter": "tracked_files",
   },
   "file_types": {
     "Ruby": [
@@ -94,7 +112,7 @@
       "Matchfile",
       "Scanfile",
       "Snapfile",
-      "Gymfile"
-    ]
-  }
+      "Gymfile",
+    ],
+  },
 }
