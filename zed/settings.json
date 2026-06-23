@@ -1,11 +1,11 @@
 {
   "diagnostics": {
     "inline": {
-      "enabled": true
-    }
+      "enabled": true,
+    },
   },
   "prettier": {
-    "allowed": true
+    "allowed": true,
   },
   "document_symbols": "on",
   "document_folding_ranges": "on",
@@ -19,6 +19,11 @@
       "type": "registry",
     },
   },
+  "agent": {
+    "default_profile": "ask",
+    "play_sound_when_agent_done": true,
+    "dock": "right",
+  },
   "icon_theme": "Zed (Default)",
   "edit_predictions": {
     "provider": "zed",
@@ -28,6 +33,13 @@
     "diagnostics": false,
   },
   "vim_mode": true,
+  "vim": {
+    "use_system_clipboard": "always",
+    "use_smartcase_find": true,
+    "toggle_relative_line_numbers": true,
+    "highlight_on_yank_duration": 200,
+  },
+  "use_smartcase_search": true,
   "ui_font_size": 14,
   "buffer_font_size": 14,
   "theme": "Ayu Dark",
@@ -42,6 +54,28 @@
     "ERB": {
       "tab_size": 2,
       "format_on_save": "on",
+    },
+    "JSON": {
+      "formatter": "prettier",
+      "format_on_save": "on",
+      "tab_size": 2,
+    },
+    "JSONC": {
+      "formatter": "prettier",
+      "format_on_save": "on",
+      "tab_size": 2,
+    },
+    "YAML": {
+      "formatter": "prettier",
+      "format_on_save": "on",
+      "tab_size": 2,
+    },
+    "Markdown": {
+      "formatter": "prettier",
+      "format_on_save": "on",
+      "tab_size": 2,
+      "soft_wrap": "editor_width",
+      "remove_trailing_whitespace_on_save": false,
     },
   },
   "lsp": {
@@ -62,6 +96,20 @@
     },
   },
   "relative_line_numbers": "enabled",
+  "scroll_beyond_last_line": "off",
+  "current_line_highlight": "all",
+  "max_tabs": 10,
+  "tab_bar": {
+    "show_nav_history_buttons": false,
+  },
+  "tabs": {
+    "git_status": true,
+    "file_icons": true,
+  },
+  "centered_layout": {
+    "left_padding": 0.2,
+    "right_padding": 0.2,
+  },
   "show_whitespaces": "selection",
   "indent_guides": {
     "enabled": true,
@@ -92,6 +140,7 @@
   "git": {
     "inline_blame": {
       "enabled": true,
+      "delay_ms": 600,
     },
     "git_gutter": "tracked_files",
   },
