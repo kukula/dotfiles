@@ -95,9 +95,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 vim.keymap.set('n', '<leader>so', function()
-  -- TODO(human): call telescope's oldfiles picker, passing an explicit `cwd`
-  -- so it never falls back to vim.uv.cwd() (which returns nil when the OS
-  -- working directory has been deleted/moved -> E5108 path_expand error).
+  -- Pass an explicit cwd so telescope never falls back to vim.uv.cwd(), which
+  -- returns nil when the OS working directory was deleted/moved (-> E5108).
+  require('telescope.builtin').oldfiles({ cwd = vim.uv.cwd() or vim.env.HOME })
 end)
 vim.keymap.set('n', '<leader>l', require('telescope.builtin').buffers)
 vim.keymap.set('n', '<C-p>', require('telescope.builtin').find_files)

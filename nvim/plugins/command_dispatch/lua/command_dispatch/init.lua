@@ -4,7 +4,6 @@ local get_filename = function() return vim.api.nvim_buf_get_name(0) end
 local get_line_number = function() return vim.api.nvim_win_get_cursor(0)[1] end
 
 local get_command = function(opt)
-  print(vim.inspect(vim.bo.filetype))
   local commands = M.commands
   local command = commands[vim.bo.filetype]
 
@@ -48,7 +47,7 @@ end
 M.setup = function(opts)
   M['commands'] = opts.commands or {}
   M['user_command'] = opts.user_command or 'CommandDispatch'
-  M['write_before_run'] = opts.write_before_run or true
+  M['write_before_run'] = opts.write_before_run == nil or opts.write_before_run
 
   vim.api.nvim_create_user_command(M.user_command, M.command_dispatch, { nargs = 1, desc = "Command dispatcher" })
 end

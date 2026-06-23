@@ -9,3 +9,4 @@ node_modules/
 .aider*
 .claude/
 .DS_Store
+Brewfile.lock.json

@@ -1,16 +1,8 @@
-#!/bin/zsh
+.PHONY: test
 
+# Run headless, then `qa!` so nvim exits on its own — no sleep/kill needed.
+# Exit non-zero when any test fails so CI / `&&` chains can detect failure.
 test:
-	clear
-	nvim --headless -c "lua R = require('tests/init'); R.run_all()" & pid=$!
-	waiting = 2
-	sleep $waiting
-	still_running = ps | grep $pid | grep nvim | wc -l
-	if [ still_running -gt 0]; then
-		echo Killing after $waiting seconds
-		kill -INT $pid
-	fi
-
-
-
-
+	@nvim --headless \
+		-c "lua require('tests/init').run_all()" \
+		-c "lua vim.cmd(require('tests/init').failed > 0 and 'cq' or 'qa!')"
