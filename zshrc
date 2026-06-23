@@ -4,18 +4,16 @@ export GOPATH="${HOME}/go"
 export GO111MODULE=on
 test -d "${GOPATH}" || mkdir "${GOPATH}"
 test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
-export PKG_CONFIG_PATH=/usr/local/opt/openssl/lib/pkgconfig
+export PKG_CONFIG_PATH="$HOMEBREW_PREFIX/opt/openssl/lib/pkgconfig"
 
 path=(
 	/usr/local/bin
 	/usr/local/sbin
 	$GOPATH/bin
-	$GOROOT/bin
 	$HOME/.cargo/bin
 	$HOME/.local/bin
 	$HOME/.pulumi/bin
 	$HOME/Library/pnpm
-	$PNPM_HOME
 	/opt/homebrew/opt/postgresql@18/bin
 	$path
 )
@@ -23,10 +21,7 @@ path=(
 # ASDF (v0.16+ is a Go binary; just add shims to PATH and load completions)
 export ASDF_DATA_DIR="${ASDF_DATA_DIR:-$HOME/.asdf}"
 path=("${ASDF_DATA_DIR}/shims" $path)
-fpath=("$(brew --prefix asdf)/share/zsh/site-functions" $fpath)
-
-# The F
-eval $(thefuck --alias)
+fpath=("$HOMEBREW_PREFIX/opt/asdf/share/zsh/site-functions" $fpath)
 
 # Editor
 export EDITOR="nvim"
@@ -81,8 +76,10 @@ zmodload zsh/complist
 () {
 	local brew_comps="$HOMEBREW_PREFIX/share/zsh/site-functions"
 	[[ -d "$brew_comps" ]] || return
-	# TODO(human): iterate the _* completion files in $brew_comps and remove
-	# any that are broken symlinks (link exists but target does not).
+	local f
+	for f in "$brew_comps"/_*(N); do
+		[[ -h "$f" && ! -e "$f" ]] && rm -f "$f"
+	done
 }
 
 bindkey -M menuselect 'h' vi-backward-char

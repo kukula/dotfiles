@@ -31,11 +31,9 @@
 	ui = auto
 [diff]
 	tool = vimdiff
+	external = difft
 [difftool]
 	prompt = false
-[github]
-	user = kukula
-	token = token
 [filter "lfs"]
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f

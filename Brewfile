@@ -1,8 +1,5 @@
 # brew bundle Brewfile
 
-tap 'homebrew/bundle'
-tap 'homebrew/services'
-
 brew 'asdf'
 brew 'coreutils'
 brew 'difftastic'
@@ -16,7 +13,6 @@ brew 'jq'
 brew 'openssl'
 brew 'readline'
 brew 'ripgrep'
-brew 'thefuck'
 brew 'tlrc'
 brew 'tree'
 brew 'tree-sitter'
