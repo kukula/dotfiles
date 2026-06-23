@@ -1,2 +1,4 @@
 .DS_Store
 .solargraph.yml
+
+**/.claude/settings.local.json
