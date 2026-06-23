@@ -6,12 +6,13 @@ test runners. Keep additions minimal and fast; match the existing style.
 
 ## Setup
 
-`./install.sh` (idempotent): installs Homebrew, symlinks configs, `brew bundle`,
-asdf runtimes pinned to `latest`.
+`./install.sh` (idempotent, location-independent — derives its path from `$0`):
+Homebrew, symlinks, `brew bundle`, Rectangle prefs, asdf runtimes pinned `latest`.
 
-Symlinked: `nvim/`→`~/.config/nvim`, `zshrc`→`~/.zshrc`,
-`kitty.conf`→`~/.config/kitty/`, `git/config`→`~/.gitconfig`.
-Tracked but **not** auto-linked: `RectangleConfig.json`, `zed/`.
+Symlinks: `nvim/`, `zshrc`, `kitty.conf`, `git/config`, and
+`git/gitignore_global`→`~/.config/git/ignore` (git's native global excludes),
+`zed/settings.json`. `RectangleConfig.json` isn't a live file — install.sh writes
+its keys into Rectangle's UserDefaults via `defaults` (restart Rectangle to apply).
 
 ## Neovim
 

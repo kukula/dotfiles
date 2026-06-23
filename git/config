@@ -4,7 +4,7 @@
 [core]
 	editor = nvim
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
-	excludesfile = ~/dotfiles/git/gitignore_global
+	# global excludes live at git's native ~/.config/git/ignore (symlinked by install.sh)
 [commit]
 	verbose = true
 [push]
@@ -42,3 +42,5 @@
 	helper = osxkeychain
 [init]
 	defaultBranch = main
+[safe]
+	directory = /Users/tolic/dev/infra
