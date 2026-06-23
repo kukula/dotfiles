@@ -26,7 +26,6 @@
   last = "log -1 HEAD"
   update = "!git fetch && git rebase origin/main"
   update-wip = "!git fetch && git stash && git rebase origin/main && git stash pop"
-  update-old = "!git fetch && git rebase origin/master"
 [color]
 	ui = auto
 [diff]

@@ -1,9 +1,6 @@
 # Paths
 export ZSH_HOME=$HOME/.zsh
 export GOPATH="${HOME}/go"
-export GO111MODULE=on
-test -d "${GOPATH}" || mkdir "${GOPATH}"
-test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
 export PKG_CONFIG_PATH="$HOMEBREW_PREFIX/opt/openssl/lib/pkgconfig"
 
 path=(
@@ -102,5 +99,3 @@ zstyle ':completion:*:*:*:*:descriptions' format '%F{blue}-- %D %d --%f'
 zstyle ':completion:*:*:*:*:messages' format ' %F{purple} -- %d --%f'
 zstyle ':completion:*:*:*:*:warnings' format ' %F{red}-- no matches found --%f'
 
-# Aliases
-alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
