@@ -1,28 +1,45 @@
 # brew bundle Brewfile
 
+# Core CLI
 brew 'asdf'
 brew 'coreutils'
-brew 'difftastic'
 brew 'fd'
 brew 'fzf'
 brew 'gawk'
-brew 'git'
-brew 'gpg'
 brew 'htop'
 brew 'jq'
-brew 'openssl'
-brew 'readline'
 brew 'ripgrep'
 brew 'tlrc'
 brew 'tree'
-brew 'tree-sitter'
 brew 'wget'
 brew 'xh'
 
-cask 'vale'
+# Git
+brew 'git'
+brew 'gh'
+brew 'tig'
+brew 'difftastic'
+brew 'gitleaks'
+brew 'gnupg'
 
-cask 'keepingyouawake'
+# Editor / Neovim
+brew 'neovim'
+brew 'make'
+brew 'tree-sitter-cli'
+brew 'luacheck'
+brew 'stylua'
+brew 'vale'
+
+# Media / docs
+brew 'ffmpeg'
+brew 'pandoc'
+brew 'hugo'
+brew 'promptfoo'
+
+# Casks
 cask 'kitty'
 cask 'rectangle'
+cask 'keepingyouawake'
+cask 'claude-code'
+cask 'orbstack'
 cask 'vlc'
-

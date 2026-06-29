@@ -30,7 +30,6 @@
 	ui = auto
 [diff]
 	tool = vimdiff
-	external = difft
 [difftool]
 	prompt = false
 [filter "lfs"]
