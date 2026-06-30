@@ -1,9 +1,18 @@
 # Paths
 export ZSH_HOME=$HOME/.zsh
 export GOPATH="${HOME}/go"
+# Homebrew normally sets HOMEBREW_PREFIX and puts /opt/homebrew/bin on PATH from
+# ~/.zprofile — but that only runs for *login* shells. Non-login interactive
+# shells (and anything inheriting a partial PATH) source this file but not
+# .zprofile, so without a fallback they'd carry the asdf shims yet not the
+# `asdf` binary the shims exec — turning python3/node/ruby into stubs that exit
+# 127 ("asdf: not found"). Guarantee both here so shims always resolve.
+export HOMEBREW_PREFIX="${HOMEBREW_PREFIX:-/opt/homebrew}"
 export PKG_CONFIG_PATH="$HOMEBREW_PREFIX/opt/openssl/lib/pkgconfig"
 
 path=(
+	$HOMEBREW_PREFIX/bin
+	$HOMEBREW_PREFIX/sbin
 	/usr/local/bin
 	/usr/local/sbin
 	$GOPATH/bin
@@ -18,6 +27,7 @@ path=(
 # ASDF (v0.16+ is a Go binary; just add shims to PATH and load completions)
 export ASDF_DATA_DIR="${ASDF_DATA_DIR:-$HOME/.asdf}"
 path=("${ASDF_DATA_DIR}/shims" $path)
+typeset -U path PATH  # dedupe — .zprofile may have already added these entries
 
 # Editor
 export EDITOR="nvim"
